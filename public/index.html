@@ -394,130 +394,8 @@
 
     <!-- annotated VS IDE diagram -->
     <div class="vs-diagram">
-      <div class="vs-diagram__label">Visual Studio — annotated layout</div>
-      <svg viewBox="0 0 760 440" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block">
-        <!-- window bg -->
-        <rect width="760" height="440" fill="#1e1e26"/>
-        <!-- title bar -->
-        <rect width="760" height="28" fill="#2b2b38"/>
-        <text x="12" y="18" fill="#9d9baa" font-size="10" font-family="DM Sans,sans-serif">File  Edit  View  Git  Project  Build  Debug  Test  Tools  Extensions  Window  Help</text>
-        <text x="320" y="18" fill="#d4d2e0" font-size="10" font-family="DM Sans,sans-serif" font-weight="600">Imageboard_illust_EN</text>
-        <rect x="720" y="4" width="12" height="12" rx="2" fill="#ff5f57" opacity="0.8"/>
-        <rect x="736" y="4" width="12" height="12" rx="2" fill="#febc2e" opacity="0.8"/>
-
-        <!-- toolbar -->
-        <rect y="28" width="760" height="26" fill="#2d2d3a"/>
-        <text x="12" y="45" fill="#7a7888" font-size="9" font-family="DM Sans,sans-serif">▶ Debug  ·  Any CPU  ·  Continue  ·  ‖  ■  ↺</text>
-
-        <!-- file tabs -->
-        <rect y="54" width="760" height="22" fill="#252530"/>
-        <rect x="0" y="54" width="180" height="22" fill="#1e1e26" rx="2"/>
-        <text x="10" y="68" fill="#c8c6d4" font-size="9" font-family="DM Sans,sans-serif">Imageboard_illust.ColorPickerPage</text>
-        <rect x="182" y="54" width="130" height="22" fill="#252530"/>
-        <text x="192" y="68" fill="#7a7888" font-size="9" font-family="DM Sans,sans-serif">BarBtn(string text …)</text>
-
-        <!-- code editor area -->
-        <rect x="0" y="76" width="555" height="320" fill="#1e1e26"/>
-        <!-- line numbers -->
-        <rect x="0" y="76" width="36" height="320" fill="#252530"/>
-        <text x="4"  y="100" fill="#555466" font-size="9" font-family="DM Mono,monospace">371</text>
-        <text x="4"  y="116" fill="#555466" font-size="9" font-family="DM Mono,monospace">372</text>
-        <text x="4"  y="132" fill="#555466" font-size="9" font-family="DM Mono,monospace">373</text>
-        <text x="4"  y="148" fill="#555466" font-size="9" font-family="DM Mono,monospace">374</text>
-        <text x="4"  y="164" fill="#555466" font-size="9" font-family="DM Mono,monospace">375</text>
-        <text x="4"  y="180" fill="#555466" font-size="9" font-family="DM Mono,monospace">382</text>
-        <text x="4"  y="196" fill="#555466" font-size="9" font-family="DM Mono,monospace">383</text>
-        <text x="4"  y="212" fill="#555466" font-size="9" font-family="DM Mono,monospace">384</text>
-        <!-- code text -->
-        <text x="44" y="100" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">int</text>
-        <text x="64" y="100" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">x = padding + col * (size + padding);</text>
-        <text x="44" y="116" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">int</text>
-        <text x="64" y="116" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">y = padding + row * (size + padding);</text>
-        <text x="44" y="148" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">using var</text>
-        <text x="104" y="148" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">brush</text>
-        <text x="138" y="148" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">= new SolidBrush(_palette[i]);</text>
-        <text x="44" y="164" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">g.FillRectangle(brush, x, y, size, size);</text>
-        <text x="44" y="196" fill="#585b70" font-size="9" font-family="DM Mono,monospace">4 references</text>
-        <text x="44" y="212" fill="#89b4fa" font-size="9" font-family="DM Mono,monospace">private static</text>
-        <text x="130" y="212" fill="#89dceb" font-size="9" font-family="DM Mono,monospace">Button</text>
-        <text x="168" y="212" fill="#a6e3a1" font-size="9" font-family="DM Mono,monospace">BarBtn</text>
-        <text x="202" y="212" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">(string text, Color bg,</text>
-        <!-- active line highlight -->
-        <rect x="36" y="320" width="519" height="14" fill="#264f78" opacity="0.5"/>
-        <text x="44" y="330" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">return</text>
-        <text x="80" y="330" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">b;</text>
-        <!-- status bar -->
-        <rect x="0" y="396" width="555" height="18" fill="#0e639c"/>
-        <text x="8"  y="408" fill="#fff" font-size="8" font-family="DM Sans,sans-serif">● No issues found</text>
-        <text x="340" y="408" fill="#ffffffb0" font-size="8" font-family="DM Mono,monospace">Ln 394, Ch 22   SPC   CRLF   UTF-8</text>
-
-        <!-- bottom panel -->
-        <rect x="0" y="396" width="555" height="44" fill="#1a1a24"/>
-        <rect x="0" y="396" width="555" height="16" fill="#252530"/>
-        <!-- bottom tabs -->
-        <text x="8"   y="407" fill="#c8c6d4" font-size="8.5" font-family="DM Sans,sans-serif">Watch 1</text>
-        <text x="68"  y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Developer PowerShell</text>
-        <text x="188" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Call Stack</text>
-        <text x="254" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Breakpoints</text>
-        <text x="326" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Command Window</text>
-        <text x="432" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Output</text>
-        <text x="476" y="407" fill="#c8c6d4" font-size="8.5" font-family="DM Sans,sans-serif" font-weight="600">Error List</text>
-        <text x="8"   y="430" fill="#585b70" font-size="9"   font-family="DM Mono,monospace">Name</text>
-        <text x="60"  y="430" fill="#585b70" font-size="9"   font-family="DM Mono,monospace">Value</text>
-        <text x="110" y="430" fill="#585b70" font-size="9"   font-family="DM Mono,monospace">Type</text>
-
-        <!-- solution explorer panel -->
-        <rect x="557" y="76" width="203" height="364" fill="#252530"/>
-        <rect x="557" y="76" width="203" height="22" fill="#2b2b38"/>
-        <text x="568" y="91" fill="#c8c6d4" font-size="9.5" font-family="DM Sans,sans-serif" font-weight="600">Solution Explorer</text>
-        <!-- tree items -->
-        <text x="568" y="114" fill="#c8c6d4" font-size="9" font-family="DM Sans,sans-serif">▾ Imageboard_illust</text>
-        <text x="578" y="130" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">▾ Packages</text>
-        <text x="592" y="146" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Microsoft.Data.Sqlite (10.0.5)</text>
-        <text x="592" y="162" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Microsoft.Data.Sqlite.Core</text>
-        <text x="578" y="178" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">▾ Database</text>
-        <text x="592" y="194" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  AppDatabase.cs</text>
-        <text x="578" y="210" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">▾ Models</text>
-        <text x="592" y="226" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Models.cs</text>
-        <!-- active file highlight -->
-        <rect x="557" y="236" width="203" height="16" fill="#094771"/>
-        <text x="578" y="248" fill="#ffffff" font-size="9" font-family="DM Sans,sans-serif" font-weight="600">  ColorPickerPage.cs  ◀</text>
-        <text x="578" y="266" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  ExportOptionsDialog.cs</text>
-        <text x="578" y="282" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Form1.cs</text>
-        <text x="578" y="298" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  ImageItemControl.cs</text>
-        <text x="578" y="314" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  MainForm.cs</text>
-        <text x="578" y="330" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Program.cs</text>
-        <text x="578" y="346" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  StartPage.cs</text>
-
-        <!-- divider between code and solution explorer -->
-        <rect x="555" y="76" width="2" height="364" fill="#333344"/>
-
-        <!-- ── NUMBERED BADGES ── -->
-        <!-- 1: Menu bar -->
-        <circle cx="68" cy="20" r="10" fill="#7c3aed"/>
-        <text x="68" y="24" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">1</text>
-        <!-- 2: Toolbar -->
-        <circle cx="68" cy="41" r="10" fill="#2563eb"/>
-        <text x="68" y="45" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">2</text>
-        <!-- 3: File tabs -->
-        <circle cx="90" cy="65" r="10" fill="#059669"/>
-        <text x="90" y="69" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">3</text>
-        <!-- 4: Code editor -->
-        <circle cx="280" cy="240" r="12" fill="#d97706"/>
-        <text x="280" y="244" text-anchor="middle" fill="#fff" font-size="11" font-family="DM Sans,sans-serif" font-weight="700">4</text>
-        <!-- 5: Bottom panels -->
-        <circle cx="280" cy="418" r="10" fill="#db2777"/>
-        <text x="280" y="422" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">5</text>
-        <!-- 6: Solution Explorer -->
-        <circle cx="736" cy="91" r="10" fill="#0891b2"/>
-        <text x="736" y="95" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">6</text>
-
-        <!-- connector lines -->
-        <line x1="68" y1="30" x2="68" y2="28" stroke="#7c3aed" stroke-width="1" opacity="0.6"/>
-        <line x1="68" y1="51" x2="68" y2="54" stroke="#2563eb" stroke-width="1" opacity="0.6"/>
-        <line x1="90" y1="75" x2="90" y2="76" stroke="#059669" stroke-width="1" opacity="0.6"/>
-        <line x1="736" y1="101" x2="736" y2="98" stroke="#0891b2" stroke-width="1" opacity="0.6"/>
-      </svg>
+      <div class="vs-diagram__label">Visual Studio — annotated layout (your actual IDE)</div>
+      <img src="img/vs-annotated.png" alt="Visual Studio IDE with numbered annotations showing the menu bar (1), toolbar (2), file tabs (3), code editor (4), bottom panels (5), and Solution Explorer (6)" style="width:100%;display:block;">
     </div>
 
     <!-- numbered descriptions -->
@@ -763,33 +641,7 @@
     <p>Open <code>StartPage.cs</code>. This is the landing screen — a <code>Panel</code> that fills the window. It fires events when the user clicks a card, which <code>MainForm</code> listens to.</p>
 
     <!-- Start Page app screenshot mock -->
-    <div class="app-mock">
-      <div class="app-mock__bar">
-        <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
-        <span class="app-mock__title">Image Board Studio</span>
-      </div>
-      <div class="app-mock__body" style="background:#13131a;display:flex;align-items:center;justify-content:center;padding:40px 24px;min-height:220px">
-        <div style="text-align:center;max-width:500px">
-          <div style="font-size:22px;font-weight:700;color:#e2ddf5;margin-bottom:6px">Image Board Studio</div>
-          <div style="font-size:12px;color:#6b6882;margin-bottom:24px">Choose a mode to get started</div>
-          <div style="display:flex;gap:16px;justify-content:center">
-            <div style="background:#1a1a24;border:1px solid rgba(96,165,250,.4);border-radius:10px;padding:20px 18px;width:160px;text-align:center;cursor:pointer">
-              <div style="font-size:28px;margin-bottom:10px">🖼</div>
-              <div style="font-size:13px;color:#60a5fa;font-weight:600;margin-bottom:6px">Image Board</div>
-              <div style="font-size:11px;color:#6b6882;line-height:1.5;margin-bottom:12px">Collect images and build a visual board. Perfect for mood boards, references, and collections.</div>
-              <div style="font-size:11px;color:#60a5fa;font-weight:600">Open →</div>
-            </div>
-            <div style="background:#1a1a24;border:1px solid rgba(167,139,250,.4);border-radius:10px;padding:20px 18px;width:160px;text-align:center;cursor:pointer">
-              <div style="font-size:28px;margin-bottom:10px">🎨</div>
-              <div style="font-size:13px;color:#a78bfa;font-weight:600;margin-bottom:6px">Color Picker</div>
-              <div style="font-size:11px;color:#6b6882;line-height:1.5;margin-bottom:12px">Pick colors from images with an eyedropper and save them to a reusable palette.</div>
-              <div style="font-size:11px;color:#a78bfa;font-weight:600">Open →</div>
-            </div>
-          </div>
-          <div style="margin-top:20px;font-size:11px;color:#44445a">💡 You can switch modes at any time using the Home button.</div>
-        </div>
-      </div>
-    </div>
+    <div class="app-screenshot"><img src="img/app-start-page.png" alt="Image Board Studio start page showing two mode cards — Image Board and Color Picker" style="width:100%;display:block;border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-md);margin:20px 0;"></div>
 
     <div class="step">
       <div class="step__header"><div class="step__num">1</div><div class="step__title">Declare the class and its events</div></div>
@@ -886,46 +738,7 @@
     <h2 data-section="image-board" id="image-board">Part 5 — Image Board</h2>
     <p>The <code>ImageBoardPage</code> class lives inside <code>MainForm.cs</code>. It contains the toolbar, sidebar, canvas, and status bar.</p>
 
-    <!-- Image Board app screenshot mock -->
-    <div class="app-mock">
-      <div class="app-mock__bar">
-        <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
-        <span class="app-mock__title">Image Board Studio — Image Board</span>
-      </div>
-      <div class="app-mock__body" style="background:#1e1e26;display:flex;flex-direction:column;padding:0;min-height:220px">
-        <!-- toolbar -->
-        <div style="height:44px;background:#252530;display:flex;align-items:center;padding:0 10px;gap:6px;border-bottom:1px solid #333344;flex-shrink:0">
-          <div style="background:#3a3a4a;color:#ccc;font-size:10px;padding:5px 10px;border-radius:5px">🏠 Home</div>
-          <div style="background:#2d6b2d;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">+ New Board</div>
-          <div style="background:#0d5fa0;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">📂 Open</div>
-          <div style="background:#0d7a6e;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">📋 Paste Ctrl+V</div>
-          <div style="background:#8a5500;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">📤 Export</div>
-          <div style="background:#7a1a14;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">🗑 Delete</div>
-          <div style="flex:1"></div>
-          <div style="background:#3a3830;color:#f5d060;font-size:10px;padding:5px 10px;border-radius:5px;font-family:monospace">100%  —  100  %  +</div>
-        </div>
-        <div style="display:flex;flex:1">
-          <!-- sidebar -->
-          <div style="width:140px;background:#1e1e26;border-right:1px solid #333344;flex-shrink:0">
-            <div style="height:24px;background:#252530;display:flex;align-items:center;padding:0 8px;border-bottom:1px solid #333344">
-              <span style="font-size:9px;color:#888;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Boards</span>
-              <span style="margin-left:auto;background:#2d6b2d;color:#fff;font-size:10px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;border-radius:3px">+</span>
-            </div>
-            <div style="background:#094771;padding:5px 8px;font-size:9px;color:#fff">#010  Background</div>
-            <div style="padding:5px 8px;font-size:9px;color:#9d9baa">#011  New Board</div>
-            <div style="height:24px;background:#252530;display:flex;align-items:center;padding:0 8px;border-top:1px solid #333344;border-bottom:1px solid #333344;margin-top:40px">
-              <span style="font-size:9px;color:#888;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Images</span>
-            </div>
-          </div>
-          <!-- canvas grid -->
-          <div style="flex:1;background:#282830;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;display:flex;align-items:center;justify-content:center">
-            <div style="text-align:center;color:#44445a;font-size:12px">
-              <div style="font-size:32px;margin-bottom:8px;opacity:.3">🖼</div>
-              <div>Drag &amp; drop images here</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="app-screenshot"><img src="img/app-image-board.png" alt="Image Board page showing the toolbar, board sidebar, and empty grid canvas" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
     </div>
 
     <div class="step">
@@ -980,46 +793,7 @@ _canvas.Paint += (_, e) => {
 
     <!-- Color Picker app screenshot mock -->
     <div class="app-mock">
-      <div class="app-mock__bar">
-        <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
-        <span class="app-mock__title">Image Board Studio — Color Picker</span>
-      </div>
-      <div class="app-mock__body" style="background:#1a1a20;display:flex;flex-direction:column;min-height:200px">
-        <!-- toolbar -->
-        <div style="height:44px;background:#20202a;display:flex;align-items:center;padding:0 10px;gap:6px;border-bottom:1px solid #333344;flex-shrink:0">
-          <div style="background:#3a3a4a;color:#ccc;font-size:10px;padding:5px 10px;border-radius:5px">← Home</div>
-          <div style="font-size:12px;font-weight:600;color:#ddd;margin-left:4px">🎨 Color Picker</div>
-          <div style="background:#0d5fa0;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px;margin-left:8px">📂 Open Image</div>
-          <div style="background:#6b3090;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">💧 Eyedropper</div>
-          <div style="background:#7a1a14;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">🗑 Clear Palette</div>
-          <div style="flex:1"></div>
-          <div style="width:20px;height:20px;background:#3c3c48;border:1px solid #555;border-radius:3px"></div>
-          <span style="font-size:10px;color:#9d9baa;font-family:monospace">#------</span>
-        </div>
-        <div style="display:flex;flex:1">
-          <!-- image area -->
-          <div style="flex:1;background:#141420;display:flex;align-items:center;justify-content:center">
-            <div style="text-align:center;color:#44445a;font-size:12px">
-              <div style="font-size:32px;margin-bottom:8px;opacity:.3">🎨</div>
-              <div>Drag &amp; drop an image here</div>
-              <div style="font-size:10px;margin-top:4px">or click Open Image</div>
-            </div>
-          </div>
-          <!-- palette panel -->
-          <div style="width:180px;background:#1e1e26;border-left:1px solid #333344;display:flex;flex-direction:column">
-            <div style="padding:8px 12px;background:#18181f;border-bottom:1px solid #333344">
-              <div style="font-size:10px;font-weight:600;color:#c8c6d4">Color Palette</div>
-              <div style="font-size:9px;color:#555;margin-top:2px">0 colors</div>
-            </div>
-            <div style="flex:1"></div>
-            <div style="padding:8px;border-top:1px solid #333344;display:flex;flex-direction:column;gap:4px">
-              <div style="background:#2a2a36;color:#9d9baa;font-size:9px;padding:6px 8px;border-radius:4px;text-align:center">🖼 Export Palette Image</div>
-              <div style="background:#2a2a36;color:#9d9baa;font-size:9px;padding:6px 8px;border-radius:4px;text-align:center">📋 Copy HEX values</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="app-screenshot"><img src="img/app-color-picker.png" alt="Color Picker page showing the toolbar, empty image area, and Color Palette sidebar" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
 
     <!-- Image card context menu mock (from right-click screenshot) -->
     <div class="callout callout--tip" style="margin-top:20px">
@@ -1027,34 +801,7 @@ _canvas.Paint += (_, e) => {
       <div>
         <strong>Right-clicking an image card</strong> on the Image Board opens a context menu with useful actions. Here's what each option does:
         <div class="app-mock" style="margin-top:12px">
-          <div class="app-mock__bar">
-            <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
-            <span class="app-mock__title">Right-click context menu</span>
-          </div>
-          <div class="app-mock__body" style="background:#282830;padding:16px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
-            <!-- image card preview -->
-            <div style="background:#1e1e26;border:1px solid #444;border-radius:6px;overflow:hidden;width:140px;flex-shrink:0">
-              <div style="height:22px;background:#1c1c24;display:flex;align-items:center;padding:0 6px;gap:4px">
-                <div style="background:#0078c8;color:#fff;font-size:8px;padding:1px 5px;border-radius:2px">#049</div>
-                <span style="font-size:9px;color:#ccc;flex:1">blooming-pink-tree-…</span>
-                <div style="background:#b32218;color:#fff;font-size:9px;width:16px;text-align:center;border-radius:2px">✕</div>
-              </div>
-              <div style="background:#2d5a3d;height:80px;display:flex;align-items:center;justify-content:center">
-                <span style="font-size:28px">🌸</span>
-              </div>
-            </div>
-            <!-- context menu -->
-            <div style="background:#f0f0f0;border:1px solid #aaa;border-radius:4px;min-width:150px;box-shadow:2px 2px 8px rgba(0,0,0,.3)">
-              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Rename…</div>
-              <div style="padding:5px 14px;font-size:11px;color:#111">✂ Crop…</div>
-              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Reset crop</div>
-              <div style="padding:5px 14px;font-size:11px;color:#111">Bring to front</div>
-              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Send to back</div>
-              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Save image as…</div>
-              <div style="padding:5px 14px;font-size:11px;color:#c00">Delete</div>
-            </div>
-          </div>
-        </div>
+    <div class="app-screenshot"><img src="img/app-context-menu.png" alt="Right-click context menu on an image card showing Rename, Crop, Reset crop, Bring to front, Send to back, Save image as, and Delete options" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
       </div>
     </div>
 
@@ -1064,38 +811,7 @@ _canvas.Paint += (_, e) => {
       <div>
         <strong>The Crop dialog</strong> opens when you click <em>Crop…</em> from the context menu. Drag the handles to adjust the crop area. The rule-of-thirds grid helps with composition. Click <strong>Apply Crop</strong> when done.
         <div class="app-mock" style="margin-top:12px">
-          <div class="app-mock__bar">
-            <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
-            <span class="app-mock__title">Crop Image</span>
-          </div>
-          <div class="app-mock__body" style="background:#20202a;padding:16px;display:flex;flex-direction:column;gap:12px">
-            <!-- crop preview area -->
-            <div style="background:#18181f;border-radius:6px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:100px;position:relative">
-              <div style="background:#2d5a3d;width:180px;height:100px;border-radius:4px;display:flex;align-items:center;justify-content:center;position:relative">
-                <span style="font-size:36px">🌸</span>
-                <!-- crop overlay lines -->
-                <div style="position:absolute;inset:0;border:1.5px solid #fff;border-radius:2px;pointer-events:none"></div>
-                <div style="position:absolute;top:33%;left:0;right:0;height:1px;background:rgba(255,255,255,.35)"></div>
-                <div style="position:absolute;top:66%;left:0;right:0;height:1px;background:rgba(255,255,255,.35)"></div>
-                <div style="position:absolute;top:0;bottom:0;left:33%;width:1px;background:rgba(255,255,255,.35)"></div>
-                <div style="position:absolute;top:0;bottom:0;left:66%;width:1px;background:rgba(255,255,255,.35)"></div>
-                <!-- corner handles -->
-                <div style="position:absolute;top:-3px;left:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
-                <div style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
-                <div style="position:absolute;bottom:-3px;left:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
-                <div style="position:absolute;bottom:-3px;right:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
-              </div>
-            </div>
-            <!-- bottom bar -->
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:10px;color:#888;font-family:monospace">Crop region: 0, 0 → 512 × 512 px</span>
-              <div style="display:flex;gap:8px">
-                <div style="background:#0d7a4e;color:#fff;font-size:10px;padding:6px 14px;border-radius:4px">✓ Apply Crop</div>
-                <div style="background:#444;color:#ccc;font-size:10px;padding:6px 14px;border-radius:4px">Cancel</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="app-screenshot"><img src="img/app-crop-dialog.png" alt="Crop Image dialog showing a pink cherry blossom tree with rule-of-thirds grid and Apply Crop button" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
       </div>
     </div>
 
