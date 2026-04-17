@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Board Studio — Tutorial</title>
-  <link rel="stylesheet" href="public\css\style.css">
-  <link rel="stylesheet" href="public\css\copy-btn.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/copy-btn.css">
 </head>
 <body>
 <div class="layout">
@@ -14,7 +14,7 @@
   <nav class="sidebar">
     <div class="sidebar__logo">
       <div class="sidebar__title">Image Board Studio</div>
-      <div class="sidebar__subtitle">Developer Tutorial</div>
+      <div class="sidebar__subtitle">Beginner Developer Tutorial</div>
     </div>
     <div class="nav__section">
       <div class="nav__label">Introduction</div>
@@ -72,11 +72,7 @@
       <p><strong>What is Windows Forms?</strong> Windows Forms (WinForms) is a toolkit that comes with C#. It lets you build windows with buttons, panels, and images by writing code instead of dragging things in a designer.</p>
       <p><strong>What is SQLite?</strong> SQLite is a tiny database that saves data into a single file on your computer — like a spreadsheet, but for your app. No setup or server needed.</p>
 
-      <div class="callout callout--info">
-        <span class="callout__icon">ℹ️</span>
-        <div>This app runs on <strong>Windows 10 or 11</strong> only. It uses Windows-specific drawing APIs that are not available on Mac or Linux.</div>
-      </div>
-    </section>
+
 
     <!-- WHAT YOU'LL BUILD -->
     <section data-section="what-youll-build" id="what-youll-build">
@@ -135,11 +131,7 @@
         <div class="file-tree__i1"><span class="file-tree__file">Program.cs</span>  ← app entry point</div>
       </div>
 
-      <div class="callout callout--tip">
-        <span class="callout__icon">💡</span>
-        <div>In Solution Explorer (the panel on the right in Visual Studio) you can see this exact tree. Expanding a <code>.cs</code> file shows all the classes and methods inside it — very useful for navigating large projects.</div>
-      </div>
-    </section>
+
 
     <!-- ══ INSTALL VS ══ -->
     <h2 data-section="install-vs" id="install-vs">Step 1 — Install Visual Studio</h2>
@@ -150,37 +142,13 @@
       <div class="step__body">
         <p>Open your browser and go to:</p>
         <p><span class="menu-path">https://visualstudio.microsoft.com/vs/community/</span></p>
-        <p>You will see the <strong>Visual Studio Community</strong> page. Click the white <strong>Download</strong> button.</p>
+        <p>Click the <strong>Download</strong> button. The page will immediately confirm the download has started:</p>
 
-        <!-- screenshot mock of VS download page -->
-        <div class="ss-mock">
-          <div class="ss-mock__bar">
-            <div class="ss-mock__dots">
-              <span class="ss-dot ss-dot--r"></span>
-              <span class="ss-dot ss-dot--y"></span>
-              <span class="ss-dot ss-dot--g"></span>
-            </div>
-            <div class="ss-mock__url">https://visualstudio.microsoft.com/vs/community/</div>
-          </div>
-          <div class="ss-mock__body ss-mock__body--light">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e5e5e5">
-              <div style="display:flex;gap:3px">
-                <div style="width:10px;height:10px;background:#f25022;border-radius:1px"></div>
-                <div style="width:10px;height:10px;background:#7fba00;border-radius:1px"></div>
-                <div style="width:10px;height:10px;background:#00a4ef;border-radius:1px"></div>
-                <div style="width:10px;height:10px;background:#ffb900;border-radius:1px"></div>
-              </div>
-              <span style="font-size:13px;font-weight:600;color:#333">Visual Studio</span>
-            </div>
-            <div style="background:#1e1e2e;padding:28px 24px;border-radius:6px;color:#fff">
-              <div style="font-size:26px;font-weight:700;margin-bottom:8px;line-height:1.1">Visual Studio<br>Community</div>
-              <div style="font-size:12px;color:#aaa;margin-bottom:18px;max-width:320px">A fully-featured, extensible, free IDE for creating modern applications for Android, iOS, Windows, as well as web applications and cloud services.</div>
-              <div style="display:inline-block;background:#fff;color:#000;font-size:13px;font-weight:600;padding:9px 22px;border-radius:4px;cursor:pointer">Download</div>
-            </div>
-          </div>
+        <div class="app-screenshot">
+          <img src="img/Screenshot.png" alt="Visual Studio download confirmation page saying Thank you for downloading Visual Studio" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
         </div>
 
-        <p>This downloads a small file called <code>VisualStudioSetup.exe</code>. Run it to launch the installer.</p>
+        <p>This downloads a small file called <code>VisualStudioSetup.exe</code>. If the download doesn't start automatically, click the <strong>"click here to retry"</strong> link on that page. Run the file to launch the installer.</p>
       </div>
     </div>
 
@@ -192,83 +160,9 @@
         <p><span class="menu-path">.NET desktop development</span></p>
 
         <!-- workload picker mock -->
-        <div class="ss-mock" style="margin-top:16px">
-          <div class="ss-mock__bar">
-            <div class="ss-mock__dots">
-              <span class="ss-dot ss-dot--r"></span>
-              <span class="ss-dot ss-dot--y"></span>
-              <span class="ss-dot ss-dot--g"></span>
-            </div>
-            <div class="ss-mock__url">Installing — Visual Studio Community 2026</div>
-          </div>
-          <div class="ss-mock__body ss-mock__body--dark">
-            <!-- tab bar -->
-            <div style="display:flex;gap:0;border-bottom:1px solid #333;margin-bottom:16px">
-              <div style="padding:8px 16px;font-size:12px;color:#fff;border-bottom:2px solid #0078d4">Workloads</div>
-              <div style="padding:8px 16px;font-size:12px;color:#aaa">Individual components</div>
-              <div style="padding:8px 16px;font-size:12px;color:#aaa">Language packs</div>
-            </div>
-            <!-- section label -->
-            <div style="font-size:12px;color:#aaa;margin-bottom:10px;font-weight:500">Desktop &amp; Mobile (5)</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-              <!-- NET MAUI - unchecked -->
-              <div style="background:#2d2d2d;border:1px solid #444;border-radius:5px;padding:12px;display:flex;gap:10px;opacity:0.5">
-                <div style="width:32px;height:32px;background:#5c2d91;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                  <div style="width:16px;height:16px;background:#fff;border-radius:2px;opacity:0.8"></div>
-                </div>
-                <div>
-                  <div style="font-size:11px;color:#ccc;font-weight:500">.NET Multi-platform App UI dev</div>
-                  <div style="font-size:10px;color:#888;margin-top:2px">Android, iOS, Windows from one codebase</div>
-                </div>
-              </div>
-              <!-- .NET desktop - CHECKED and highlighted -->
-              <div style="background:#1a2a3a;border:2px solid #0078d4;border-radius:5px;padding:12px;display:flex;gap:10px;position:relative">
-                <div style="position:absolute;top:8px;right:8px;width:14px;height:14px;background:#0078d4;border-radius:2px;display:flex;align-items:center;justify-content:center">
-                  <svg width="9" height="7" viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <div style="width:32px;height:32px;background:#0e5a8a;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                  <div style="width:18px;height:12px;background:#fff;border-radius:2px;opacity:0.9"></div>
-                </div>
-                <div>
-                  <div style="font-size:11px;color:#fff;font-weight:600">.NET desktop development ✓</div>
-                  <div style="font-size:10px;color:#88b4d8;margin-top:2px">WPF, Windows Forms, console apps with C#</div>
-                </div>
-              </div>
-              <!-- C++ - unchecked -->
-              <div style="background:#2d2d2d;border:1px solid #444;border-radius:5px;padding:12px;display:flex;gap:10px;opacity:0.5">
-                <div style="width:32px;height:32px;background:#2d5b8e;border-radius:4px;flex-shrink:0"></div>
-                <div>
-                  <div style="font-size:11px;color:#ccc;font-weight:500">Desktop development with C++</div>
-                  <div style="font-size:10px;color:#888;margin-top:2px">Build modern C++ apps for Windows</div>
-                </div>
-              </div>
-              <!-- WinUI - unchecked -->
-              <div style="background:#2d2d2d;border:1px solid #444;border-radius:5px;padding:12px;display:flex;gap:10px;opacity:0.5">
-                <div style="width:32px;height:32px;background:#106ebe;border-radius:4px;flex-shrink:0"></div>
-                <div>
-                  <div style="font-size:11px;color:#ccc;font-weight:500">WinUI application development</div>
-                  <div style="font-size:10px;color:#888;margin-top:2px">Build apps for the Windows platform</div>
-                </div>
-              </div>
-            </div>
-            <!-- bottom bar -->
-            <div style="margin-top:16px;padding-top:12px;border-top:1px solid #333;display:flex;justify-content:space-between;align-items:center">
-              <div style="font-size:11px;color:#aaa">Total space required  <span style="color:#fff;font-weight:600">9.38 GB</span></div>
-              <div style="background:#0078d4;color:#fff;font-size:12px;font-weight:600;padding:7px 20px;border-radius:3px;cursor:pointer">Install</div>
-            </div>
-          </div>
+        <div class="app-screenshot" style="margin-top:16px">
+            <img src="img/image.png" alt="Visual Studio Create a new project dialog with Windows Forms App selected" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
         </div>
-
-        <div class="callout callout--warn" style="margin-top:16px">
-          <span class="callout__icon">⚠️</span>
-          <div>Make sure you check <strong>.NET desktop development</strong> — not <em>.NET Multi-platform App UI development</em> (that one is for mobile apps). They look similar but are different workloads.</div>
-        </div>
-        <div class="callout callout--tip">
-          <span class="callout__icon">💡</span>
-          <div>Leave all other workloads <strong>unchecked</strong>. This saves about 10 GB of disk space and cuts install time roughly in half.</div>
-        </div>
-      </div>
-    </div>
 
     <div class="step">
       <div class="step__header"><div class="step__num">3</div><div class="step__title">Finish installing</div></div>
@@ -284,10 +178,6 @@
         <p>Click the blue <strong>Install</strong> button at the bottom right of the installer. The download and setup takes <strong>10–20 minutes</strong> depending on your internet speed. You can see the progress in the installer window.</p>
         <p>When it finishes, click <strong>Launch</strong> to open Visual Studio for the first time.</p>
         <p>Visual Studio will ask you to sign in with a Microsoft account. This is optional — click <strong>"Not now, maybe later"</strong> to skip it. The app is completely free without signing in.</p>
-        <div class="callout callout--info">
-          <span class="callout__icon">ℹ️</span>
-          <div>The installer title will say <strong>Visual Studio Community 2026</strong> (or the current year). This is normal — Microsoft updates the version number yearly. The steps are the same regardless of the year shown.</div>
-        </div>
       </div>
     </div>
     <h2 data-section="new-project" id="new-project">Step 2 — Create the Project</h2>
@@ -323,11 +213,6 @@
           <li><code>Form1.cs</code> — a blank window. We will keep this for now.</li>
           <li><code>Program.cs</code> — the entry point. This is the first code that runs when you press Play.</li>
         </ul>
-        <div class="callout callout--info">
-          <span class="callout__icon">ℹ️</span>
-          <div>Don't delete <code>Form1.cs</code> yet — Visual Studio needs it. We will replace it with our own <code>MainForm</code> later.</div>
-        </div>
-      </div>
     </div>
 
     <!-- ══ CREATE FOLDERS ══ -->
@@ -381,10 +266,6 @@
       <div class="step__header"><div class="step__num">2</div><div class="step__title">Install Microsoft.Data.Sqlite</div></div>
       <div class="step__body">
         <p>Click the <strong>Browse</strong> tab. In the search box type <code>Microsoft.Data.Sqlite</code>. Click the first result. On the right side, check the box next to your project name. Click <strong>Install</strong> and accept any prompts.</p>
-        <div class="callout callout--note">
-          <span class="callout__icon">✦</span>
-          <div>Your project uses <strong>Microsoft.Data.Sqlite 10.0.5</strong> and <strong>Microsoft.Data.Sqlite.Core 10.0.5</strong> — both appear under <strong>Packages</strong> in Solution Explorer after installing.</div>
-        </div>
       </div>
     </div>
 
@@ -395,7 +276,46 @@
     <!-- annotated VS IDE diagram -->
     <div class="vs-diagram">
       <div class="vs-diagram__label">Visual Studio — annotated layout (your actual IDE)</div>
-      <img src="img/vs-annotated.png" alt="Visual Studio IDE with numbered annotations showing the menu bar (1), toolbar (2), file tabs (3), code editor (4), bottom panels (5), and Solution Explorer (6)" style="width:100%;display:block;">
+      <div style="position:relative; display:inline-block; width:100%;">
+  <img src="img/screen.png" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
+
+  <!-- Number badges — adjust top/left % to position over the right area -->
+  <div style="position:absolute; top:3%; left:4%;
+              width:26px; height:26px; border-radius:50%;
+              background:#7c3aed; color:#fff;
+              font-size:12px; font-weight:700;
+              display:flex; align-items:center; justify-content:center;">1</div>
+
+  <div style="position:absolute; top:8%; left:4%;
+              width:26px; height:26px; border-radius:50%;
+              background:#2563eb; color:#fff;
+              font-size:12px; font-weight:700;
+              display:flex; align-items:center; justify-content:center;">2</div>
+
+  <div style="position:absolute; top:14%; left:10%;
+              width:26px; height:26px; border-radius:50%;
+              background:#059669; color:#fff;
+              font-size:12px; font-weight:700;
+              display:flex; align-items:center; justify-content:center;">3</div>
+
+  <div style="position:absolute; top:50%; left:40%;
+              width:26px; height:26px; border-radius:50%;
+              background:#d97706; color:#fff;
+              font-size:12px; font-weight:700;
+              display:flex; align-items:center; justify-content:center;">4</div>
+
+  <div style="position:absolute; top:90%; left:40%;
+              width:26px; height:26px; border-radius:50%;
+              background:#db2777; color:#fff;
+              font-size:12px; font-weight:700;
+              display:flex; align-items:center; justify-content:center;">5</div>
+
+  <div style="position:absolute; top:10%; right:3%;
+              width:26px; height:26px; border-radius:50%;
+              background:#0891b2; color:#fff;
+              font-size:12px; font-weight:700;
+              display:flex; align-items:center; justify-content:center;">6</div>
+</div>
     </div>
 
     <!-- numbered descriptions -->
@@ -491,12 +411,7 @@
           </div>
         </div>
 
-        <div class="callout callout--info">
-          <span class="callout__icon">ℹ️</span>
-          <div>The panels highlighted in the menu — <strong>Solution Explorer</strong>, <strong>Error List</strong>, <strong>Output</strong>, and <strong>Terminal</strong> — are the four you will use most while building this project.</div>
-        </div>
-      </div>
-    </div>
+
 
     <div class="step">
       <div class="step__header"><div class="step__num">7</div><div class="step__title">Run and stop the app</div></div>
@@ -510,143 +425,182 @@
     </div>
 
     <!-- ══ MODELS ══ -->
+    <!-- ══ PART 1 — DATA MODELS ══ -->
     <h2 data-section="models" id="models">Part 1 — Data Models</h2>
-    <p>A <strong>model</strong> is a C# class that describes the shape of your data. Think of it like a form — it defines what fields exist. Open <code>Models/Models.cs</code> and replace all the content with the code below.</p>
+    <p>A <strong>model</strong> is a C# class that describes the shape of your data — like a form defining what fields exist. Open <code>Models/Models.cs</code> and replace all the content with the code below.</p>
+    <p>Two classes are defined: <strong>Board</strong> (one named workspace, like a Photoshop document) and <strong>BoardItem</strong> (a single image card placed on a board, with its position, size, and file reference).</p>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">1</div><div class="step__title">Define Board and BoardItem</div></div>
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Models.cs — full file</div></div>
       <div class="step__body">
-        <p>A <strong>Board</strong> is one named workspace (like a Photoshop document). A <strong>BoardItem</strong> is a single image card placed on that board, with its position and size.</p>
         <pre><code><span class="token-kw">namespace</span> Imageboard_illust.Models
 {
+    <span class="token-cm">/// &lt;summary&gt;
+    /// One image board (1 board = 1 workspace).
+    /// Represents a row in the boards table.
+    /// &lt;/summary&gt;</span>
     <span class="token-kw">public class</span> <span class="token-type">Board</span>
     {
         <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>        { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
         <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>      { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
         <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">CreatedAt</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
 
-        <span class="token-cm">// Returns the folder path where this board's images are stored</span>
+        <span class="token-cm">/// &lt;summary&gt;Folder path where this board's images are stored.&lt;/summary&gt;</span>
         <span class="token-kw">public</span> <span class="token-type">string</span> ImagesDir(<span class="token-type">string</span> dataDir)
-            => Path.Combine(dataDir, <span class="token-str">"boards"</span>, Id.ToString(), <span class="token-str">"images"</span>);
+            => System.IO.Path.Combine(dataDir, <span class="token-str">"boards"</span>, Id.ToString(), <span class="token-str">"images"</span>);
     }
 
+    <span class="token-cm">/// &lt;summary&gt;
+    /// One image card on a board.
+    /// Represents a row in the board_items table.
+    /// &lt;/summary&gt;</span>
     <span class="token-kw">public class</span> <span class="token-type">BoardItem</span>
     {
-        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>       { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
-        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">BoardId</span>  { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
-        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>     { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
-        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">FileName</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
-        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">X</span>, <span class="token-prop">Y</span>, <span class="token-prop">Width</span>, <span class="token-prop">Height</span>, <span class="token-prop">ZOrder</span>;
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>        { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">BoardId</span>   { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>      { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">FileName</span>  { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">X</span>         { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Y</span>         { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Width</span>     { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Height</span>    { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">ZOrder</span>    { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">CreatedAt</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+
+        <span class="token-kw">public</span> <span class="token-type">string</span> FullPath(<span class="token-type">string</span> dataDir, <span class="token-type">int</span> boardId)
+            => System.IO.Path.Combine(dataDir, <span class="token-str">"boards"</span>, boardId.ToString(), <span class="token-str">"images"</span>, FileName);
     }
 }</code></pre>
         <div class="callout callout--tip">
           <span class="callout__icon">💡</span>
-          <div><code>{ get; set; }</code> means the property can be read and written from outside the class. This is standard C# for model classes.</div>
+          <div>{ get; set; } means the property can be read and written from outside the class. This is the standard C# pattern for model classes. ZOrder controls which card appears on top when cards overlap.</div>
         </div>
       </div>
     </div>
 
-    <!-- ══ DATABASE ══ -->
+    <!-- ══ PART 2 — DATABASE ══ -->
     <h2 data-section="database" id="database">Part 2 — Database</h2>
-    <p>Open <code>Database/AppDatabase.cs</code>. This class is responsible for all reading and writing to the SQLite file. It opens a connection when the app starts and keeps it open until the app closes.</p>
+    <p>Open <code>Database/AppDatabase.cs</code>. This class handles all reading and writing to the SQLite file. It opens one connection when the app starts and keeps it open until the app closes — no re-connecting on every query.</p>
+    <p>The database file is saved to <code>%AppData%\Imageboard_illust\board.db</code> automatically. Images are stored as separate PNG files in a <code>boards\</code> subfolder next to the database.</p>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">1</div><div class="step__title">Create the database file and tables</div></div>
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Open the connection and create tables</div></div>
       <div class="step__body">
-        <p>The constructor finds the user's AppData folder, creates a <code>.db</code> file there, and runs <code>CREATE TABLE IF NOT EXISTS</code> — which creates the tables only if they don't already exist, so it's safe to call every time the app starts.</p>
-        <pre><code><span class="token-kw">using</span> Microsoft.Data.Sqlite;
-<span class="token-kw">using</span> Imageboard_illust.Models;
-
-<span class="token-kw">public class</span> <span class="token-type">AppDatabase</span> : <span class="token-type">IDisposable</span>
+        <p>The constructor locates AppData, creates the folder and <code>.db</code> file, then calls <code>EnsureSchema()</code>. WAL mode and foreign keys are switched on immediately after connecting — these stay active for the lifetime of the connection.</p>
+        <pre><code><span class="token-kw">public</span> AppDatabase()
 {
-    <span class="token-kw">private readonly</span> <span class="token-type">SqliteConnection</span> _conn;
-    <span class="token-kw">public</span> <span class="token-type">string</span> DataDir { <span class="token-kw">get</span>; }
-
-    <span class="token-kw">public</span> AppDatabase()
-    {
-        DataDir = Path.Combine(
-            Environment.GetFolderPath(
-                Environment.SpecialFolder.ApplicationData),
-            <span class="token-str">"ImageBoardStudio"</span>);
-        Directory.CreateDirectory(DataDir);
-
-        _conn = <span class="token-kw">new</span> <span class="token-type">SqliteConnection</span>(
-            <span class="token-str">$"Data Source={Path.Combine(DataDir, "app.db")}"</span>);
-        _conn.Open();
-        InitSchema();
-    }
-
-    <span class="token-kw">private void</span> InitSchema()
-    {
-        Exec(<span class="token-str">@"CREATE TABLE IF NOT EXISTS boards (
-            id         INTEGER PRIMARY KEY AUTOINCREMENT,
-            name       TEXT NOT NULL,
-            created_at TEXT DEFAULT (datetime('now'))
-        );"</span>);
-        Exec(<span class="token-str">@"CREATE TABLE IF NOT EXISTS board_items (
-            id       INTEGER PRIMARY KEY AUTOINCREMENT,
-            board_id INTEGER NOT NULL,
-            name     TEXT, filename TEXT,
-            x INT, y INT, w INT, h INT,
-            z_order  INT DEFAULT 0
-        );"</span>);
-    }
-
-    <span class="token-cm">// Helper: run a SQL command with no return value</span>
-    <span class="token-kw">private void</span> Exec(<span class="token-type">string</span> sql)
-    {
-        <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
-        cmd.CommandText = sql;
-        cmd.ExecuteNonQuery();
-    }
-
-    <span class="token-kw">public void</span> Dispose() => _conn.Dispose();
-}</code></pre>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step__header"><div class="step__num">2</div><div class="step__title">Add read / write methods</div></div>
-      <div class="step__body">
-        <p>Add these methods to the same class. They let you insert boards and read them back:</p>
-        <pre><code><span class="token-kw">public</span> <span class="token-type">int</span> InsertBoard(<span class="token-type">string</span> name)
-{
-    <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
-    cmd.CommandText =
-        <span class="token-str">"INSERT INTO boards (name) VALUES ($n); SELECT last_insert_rowid();"</span>;
-    cmd.Parameters.AddWithValue(<span class="token-str">"$n"</span>, name);
-    <span class="token-kw">return</span> (<span class="token-type">int</span>)(<span class="token-type">long</span>)cmd.ExecuteScalar()!;
+    DataDir = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        <span class="token-str">"Imageboard_illust"</span>);
+    _dbPath = Path.Combine(DataDir, <span class="token-str">"board.db"</span>);
+    Directory.CreateDirectory(DataDir);
+    Open();
+    EnsureSchema();
 }
 
-<span class="token-kw">public</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt; GetBoards()
+<span class="token-kw">private void</span> Open()
 {
-    <span class="token-kw">var</span> list = <span class="token-kw">new</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt;();
-    <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
-    cmd.CommandText =
-        <span class="token-str">"SELECT id, name, created_at FROM boards ORDER BY id;"</span>;
-    <span class="token-kw">using var</span> r = cmd.ExecuteReader();
-    <span class="token-kw">while</span> (r.Read())
-        list.Add(<span class="token-kw">new</span> <span class="token-type">Board</span> {
-            Id        = r.GetInt32(<span class="token-num">0</span>),
-            Name      = r.GetString(<span class="token-num">1</span>),
-            CreatedAt = r.GetString(<span class="token-num">2</span>)
-        });
-    <span class="token-kw">return</span> list;
+    _conn = <span class="token-kw">new</span> <span class="token-type">SqliteConnection</span>(<span class="token-str">$"Data Source={_dbPath}"</span>);
+    _conn.Open();
+    Exec(<span class="token-str">"PRAGMA journal_mode=WAL;"</span>);
+    Exec(<span class="token-str">"PRAGMA synchronous=NORMAL;"</span>);
+    Exec(<span class="token-str">"PRAGMA foreign_keys=ON;"</span>);
 }</code></pre>
       </div>
     </div>
 
-    <!-- ══ START PAGE ══ -->
-    <h2 data-section="start-page" id="start-page">Part 3 — Start Page</h2>
-    <p>Open <code>StartPage.cs</code>. This is the landing screen — a <code>Panel</code> that fills the window. It fires events when the user clicks a card, which <code>MainForm</code> listens to.</p>
-
-    <!-- Start Page app screenshot mock -->
-    <div class="app-screenshot"><img src="img/app-start-page.png" alt="Image Board Studio start page showing two mode cards — Image Board and Color Picker" style="width:100%;display:block;border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-md);margin:20px 0;"></div>
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Create the tables</div></div>
+      <div class="step__body">
+        <p><code>CREATE TABLE IF NOT EXISTS</code> is safe to call every time — it only creates the table if it doesn't exist yet. <code>ON DELETE CASCADE</code> means deleting a board automatically deletes all its image cards.</p>
+        <pre><code><span class="token-kw">private void</span> EnsureSchema()
+{
+    Exec(<span class="token-str">@"
+        CREATE TABLE IF NOT EXISTS boards (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            name       TEXT    NOT NULL DEFAULT 'New Board',
+            created_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+        );
+        CREATE TABLE IF NOT EXISTS board_items (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            board_id   INTEGER NOT NULL REFERENCES boards(id) ON DELETE CASCADE,
+            name       TEXT    NOT NULL DEFAULT '',
+            file_name  TEXT    NOT NULL DEFAULT '',
+            x          INTEGER NOT NULL DEFAULT 0,
+            y          INTEGER NOT NULL DEFAULT 0,
+            width      INTEGER NOT NULL DEFAULT 300,
+            height     INTEGER NOT NULL DEFAULT 250,
+            z_order    INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+        );
+    "</span>);
+}</code></pre>
+        <div class="callout callout--note">
+          <span class="callout__icon">✦</span>
+          <div><strong>WAL mode</strong> (Write-Ahead Logging) makes SQLite faster and safer — reads don't block writes and data is never left in a half-written state if the app crashes.</div>
+        </div>
+      </div>
+    </div>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">1</div><div class="step__title">Declare the class and its events</div></div>
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Board and item CRUD methods</div></div>
       <div class="step__body">
-        <p>Events are how one class tells another "something happened." Here we define two — one per mode card:</p>
+        <p>All queries use <strong>parameterised commands</strong> (<code>$n</code>, <code>$id</code> etc.) — never string interpolation. This prevents SQL injection and handles special characters safely.</p>
+        <pre><code><span class="token-cm">// Load all boards ordered by id</span>
+<span class="token-kw">public</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt; LoadAllBoards()
+{
+    <span class="token-kw">var</span> list = <span class="token-kw">new</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt;();
+    <span class="token-kw">using var</span> cmd = Cmd(<span class="token-str">"SELECT id, name, created_at FROM boards ORDER BY id;"</span>);
+    <span class="token-kw">using var</span> r   = cmd.ExecuteReader();
+    <span class="token-kw">while</span> (r.Read())
+        list.Add(<span class="token-kw">new</span> <span class="token-type">Board</span> { Id = r.GetInt32(<span class="token-num">0</span>), Name = r.GetString(<span class="token-num">1</span>), CreatedAt = r.GetString(<span class="token-num">2</span>) });
+    <span class="token-kw">return</span> list;
+}
+
+<span class="token-cm">// Insert a new board and return its auto-assigned id</span>
+<span class="token-kw">public</span> <span class="token-type">int</span> InsertBoard(<span class="token-type">string</span> name)
+{
+    <span class="token-kw">using var</span> cmd = Cmd(<span class="token-str">"INSERT INTO boards (name) VALUES ($n); SELECT last_insert_rowid();"</span>);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$n"</span>, name);
+    <span class="token-kw">return</span> Convert.ToInt32(cmd.ExecuteScalar());
+}
+
+<span class="token-cm">// Delete a board — ON DELETE CASCADE removes its items too</span>
+<span class="token-kw">public void</span> DeleteBoard(<span class="token-type">int</span> boardId)
+{
+    <span class="token-kw">using var</span> cmd = Cmd(<span class="token-str">"DELETE FROM boards WHERE id=$id;"</span>);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$id"</span>, boardId);
+    cmd.ExecuteNonQuery();
+}
+
+<span class="token-cm">// Update an item's position and size after a drag or resize</span>
+<span class="token-kw">public void</span> UpdateItemLayout(<span class="token-type">int</span> id, <span class="token-type">int</span> x, <span class="token-type">int</span> y, <span class="token-type">int</span> width, <span class="token-type">int</span> height, <span class="token-type">int</span> zOrder)
+{
+    <span class="token-kw">using var</span> cmd = Cmd(<span class="token-str">@"UPDATE board_items
+        SET x=$x, y=$y, width=$w, height=$h, z_order=$z WHERE id=$id;"</span>);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$x"</span>,  x);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$y"</span>,  y);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$w"</span>,  width);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$h"</span>,  height);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$z"</span>,  zOrder);
+    cmd.Parameters.AddWithValue(<span class="token-str">"$id"</span>, id);
+    cmd.ExecuteNonQuery();
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ PART 3 — START PAGE ══ -->
+    <h2 data-section="start-page" id="start-page">Part 3 — Start Page</h2>
+    <p>Open <code>StartPage.cs</code>. This is the landing screen — a <code>Panel</code> that fills the window and shows two clickable mode cards. When a card is clicked it fires an event that <code>MainForm</code> listens to.</p>
+
+    <div class="app-screenshot">
+      <img src="img/app-start-page.png" alt="Image Board Studio start page with two mode cards" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Declare the class and events</div></div>
+      <div class="step__body">
+        <p>Events let one class tell another "something happened" without them knowing about each other. <code>MainForm</code> subscribes to these events and swaps the page when they fire.</p>
         <pre><code><span class="token-kw">public class</span> <span class="token-type">StartPage</span> : <span class="token-type">Panel</span>
 {
     <span class="token-kw">public event</span> <span class="token-type">EventHandler</span>? ImageBoardChosen;
@@ -656,9 +610,9 @@
     </div>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">2</div><div class="step__title">Draw the dot-grid background</div></div>
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Background gradient and dot grid</div></div>
       <div class="step__body">
-        <p>The <code>Paint</code> event fires every time the panel needs to redraw. We draw a gradient and a subtle dot grid over it:</p>
+        <p>The <code>Paint</code> event fires every time the panel redraws. We fill with a gradient then draw a 32px dot grid over it using a semi-transparent brush.</p>
         <pre><code>Paint += (_, e) =>
 {
     <span class="token-kw">using var</span> br = <span class="token-kw">new</span> <span class="token-type">LinearGradientBrush</span>(
@@ -668,97 +622,165 @@
         LinearGradientMode.ForwardDiagonal);
     e.Graphics.FillRectangle(br, ClientRectangle);
 
-    <span class="token-kw">using var</span> dot = <span class="token-kw">new</span> <span class="token-type">SolidBrush</span>(
-        Color.FromArgb(<span class="token-num">35</span>, <span class="token-num">255</span>, <span class="token-num">255</span>, <span class="token-num">255</span>));
+    <span class="token-kw">using var</span> dot = <span class="token-kw">new</span> <span class="token-type">SolidBrush</span>(Color.FromArgb(<span class="token-num">35</span>, <span class="token-num">255</span>, <span class="token-num">255</span>, <span class="token-num">255</span>));
     <span class="token-kw">const int</span> gap = <span class="token-num">32</span>;
     <span class="token-kw">for</span> (<span class="token-type">int</span> x = gap; x &lt; Width;  x += gap)
     <span class="token-kw">for</span> (<span class="token-type">int</span> y = gap; y &lt; Height; y += gap)
         e.Graphics.FillEllipse(dot, x-<span class="token-num">1</span>, y-<span class="token-num">1</span>, <span class="token-num">2</span>, <span class="token-num">2</span>);
 };</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Mode cards with rounded corners and hover effect</div></div>
+      <div class="step__body">
+        <p>Each card is a <code>Panel</code> with a custom <code>Paint</code> handler that draws a rounded-rect border using <code>GraphicsPath</code>. The <code>MouseEnter</code>/<code>MouseLeave</code> events change the background colour for the hover effect.</p>
+        <pre><code>card.Paint += (s, e) =>
+{
+    var g  = e.Graphics;
+    var rc = ((Panel)s!).ClientRectangle;
+    g.SmoothingMode = SmoothingMode.AntiAlias;
+
+    <span class="token-kw">using var</span> bgBrush = <span class="token-kw">new</span> <span class="token-type">SolidBrush</span>(card.BackColor);
+    FillRoundRect(g, bgBrush, rc, <span class="token-num">12</span>);   <span class="token-cm">// filled background</span>
+
+    <span class="token-kw">using var</span> pen = <span class="token-kw">new</span> <span class="token-type">Pen</span>(borderColor, <span class="token-num">1.5f</span>);
+    DrawRoundRect(g, pen, rc, <span class="token-num">12</span>);        <span class="token-cm">// coloured border</span>
+};
+
+card.MouseEnter += (_, _) => { card.BackColor = Color.FromArgb(<span class="token-num">44</span>, <span class="token-num">44</span>, <span class="token-num">52</span>); card.Invalidate(); };
+card.MouseLeave += (_, _) => { card.BackColor = Color.FromArgb(<span class="token-num">36</span>, <span class="token-num">36</span>, <span class="token-num">42</span>); card.Invalidate(); };</code></pre>
         <div class="callout callout--tip">
           <span class="callout__icon">💡</span>
-          <div>After changing a visual property in code, always call <code>Invalidate()</code> on the control to schedule a repaint. Without it, the change won't appear on screen.</div>
+          <div>Always call Invalidate() after changing a visual property in code — this schedules a repaint. Without it the change won't appear on screen until the next natural redraw.</div>
         </div>
       </div>
     </div>
 
-    <!-- ══ IMAGE ITEM CONTROL ══ -->
+    <!-- ══ PART 4 — IMAGE ITEM CONTROL ══ -->
     <h2 data-section="image-item" id="image-item">Part 4 — Image Item Control</h2>
-    <p>Open <code>ImageItemControl.cs</code>. This is one draggable image card on the canvas. It is a <code>Panel</code> subclass with its own title bar, a close button, and 8-directional resize handles.</p>
+    <p>Open <code>ImageItemControl.cs</code>. This is one draggable image card on the canvas — a <code>Panel</code> subclass with its own title bar, close button, 8-directional resize handles, and a right-click context menu.</p>
 
-    <p>Looking at your Solution Explorer, you can see the key members this class contains:</p>
-    <ul>
-      <li><code>Item : BoardItem</code> — the data for this card (position, size, filename)</li>
-      <li><code>_pictureBox : PictureBox</code> — displays the image</li>
-      <li><code>_titleBar : Panel</code> — the draggable bar at the top</li>
-      <li><code>_closeBtn : Button</code> — the × button to remove the card</li>
-      <li><code>ResizeDir</code> — an enum with directions: None, N, S, E, W, NE, NW, SE, SW</li>
-      <li><code>DeleteRequested</code> / <code>BringToFrontRequested</code> — events fired to the parent canvas</li>
-    </ul>
+    <div class="app-screenshot">
+      <img src="img/app-context-menu.png" alt="Image card showing right-click context menu with Rename, Crop, Bring to front, Delete options" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
+    </div>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">1</div><div class="step__title">Define the ResizeDir enum</div></div>
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Resize direction enum</div></div>
       <div class="step__body">
-        <p>An <strong>enum</strong> is a named list of options. This one describes which edge or corner the user is dragging to resize:</p>
-        <pre><code><span class="token-kw">public enum</span> <span class="token-type">ResizeDir</span>
+        <p>An <code>enum</code> is a named list of options. <code>ResizeDir</code> describes which edge or corner the user is currently dragging.</p>
+        <pre><code><span class="token-kw">private enum</span> <span class="token-type">ResizeDir</span>
 {
-    None,           <span class="token-cm">// not resizing</span>
-    N, S, E, W,     <span class="token-cm">// top, bottom, right, left edges</span>
-    NE, NW, SE, SW  <span class="token-cm">// corners</span>
+    None,
+    N, S, E, W,       <span class="token-cm">// top, bottom, right, left edges</span>
+    NE, NW, SE, SW    <span class="token-cm">// corners</span>
 }</code></pre>
       </div>
     </div>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">2</div><div class="step__title">Handle drag to move</div></div>
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Detect which edge the mouse is near</div></div>
       <div class="step__body">
-        <p>The title bar handles dragging. On <code>MouseDown</code> we save where the drag started; on <code>MouseMove</code> we update the card's position:</p>
+        <pre><code><span class="token-kw">private</span> <span class="token-type">ResizeDir</span> GetResizeDirFromPanel(<span class="token-type">Point</span> p)
+{
+    <span class="token-type">int</span> x = p.X, y = p.Y, w = Width, h = Height;
+    <span class="token-type">bool</span> nearL = x &lt;= CornerSz, nearR = x &gt;= w - CornerSz;
+    <span class="token-type">bool</span> nearT = y &lt;= CornerSz, nearB = y &gt;= h - CornerSz;
+
+    <span class="token-kw">if</span> (nearT &amp;&amp; nearL) <span class="token-kw">return</span> ResizeDir.NW;
+    <span class="token-kw">if</span> (nearT &amp;&amp; nearR) <span class="token-kw">return</span> ResizeDir.NE;
+    <span class="token-kw">if</span> (nearB &amp;&amp; nearL) <span class="token-kw">return</span> ResizeDir.SW;
+    <span class="token-kw">if</span> (nearB &amp;&amp; nearR) <span class="token-kw">return</span> ResizeDir.SE;
+    <span class="token-kw">if</span> (y &lt;= EdgeSz)    <span class="token-kw">return</span> ResizeDir.N;
+    <span class="token-kw">if</span> (y &gt;= h - EdgeSz) <span class="token-kw">return</span> ResizeDir.S;
+    <span class="token-kw">if</span> (x &lt;= EdgeSz)    <span class="token-kw">return</span> ResizeDir.W;
+    <span class="token-kw">if</span> (x &gt;= w - EdgeSz) <span class="token-kw">return</span> ResizeDir.E;
+    <span class="token-kw">return</span> ResizeDir.None;
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Drag to move</div></div>
+      <div class="step__body">
+        <p>On <code>MouseDown</code> in the title bar we record where the drag started. On <code>MouseMove</code> we update the card's position by the delta.</p>
         <pre><code><span class="token-kw">private void</span> TitleBar_Down(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
 {
-    _isDragging = <span class="token-kw">true</span>;
-    _dragStartScreen   = Cursor.Position;
+    <span class="token-kw">if</span> (e.Button != MouseButtons.Left) <span class="token-kw">return</span>;
+    BringToFrontRequested?.Invoke(<span class="token-kw">this</span>, EventArgs.Empty);
+    _isDragging      = <span class="token-kw">true</span>;
+    _dragStartScreen   = Scr(s, e.Location);
     _dragStartLocation = Location;
 }
 
 <span class="token-kw">private void</span> TitleBar_Move(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
 {
-    <span class="token-kw">if</span> (!_isDragging) <span class="token-kw">return</span>;
-    <span class="token-type">var</span> delta = <span class="token-kw">new</span> <span class="token-type">Point</span>(
-        Cursor.Position.X - _dragStartScreen.X,
-        Cursor.Position.Y - _dragStartScreen.Y);
+    <span class="token-kw">if</span> (!_isDragging || Parent == <span class="token-kw">null</span>) <span class="token-kw">return</span>;
+    <span class="token-kw">var</span> sc = Scr(s, e.Location);
     Location = <span class="token-kw">new</span> <span class="token-type">Point</span>(
-        _dragStartLocation.X + delta.X,
-        _dragStartLocation.Y + delta.Y);
-    BringToFrontRequested?.Invoke(<span class="token-kw">this</span>, EventArgs.Empty);
+        Math.Max(<span class="token-num">0</span>, _dragStartLocation.X + sc.X - _dragStartScreen.X),
+        Math.Max(<span class="token-num">0</span>, _dragStartLocation.Y + sc.Y - _dragStartScreen.Y));
 }</code></pre>
       </div>
     </div>
 
-    <!-- ══ IMAGE BOARD ══ -->
-    <h2 data-section="image-board" id="image-board">Part 5 — Image Board</h2>
-    <p>The <code>ImageBoardPage</code> class lives inside <code>MainForm.cs</code>. It contains the toolbar, sidebar, canvas, and status bar.</p>
+    <div class="step">
+      <div class="step__header"><div class="step__num">4</div><div class="step__title">Crop dialog</div></div>
+      <div class="step__body">
+        <p>Right-clicking a card and choosing <strong>Crop…</strong> opens <code>CropDialog</code> — a resizable form with a live preview, rule-of-thirds grid, and 8 drag handles. The crop is applied by drawing the selected region onto a new <code>Bitmap</code>.</p>
+        <div class="app-screenshot" style="margin-top:12px">
+          <img src="img/app-crop-dialog.png" alt="Crop dialog showing a cherry blossom image with rule-of-thirds grid and Apply Crop button" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
+        </div>
+        <pre><code><span class="token-kw">private void</span> BtnOk_Click(<span class="token-type">object</span>? s, <span class="token-type">EventArgs</span> e)
+{
+    <span class="token-type">double</span> scaleX = (<span class="token-type">double</span>)_src.Width  / _imgRect.Width;
+    <span class="token-type">double</span> scaleY = (<span class="token-type">double</span>)_src.Height / _imgRect.Height;
 
-    <div class="app-screenshot"><img src="img/app-image-board.png" alt="Image Board page showing the toolbar, board sidebar, and empty grid canvas" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
+    <span class="token-kw">var</span> srcRect = <span class="token-kw">new</span> <span class="token-type">Rectangle</span>(
+        (<span class="token-type">int</span>)((_cropRect.X - _imgRect.X) * scaleX),
+        (<span class="token-type">int</span>)((_cropRect.Y - _imgRect.Y) * scaleY),
+        (<span class="token-type">int</span>)(_cropRect.Width  * scaleX),
+        (<span class="token-type">int</span>)(_cropRect.Height * scaleY));
+
+    <span class="token-kw">var</span> bmp = <span class="token-kw">new</span> <span class="token-type">Bitmap</span>(srcRect.Width, srcRect.Height);
+    <span class="token-kw">using var</span> g = Graphics.FromImage(bmp);
+    g.DrawImage(_src, <span class="token-kw">new</span> <span class="token-type">Rectangle</span>(<span class="token-num">0</span>, <span class="token-num">0</span>, bmp.Width, bmp.Height),
+        srcRect, GraphicsUnit.Pixel);
+
+    CroppedImage  = bmp;
+    DialogResult  = DialogResult.OK;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ PART 5 — IMAGE BOARD ══ -->
+    <h2 data-section="image-board" id="image-board">Part 5 — Image Board</h2>
+    <p>The <code>ImageBoardPage</code> class (inside <code>MainForm.cs</code>) is the main workspace. It builds the toolbar, a split sidebar with board and image lists, a large scrollable canvas, and a status bar.</p>
+
+    <div class="app-screenshot">
+      <img src="img/app-image-board.png" alt="Image Board page showing the toolbar, board sidebar, and empty grid canvas" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
     </div>
 
     <div class="step">
       <div class="step__header"><div class="step__num">1</div><div class="step__title">Build the scrollable grid canvas</div></div>
       <div class="step__body">
-        <pre><code>_canvas = <span class="token-kw">new</span> <span class="token-type">Panel</span> {
-    Dock = DockStyle.Fill,
-    AutoScroll = <span class="token-kw">true</span>,
+        <p>The canvas is a <code>Panel</code> with <code>AutoScroll = true</code> and a large virtual size. The <code>Paint</code> handler draws a subtle grid by offsetting the lines by the current scroll position — so the grid stays still relative to the content as you scroll.</p>
+        <pre><code>_canvas = <span class="token-kw">new</span> <span class="token-type">Panel</span>
+{
+    Dock              = DockStyle.Fill,
+    AutoScroll        = <span class="token-kw">true</span>,
     AutoScrollMinSize = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">4000</span>, <span class="token-num">3000</span>),
-    BackColor = Color.FromArgb(<span class="token-num">40</span>, <span class="token-num">40</span>, <span class="token-num">43</span>)
+    BackColor         = Color.FromArgb(<span class="token-num">40</span>, <span class="token-num">40</span>, <span class="token-num">43</span>),
+    AllowDrop         = <span class="token-kw">true</span>,
 };
-_canvas.Paint += (_, e) => {
+_canvas.Paint += (_, e) =>
+{
     <span class="token-kw">const int</span> G = <span class="token-num">40</span>;
-    <span class="token-kw">using var</span> pen = <span class="token-kw">new</span> <span class="token-type">Pen</span>(Color.FromArgb(<span class="token-num">50</span>, <span class="token-num">50</span>, <span class="token-num">53</span>), <span class="token-num">1</span>);
-    <span class="token-kw">int</span> ox = _canvas.AutoScrollPosition.X % G;
-    <span class="token-kw">int</span> oy = _canvas.AutoScrollPosition.Y % G;
-    <span class="token-kw">for</span> (<span class="token-type">int</span> x = ox; x &lt; _canvas.Width; x += G)
-        e.Graphics.DrawLine(pen, x, <span class="token-num">0</span>, x, _canvas.Height);
-    <span class="token-kw">for</span> (<span class="token-type">int</span> y = oy; y &lt; _canvas.Height; y += G)
-        e.Graphics.DrawLine(pen, <span class="token-num">0</span>, y, _canvas.Width, y);
+    <span class="token-kw">using var</span> p = <span class="token-kw">new</span> <span class="token-type">Pen</span>(Color.FromArgb(<span class="token-num">50</span>, <span class="token-num">50</span>, <span class="token-num">53</span>), <span class="token-num">1</span>);
+    <span class="token-type">int</span> ox = _canvas.AutoScrollPosition.X % G;
+    <span class="token-type">int</span> oy = _canvas.AutoScrollPosition.Y % G;
+    <span class="token-kw">for</span> (<span class="token-type">int</span> x = ox; x &lt; _canvas.Width;  x += G) e.Graphics.DrawLine(p, x, <span class="token-num">0</span>, x, _canvas.Height);
+    <span class="token-kw">for</span> (<span class="token-type">int</span> y = oy; y &lt; _canvas.Height; y += G) e.Graphics.DrawLine(p, <span class="token-num">0</span>, y, _canvas.Width, y);
 };</code></pre>
       </div>
     </div>
@@ -766,88 +788,127 @@ _canvas.Paint += (_, e) => {
     <div class="step">
       <div class="step__header"><div class="step__num">2</div><div class="step__title">Zoom with Ctrl + Scroll</div></div>
       <div class="step__body">
-        <pre><code>_canvas.MouseWheel += (_, e) => {
+        <p>Zoom works by storing a <code>_zoom</code> float and rescaling every card's <code>Location</code> and <code>Size</code>. The actual <code>Item.X / Item.Y</code> values are always stored at 100% scale — the zoom is applied on top for display only.</p>
+        <pre><code>_canvas.MouseWheel += (_, e) =>
+{
     <span class="token-kw">if</span> (ModifierKeys.HasFlag(Keys.Control))
-        SetZoom(_zoom + (e.Delta > <span class="token-num">0</span> ? +<span class="token-num">0.1f</span> : -<span class="token-num">0.1f</span>));
+        SetZoom(_zoom + (e.Delta &gt; <span class="token-num">0</span> ? +ZoomStep : -ZoomStep));
 };
 
-<span class="token-kw">private void</span> SetZoom(<span class="token-type">float</span> v)
+<span class="token-kw">private void</span> ApplyZoomToAllCards()
 {
-    _zoom = Math.Clamp(v, <span class="token-num">0.5f</span>, <span class="token-num">2.0f</span>);
     <span class="token-kw">foreach</span> (<span class="token-kw">var</span> card <span class="token-kw">in</span> _cards.Values)
     {
-        card.Location = <span class="token-kw">new</span> <span class="token-type">Point</span>(
-            (<span class="token-type">int</span>)(card.Item.X * _zoom),
-            (<span class="token-type">int</span>)(card.Item.Y * _zoom));
-        card.Size = <span class="token-kw">new</span> <span class="token-type">Size</span>(
-            (<span class="token-type">int</span>)(card.Item.Width  * _zoom),
-            (<span class="token-type">int</span>)(card.Item.Height * _zoom));
+        card.Location = <span class="token-kw">new</span> <span class="token-type">Point</span>((<span class="token-type">int</span>)(card.Item.X * _zoom), (<span class="token-type">int</span>)(card.Item.Y * _zoom));
+        card.Size     = <span class="token-kw">new</span> <span class="token-type">Size</span>((<span class="token-type">int</span>)(card.Item.Width * _zoom), (<span class="token-type">int</span>)(card.Item.Height * _zoom));
     }
 }</code></pre>
       </div>
     </div>
 
-    <!-- ══ COLOR PICKER ══ -->
-    <h2 data-section="color-picker" id="color-picker">Part 6 — Color Picker</h2>
-    <p>Open <code>ColorPickerPage.cs</code>. It loads an image into a <code>PictureBox</code> and reads the pixel color wherever the mouse is. Your class also has a <code>NativeMethods</code> helper (visible in Solution Explorer) for calling low-level Windows APIs to read screen pixels.</p>
-
-    <!-- Color Picker app screenshot mock -->
-    <div class="app-mock">
-    <div class="app-screenshot"><img src="img/app-color-picker.png" alt="Color Picker page showing the toolbar, empty image area, and Color Palette sidebar" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
-
-    <!-- Image card context menu mock (from right-click screenshot) -->
-    <div class="callout callout--tip" style="margin-top:20px">
-      <span class="callout__icon">💡</span>
-      <div>
-        <strong>Right-clicking an image card</strong> on the Image Board opens a context menu with useful actions. Here's what each option does:
-        <div class="app-mock" style="margin-top:12px">
-    <div class="app-screenshot"><img src="img/app-context-menu.png" alt="Right-click context menu on an image card showing Rename, Crop, Reset crop, Bring to front, Send to back, Save image as, and Delete options" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Drag & drop and paste</div></div>
+      <div class="step__body">
+        <p>The canvas accepts drag-and-drop of files or bitmap data. Clipboard paste (<kbd>Ctrl</kbd><kbd>V</kbd>) is handled by a global keyboard hook so it works even if the canvas isn't focused.</p>
+        <pre><code><span class="token-kw">private void</span> Canvas_DragDrop(<span class="token-type">object</span>? s, <span class="token-type">DragEventArgs</span> e)
+{
+    <span class="token-kw">if</span> (!EnsureBoard()) <span class="token-kw">return</span>;
+    <span class="token-kw">if</span> (e.Data?.GetDataPresent(DataFormats.FileDrop) == <span class="token-kw">true</span>)
+    {
+        <span class="token-kw">var</span> files = e.Data.GetData(DataFormats.FileDrop) <span class="token-kw">as</span> <span class="token-type">string</span>[];
+        <span class="token-kw">if</span> (files != <span class="token-kw">null</span>) <span class="token-kw">foreach</span> (<span class="token-kw">var</span> f <span class="token-kw">in</span> files) AddFromFile(f);
+    }
+}</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>Images are always saved as .png files regardless of the original format. This keeps loading simple and avoids JPEG quality loss on re-save.</div>
+        </div>
       </div>
     </div>
 
-    <!-- Crop dialog mock (from crop screenshot) -->
-    <div class="callout callout--info" style="margin-top:16px">
-      <span class="callout__icon">ℹ️</span>
-      <div>
-        <strong>The Crop dialog</strong> opens when you click <em>Crop…</em> from the context menu. Drag the handles to adjust the crop area. The rule-of-thirds grid helps with composition. Click <strong>Apply Crop</strong> when done.
-        <div class="app-mock" style="margin-top:12px">
-    <div class="app-screenshot"><img src="img/app-crop-dialog.png" alt="Crop Image dialog showing a pink cherry blossom tree with rule-of-thirds grid and Apply Crop button" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;"></div>
-      </div>
+    <!-- ══ PART 6 — COLOR PICKER ══ -->
+    <h2 data-section="color-picker" id="color-picker">Part 6 — Color Picker</h2>
+    <p>Open <code>ColorPickerPage.cs</code>. It loads an image into a <code>PictureBox</code> and reads the pixel color wherever the mouse is. The <code>NativeMethods</code> class at the bottom of the file wraps the Win32 <code>GetAsyncKeyState</code> API for the eyedropper's Escape key detection.</p>
+
+    <div class="app-screenshot">
+      <img src="img/app-color-picker.png" alt="Color Picker page showing the toolbar, empty image area, and Color Palette sidebar" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
     </div>
 
     <div class="step">
       <div class="step__header"><div class="step__num">1</div><div class="step__title">Read pixel color on mouse move</div></div>
       <div class="step__body">
+        <p>When <code>SizeMode</code> is <code>Zoom</code>, WinForms letterboxes the image. We must account for the offset and scale when converting the mouse position into actual bitmap pixel coordinates.</p>
         <pre><code><span class="token-kw">private void</span> PicBox_MouseMove(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
 {
-    <span class="token-kw">if</span> (_loadedImage == <span class="token-kw">null</span>) <span class="token-kw">return</span>;
-    <span class="token-kw">var</span> bmp = (<span class="token-type">Bitmap</span>)_loadedImage;
-
-    <span class="token-cm">// Convert PictureBox display coordinates → real bitmap pixel</span>
-    <span class="token-type">int</span> bx = (<span class="token-type">int</span>)(e.X * (<span class="token-type">float</span>)bmp.Width  / _picBox.Width);
-    <span class="token-type">int</span> by = (<span class="token-type">int</span>)(e.Y * (<span class="token-type">float</span>)bmp.Height / _picBox.Height);
-    bx = Math.Clamp(bx, <span class="token-num">0</span>, bmp.Width  - <span class="token-num">1</span>);
-    by = Math.Clamp(by, <span class="token-num">0</span>, bmp.Height - <span class="token-num">1</span>);
-
-    <span class="token-type">Color</span> c = bmp.GetPixel(bx, by);
+    <span class="token-kw">if</span> (_picBox.Image == <span class="token-kw">null</span>) <span class="token-kw">return</span>;
+    <span class="token-kw">var</span> bmp = <span class="token-kw">new</span> <span class="token-type">Bitmap</span>(_picBox.Image);
+    <span class="token-kw">var</span> c = bmp.GetPixel(
+        e.X * bmp.Width  / _picBox.Width,
+        e.Y * bmp.Height / _picBox.Height);
     _hoveredSwatch.BackColor = c;
     _hoveredColorLbl.Text    = <span class="token-str">$"#{c.R:X2}{c.G:X2}{c.B:X2}"</span>;
 }</code></pre>
         <div class="callout callout--warn">
           <span class="callout__icon">⚠️</span>
-          <div>When <code>SizeMode</code> is <code>Zoom</code>, WinForms adds letterbox padding around the image. For perfectly accurate picks at the edges, subtract the padding offset from <code>e.X</code> and <code>e.Y</code>.</div>
+          <div>For accurate pixel picking near the edges of the image, subtract the letterbox offset from <code>e.X</code> and <code>e.Y</code> before the calculation above.</div>
         </div>
       </div>
     </div>
 
-    <!-- ══ MAIN FORM ══ -->
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Duplicate color detection</div></div>
+      <div class="step__body">
+        <p>Before adding a color, the palette is checked for an exact RGB match. If found, a short amber tip message flashes in the toolbar label instead of silently ignoring the click.</p>
+        <pre><code><span class="token-kw">private void</span> AddColorToPalette(<span class="token-type">Color</span> c)
+{
+    <span class="token-kw">if</span> (_palette.Contains(c))
+    {
+        Tip(<span class="token-str">"Already in palette."</span>);
+        <span class="token-kw">return</span>;
+    }
+    _palette.Add(c);
+    RebuildSwatches();
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Copy HEX — left-click with #, right-click without</div></div>
+      <div class="step__body">
+        <p>Each swatch registers two handlers: a <code>Click</code> for the <code>#</code>-prefixed value and a <code>MouseDown</code> for the bare hex string (useful for tools like Figma that don't expect the <code>#</code>).</p>
+        <pre><code>EventHandler copyWithHash = (_, _) =>
+{
+    Clipboard.SetText(hex);
+    hexLbl.Text = <span class="token-str">"Copied #!"</span>;
+    <span class="token-kw">var</span> t = <span class="token-kw">new</span> <span class="token-type">Timer</span> { Interval = <span class="token-num">1200</span> };
+    t.Tick += (_, _) => { hexLbl.Text = hex; t.Stop(); t.Dispose(); };
+    t.Start();
+};
+
+MouseEventHandler copyNoHash = (_, me) =>
+{
+    <span class="token-kw">if</span> (me.Button != MouseButtons.Right) <span class="token-kw">return</span>;
+    Clipboard.SetText(hexOnly);
+    hexLbl.Text = <span class="token-str">"Copied!"</span>;
+    <span class="token-kw">var</span> t = <span class="token-kw">new</span> <span class="token-type">Timer</span> { Interval = <span class="token-num">1200</span> };
+    t.Tick += (_, _) => { hexLbl.Text = hex; t.Stop(); t.Dispose(); };
+    t.Start();
+};</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ PART 7 — MAIN FORM ══ -->
     <h2 data-section="main-form" id="main-form">Part 7 — Main Form</h2>
-    <p>Open <code>MainForm.cs</code>. This is the root window of the app — it owns one <code>AppDatabase</code> and acts as a page router. When the user picks a mode, it disposes the current page and loads the new one.</p>
+    <p>Open <code>MainForm.cs</code>. This is the root window of the app. It owns the single <code>AppDatabase</code> instance and acts as a page router — swapping between <code>StartPage</code>, <code>ImageBoardPage</code>, and <code>ColorPickerPage</code> by disposing the current page and adding the new one.</p>
+
+    <div class="app-screenshot">
+      <img src="img/app-start-page.png" alt="The finished app showing the Start Page as the first screen on launch" style="width:100%;display:block;border-radius:8px;border:1px solid var(--color-border);">
+    </div>
 
     <div class="step">
       <div class="step__header"><div class="step__num">1</div><div class="step__title">Set up the form</div></div>
       <div class="step__body">
-        <p>Looking at your Solution Explorer, you can see <code>MainForm</code> has exactly these fields: <code>_db</code>, <code>_startPage</code>, <code>_boardPage</code>, <code>_colorPage</code> — and four methods: <code>ShowStartPage()</code>, <code>ShowImageBoard()</code>, <code>ShowColorPicker()</code>, <code>ClearPages()</code>.</p>
+        <p><code>MainForm</code> holds exactly four fields and four methods. It disposes the database in <code>OnFormClosed</code> so the SQLite file is properly flushed and closed when the window closes.</p>
         <pre><code><span class="token-kw">public class</span> <span class="token-type">MainForm</span> : <span class="token-type">Form</span>
 {
     <span class="token-kw">private readonly</span> <span class="token-type">AppDatabase</span> _db = <span class="token-kw">new</span>();
@@ -864,7 +925,6 @@ _canvas.Paint += (_, e) => {
         ShowStartPage();
     }
 
-    <span class="token-cm">// Always release the database when the window closes</span>
     <span class="token-kw">protected override void</span> OnFormClosed(<span class="token-type">FormClosedEventArgs</span> e)
         { _db.Dispose(); <span class="token-kw">base</span>.OnFormClosed(e); }
 }</code></pre>
@@ -872,8 +932,9 @@ _canvas.Paint += (_, e) => {
     </div>
 
     <div class="step">
-      <div class="step__header"><div class="step__num">2</div><div class="step__title">Implement page switching</div></div>
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Page switching</div></div>
       <div class="step__body">
+        <p><code>ClearPages()</code> disposes every control in the window — this is important because <code>Panel</code> subclasses hold GDI resources (fonts, brushes, timers) that must be released. Then the new page is created, its events are wired up, and it is added to the form.</p>
         <pre><code><span class="token-kw">private void</span> ShowStartPage()
 {
     ClearPages();
@@ -881,7 +942,6 @@ _canvas.Paint += (_, e) => {
     _startPage.ImageBoardChosen  += (_, _) => ShowImageBoard();
     _startPage.ColorPickerChosen += (_, _) => ShowColorPicker();
     Controls.Add(_startPage);
-    Text = <span class="token-str">"Image Board Studio"</span>;
 }
 
 <span class="token-kw">private void</span> ShowImageBoard()
@@ -890,7 +950,7 @@ _canvas.Paint += (_, e) => {
     _boardPage = <span class="token-kw">new</span> <span class="token-type">ImageBoardPage</span>(_db);
     _boardPage.HomeRequested += (_, _) => ShowStartPage();
     Controls.Add(_boardPage);
-    Text = <span class="token-str">"Image Board Studio — Image Board"</span>;
+    Text = <span class="token-str">"Image Board Studio  —  Image Board"</span>;
 }
 
 <span class="token-kw">private void</span> ClearPages()
@@ -901,220 +961,11 @@ _canvas.Paint += (_, e) => {
 }</code></pre>
         <div class="callout callout--tip">
           <span class="callout__icon">💡</span>
-          <div>Press <kbd>F5</kbd> to build and run. If everything is set up correctly, the Start Page appears with the two mode cards. Use <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> to check for errors without launching.</div>
+          <div>Press F5 to run the finished app. The Start Page should appear immediately. Click either card to switch modes. Use Ctrl+Shift+B to build and check for errors without launching.</div>
         </div>
       </div>
     </div>
 
-    <!-- ══ BRAINSTORM ══ -->
-    <h2 data-section="brainstorm-problem" id="brainstorm-problem" style="margin-top:80px">Brainstorm — The Problem</h2>
-    <p>Before writing a single line of code, the idea started with a frustration. Artists constantly juggle scattered tools — browser tabs for references, separate apps for color, and no single place that keeps everything together.</p>
-
-    <div class="bs-grid">
-      <div class="bs-card bs-card--purple">
-        <div class="bs-card__num">01</div>
-        <div class="bs-card__title">Too many open tabs</div>
-        <div class="bs-card__body">Reference images spread across dozens of browser tabs, slowing the machine and losing context.</div>
-      </div>
-      <div class="bs-card bs-card--blue">
-        <div class="bs-card__num">02</div>
-        <div class="bs-card__title">Color picking is fragmented</div>
-        <div class="bs-card__body">Getting an exact color from a reference requires switching apps or imprecise eyeballing.</div>
-      </div>
-      <div class="bs-card bs-card--pink">
-        <div class="bs-card__num">03</div>
-        <div class="bs-card__title">Mood boards don't persist</div>
-        <div class="bs-card__body">Browser-based boards disappear when the tab closes. Local tools are too complex or too basic.</div>
-      </div>
-      <div class="bs-card bs-card--amber">
-        <div class="bs-card__num">04</div>
-        <div class="bs-card__title">No offline-first option</div>
-        <div class="bs-card__body">Most reference tools require an internet connection and a subscription. Artists offline are left with nothing.</div>
-      </div>
-    </div>
-
-    <!-- mind map diagram -->
-    <div class="bs-diagram-wrap">
-      <div class="bs-diagram-label">Problem map</div>
-      <svg viewBox="0 0 620 280" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;max-height:280px">
-        <!-- centre node -->
-        <rect x="230" y="110" width="160" height="52" rx="10" fill="#252533" stroke="#a78bfa" stroke-width="1.5"/>
-        <text x="310" y="131" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="DM Sans,sans-serif" font-weight="500">Artist's Workflow</text>
-        <text x="310" y="149" text-anchor="middle" fill="#6b6882" font-size="10" font-family="DM Sans,sans-serif">Pain Points</text>
-        <!-- lines -->
-        <line x1="230" y1="136" x2="132" y2="60"  stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
-        <line x1="230" y1="136" x2="132" y2="136" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
-        <line x1="230" y1="148" x2="132" y2="214" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
-        <line x1="390" y1="136" x2="488" y2="60"  stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
-        <line x1="390" y1="136" x2="488" y2="136" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
-        <line x1="390" y1="148" x2="488" y2="214" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
-        <!-- left nodes -->
-        <rect x="30"  y="34"  width="102" height="38" rx="7" fill="#1e1e2a" stroke="#7c3aed" stroke-width="1"/>
-        <text x="81" y="57" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="DM Sans,sans-serif">Scattered tabs</text>
-        <rect x="30"  y="117" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#3b82f6" stroke-width="1"/>
-        <text x="81" y="140" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="DM Sans,sans-serif">Color fragmented</text>
-        <rect x="30"  y="196" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#ec4899" stroke-width="1"/>
-        <text x="81" y="219" text-anchor="middle" fill="#f472b6" font-size="10" font-family="DM Sans,sans-serif">No persistence</text>
-        <!-- right nodes -->
-        <rect x="488" y="34"  width="102" height="38" rx="7" fill="#1e1e2a" stroke="#f59e0b" stroke-width="1"/>
-        <text x="539" y="57" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="DM Sans,sans-serif">No offline tool</text>
-        <rect x="488" y="117" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#10b981" stroke-width="1"/>
-        <text x="539" y="140" text-anchor="middle" fill="#34d399" font-size="10" font-family="DM Sans,sans-serif">Subscription cost</text>
-        <rect x="488" y="196" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#8b5cf6" stroke-width="1"/>
-        <text x="539" y="219" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="DM Sans,sans-serif">Slow workflow</text>
-      </svg>
-    </div>
-
-    <h2 data-section="brainstorm-idea" id="brainstorm-idea">Brainstorm — The Idea</h2>
-    <p>The solution was a focused desktop app with exactly two modes. One for organising images. One for extracting colors. No more, no less.</p>
-
-    <div class="bs-insight">
-      <p>"What if an artist could open one window, drag in references, arrange them visually, and pick colors — all without touching a browser?"</p>
-      <span>— The one-sentence pitch</span>
-    </div>
-
-    <!-- two-mode flow diagram -->
-    <div class="bs-diagram-wrap">
-      <div class="bs-diagram-label">App concept</div>
-      <svg viewBox="0 0 620 200" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;max-height:200px">
-        <!-- start -->
-        <rect x="240" y="76" width="140" height="48" rx="10" fill="#252533" stroke="#a78bfa" stroke-width="1.5"/>
-        <text x="310" y="96" text-anchor="middle" fill="#e2ddf5" font-size="12" font-family="DM Sans,sans-serif" font-weight="500">Start Page</text>
-        <text x="310" y="113" text-anchor="middle" fill="#6b6882" font-size="10" font-family="DM Sans,sans-serif">Choose a mode</text>
-        <!-- arrow left -->
-        <path d="M240 100 L140 100" fill="none" stroke="#6b6882" stroke-width="1.2" marker-end="url(#arr2)"/>
-        <text x="190" y="93" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Image Board</text>
-        <!-- arrow right -->
-        <path d="M380 100 L480 100" fill="none" stroke="#6b6882" stroke-width="1.2" marker-end="url(#arr2)"/>
-        <text x="430" y="93" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Color Picker</text>
-        <!-- left box -->
-        <rect x="30" y="62" width="110" height="76" rx="10" fill="#1e1e2a" stroke="#3b82f6" stroke-width="1.2"/>
-        <text x="85" y="90" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="DM Sans,sans-serif" font-weight="500">🖼 Image Board</text>
-        <text x="85" y="107" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Drag &amp; drop</text>
-        <text x="85" y="120" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Resize &amp; zoom</text>
-        <text x="85" y="133" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Saved to SQLite</text>
-        <!-- right box -->
-        <rect x="480" y="62" width="110" height="76" rx="10" fill="#1e1e2a" stroke="#a78bfa" stroke-width="1.2"/>
-        <text x="535" y="90" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="DM Sans,sans-serif" font-weight="500">🎨 Color Picker</text>
-        <text x="535" y="107" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Pick from image</text>
-        <text x="535" y="120" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Eyedropper</text>
-        <text x="535" y="133" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Copy HEX / RGB</text>
-        <defs>
-          <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M2 1L8 5L2 9" fill="none" stroke="#6b6882" stroke-width="1.5" stroke-linecap="round"/>
-          </marker>
-        </defs>
-      </svg>
-    </div>
-
-    <h2 data-section="brainstorm-why-net" id="brainstorm-why-net">Brainstorm — Why .NET Desktop Development?</h2>
-    <p>Several platforms were considered. .NET WinForms was chosen because it matched every requirement: native speed, local file storage, Win32 API access, and a self-contained executable.</p>
-
-    <!-- comparison table -->
-    <table class="bs-compare">
-      <thead>
-        <tr>
-          <th>Option</th>
-          <th>Pro</th>
-          <th>Why rejected</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="bs-compare__chosen">
-          <td>✦ .NET WinForms</td>
-          <td class="bs-good">Native speed · SQLite · Win32 APIs · single .exe</td>
-          <td class="bs-good">Chosen — best fit</td>
-        </tr>
-        <tr>
-          <td>Electron (JS)</td>
-          <td>Cross-platform, familiar web tech</td>
-          <td class="bs-bad">~150 MB overhead · no native Win32 · slow canvas</td>
-        </tr>
-        <tr>
-          <td>WPF (.NET)</td>
-          <td>Modern UI, XAML styling</td>
-          <td class="bs-bad">Steeper learning curve for a first project</td>
-        </tr>
-        <tr>
-          <td>React (web)</td>
-          <td>Easy to share and deploy</td>
-          <td class="bs-bad">No screen eyedropper · no local file system</td>
-        </tr>
-        <tr>
-          <td>Python + tkinter</td>
-          <td>Quick to prototype</td>
-          <td class="bs-bad">Poor image performance · complex packaging</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- why dotnet cards -->
-    <div class="bs-why-grid">
-      <div class="bs-why-card">
-        <span class="bs-why-icon">⚡</span>
-        <strong>Native Windows speed</strong>
-        <p>WinForms renders through GDI+ — the same graphics layer Windows uses. No browser engine in the way.</p>
-      </div>
-      <div class="bs-why-card">
-        <span class="bs-why-icon">💾</span>
-        <strong>SQLite is first-class</strong>
-        <p>Microsoft.Data.Sqlite integrates directly. Boards and palettes persist in a single .db file — no server, no cloud.</p>
-      </div>
-      <div class="bs-why-card">
-        <span class="bs-why-icon">🪟</span>
-        <strong>Screen-wide eyedropper</strong>
-        <p>Win32 <code>GetPixel</code> and <code>GetDC</code> can sample any pixel on screen — even outside the app window.</p>
-      </div>
-      <div class="bs-why-card">
-        <span class="bs-why-icon">📦</span>
-        <strong>Self-contained .exe</strong>
-        <p>.NET 10 apps publish as a single executable. Users double-click and it runs — no installer needed.</p>
-      </div>
-    </div>
-
-    <h2 data-section="brainstorm-journey" id="brainstorm-journey">Brainstorm — Development Journey</h2>
-    <p>The app was built in six stages, each one unlocking the next. The key decision was to design the data layer first so all UI work had a stable foundation.</p>
-
-    <div class="bs-timeline">
-      <div class="bs-tl-item">
-        <div class="bs-tl-dot bs-tl-dot--active"></div>
-        <div class="bs-tl-label">Stage 01</div>
-        <div class="bs-tl-title">Identify the pain point</div>
-        <div class="bs-tl-body">Noticed the reference workflow was too fragmented. Asked: what is the minimum app that solves this?</div>
-      </div>
-      <div class="bs-tl-item">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-label">Stage 02</div>
-        <div class="bs-tl-title">Define two focused modes</div>
-        <div class="bs-tl-body">Decided on Image Board and Color Picker as separate pages. Kept scope tight to avoid feature bloat.</div>
-      </div>
-      <div class="bs-tl-item">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-label">Stage 03</div>
-        <div class="bs-tl-title">Design the data layer</div>
-        <div class="bs-tl-body">Defined Board and BoardItem models first. All UI could be built on top of a stable database layer from the start.</div>
-      </div>
-      <div class="bs-tl-item">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-label">Stage 04</div>
-        <div class="bs-tl-title">Build drag, resize, zoom</div>
-        <div class="bs-tl-body">ImageItemControl took the most iteration — 8-directional resize handles and zoom-aware coordinates required careful event handling.</div>
-      </div>
-      <div class="bs-tl-item">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-label">Stage 05</div>
-        <div class="bs-tl-title">Add the screen eyedropper</div>
-        <div class="bs-tl-body">Win32 APIs turned the color picker from basic into genuinely useful — sampling any pixel on screen in real time.</div>
-      </div>
-      <div class="bs-tl-item">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-label">Stage 06</div>
-        <div class="bs-tl-title">Polish & export</div>
-        <div class="bs-tl-body">Added PNG export, per-card crop, inline rename, duplicate color detection, and right-click copy without #.</div>
-      </div>
-    </div>
-
-    <!-- ══ RESOURCES ══ -->
     <h2 data-section="resources" id="resources">Further Reading</h2>
 
     <h4>C# &amp; WinForms</h4>
@@ -1126,7 +977,7 @@ _canvas.Paint += (_, e) => {
     </ul>
 
     <div class="page-footer">
-      <span>Image Board Studio — Developer Tutorial</span>
+      <span>Image Board Studio — BeginnerDeveloper Tutorial</span>
       <span>Last updated: April 2026</span>
     </div>
 
