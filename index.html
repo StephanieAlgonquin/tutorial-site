@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Board Studio — Tutorial</title>
+  <link rel="stylesheet" href="public\css\style.css">
+  <link rel="stylesheet" href="public\css\copy-btn.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <nav class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__title">Image Board Studio</div>
+      <div class="sidebar__subtitle">Developer Tutorial</div>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Introduction</div>
+      <a href="#intro"            class="nav__link">Overview</a>
+      <a href="#what-youll-build" class="nav__link">What You'll Build</a>
+      <a href="#project-structure" class="nav__link">Project Structure</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Brainstorm</div>
+      <a href="#brainstorm-problem"  class="nav__link">The Problem</a>
+      <a href="#brainstorm-idea"     class="nav__link">The Idea</a>
+      <a href="#brainstorm-why-net"  class="nav__link">Why .NET?</a>
+      <a href="#brainstorm-journey"  class="nav__link">Journey</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Setup</div>
+      <a href="#install-vs"      class="nav__link">1. Install Visual Studio</a>
+      <a href="#new-project"     class="nav__link">2. Create the Project</a>
+      <a href="#create-folders"  class="nav__link">3. Create Folders &amp; Files</a>
+      <a href="#nuget"           class="nav__link">4. Install SQLite Package</a>
+      <a href="#understand-ui"   class="nav__link">5. Understanding the UI</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Building the App</div>
+      <a href="#models"          class="nav__link">Part 1 — Data Models</a>
+      <a href="#database"        class="nav__link">Part 2 — Database</a>
+      <a href="#start-page"      class="nav__link">Part 3 — Start Page</a>
+      <a href="#image-item"      class="nav__link">Part 4 — Image Item Control</a>
+      <a href="#image-board"     class="nav__link">Part 5 — Image Board</a>
+      <a href="#color-picker"    class="nav__link">Part 6 — Color Picker</a>
+      <a href="#main-form"       class="nav__link">Part 7 — Main Form</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Resources</div>
+      <a href="#resources" class="nav__link">Further Reading</a>
+    </div>
+  </nav>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- INTRO -->
+    <section data-section="intro" id="intro">
+      <div class="eyebrow">Image Board Studio</div>
+      <h1>Building an Artist Tool</h1>
+      <div class="hero-meta">
+        <span class="tag">C# .NET 10</span>
+        <span class="tag">Windows Forms</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Beginner Friendly</span>
+      </div>
+      <p class="lead">In this tutorial you will build Image Board Studio from scratch — a desktop app for artists to collect visual references and pick colors from images. No coding experience needed. Every step is explained.</p>
+
+      <p><strong>What is C#?</strong> C# (pronounced "C sharp") is a programming language made by Microsoft. It is one of the most popular languages for building Windows desktop apps.</p>
+      <p><strong>What is Windows Forms?</strong> Windows Forms (WinForms) is a toolkit that comes with C#. It lets you build windows with buttons, panels, and images by writing code instead of dragging things in a designer.</p>
+      <p><strong>What is SQLite?</strong> SQLite is a tiny database that saves data into a single file on your computer — like a spreadsheet, but for your app. No setup or server needed.</p>
+
+      <div class="callout callout--info">
+        <span class="callout__icon">ℹ️</span>
+        <div>This app runs on <strong>Windows 10 or 11</strong> only. It uses Windows-specific drawing APIs that are not available on Mac or Linux.</div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU'LL BUILD -->
+    <section data-section="what-youll-build" id="what-youll-build">
+      <h3>What You'll Build</h3>
+      <p>The finished app has three screens the user can switch between:</p>
+      <ul>
+        <li><strong>Start Page</strong> — a landing screen with two clickable mode cards</li>
+        <li><strong>Image Board</strong> — a large scrollable canvas where you drag, drop, and resize images. Boards are saved to a database so they persist when you close the app.</li>
+        <li><strong>Color Picker</strong> — load any image and click on it to sample colors. Build a reusable palette and copy the hex codes.</li>
+      </ul>
+      <div class="screen-mock">
+        <div class="screen-mock__bar">
+          <div class="screen-mock__dot screen-mock__dot--red"></div>
+          <div class="screen-mock__dot screen-mock__dot--yellow"></div>
+          <div class="screen-mock__dot screen-mock__dot--green"></div>
+          <span class="screen-mock__title">Image Board Studio</span>
+        </div>
+        <div class="screen-mock__body">
+          <div style="text-align:center;max-width:380px">
+            <div style="font-family:'Instrument Serif',serif;font-size:22px;color:#e2ddf5;margin-bottom:6px">Image Board Studio</div>
+            <div style="font-size:12px;color:#6b6882;margin-bottom:22px">Choose a mode to get started</div>
+            <div style="display:flex;gap:12px;justify-content:center">
+              <div style="background:#1a1a24;border:1px solid rgba(96,165,250,.35);border-radius:10px;padding:16px;width:140px;text-align:left">
+                <div style="font-size:24px;margin-bottom:8px">🖼</div>
+                <div style="font-size:13px;color:#60a5fa;font-weight:500;margin-bottom:4px">Image Board</div>
+                <div style="font-size:11px;color:#6b6882;line-height:1.5">Collect references on a freeform canvas</div>
+              </div>
+              <div style="background:#1a1a24;border:1px solid rgba(167,139,250,.35);border-radius:10px;padding:16px;width:140px;text-align:left">
+                <div style="font-size:24px;margin-bottom:8px">🎨</div>
+                <div style="font-size:13px;color:#a78bfa;font-weight:500;margin-bottom:4px">Color Picker</div>
+                <div style="font-size:11px;color:#6b6882;line-height:1.5">Sample colors from any image</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT STRUCTURE -->
+    <section data-section="project-structure" id="project-structure">
+      <h3>Project Structure</h3>
+      <p>Here is every file in the finished project. Don't worry about understanding all of it now — you will create each file step by step. This is just a map so you know where you are headed.</p>
+
+      <div class="file-tree">
+        <div><span class="file-tree__dir">Imageboard_illust/</span>  ← the project folder</div>
+        <div class="file-tree__i1"><span class="file-tree__dir">Database/</span></div>
+        <div class="file-tree__i2"><span class="file-tree__hl">AppDatabase.cs</span>  ← reads &amp; writes to SQLite</div>
+        <div class="file-tree__i1"><span class="file-tree__dir">Models/</span></div>
+        <div class="file-tree__i2"><span class="file-tree__hl">Models.cs</span>  ← data shapes (Board, BoardItem)</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">StartPage.cs</span>  ← the home/landing screen</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">ImageItemControl.cs</span>  ← a single draggable image card</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">ColorPickerPage.cs</span>  ← the color picker screen</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">ExportOptionsDialog.cs</span>  ← export dialog window</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">MainForm.cs</span>  ← root window, switches between pages</div>
+        <div class="file-tree__i1"><span class="file-tree__file">Form1.cs</span>  ← auto-generated, leave as-is</div>
+        <div class="file-tree__i1"><span class="file-tree__file">Program.cs</span>  ← app entry point</div>
+      </div>
+
+      <div class="callout callout--tip">
+        <span class="callout__icon">💡</span>
+        <div>In Solution Explorer (the panel on the right in Visual Studio) you can see this exact tree. Expanding a <code>.cs</code> file shows all the classes and methods inside it — very useful for navigating large projects.</div>
+      </div>
+    </section>
+
+    <!-- ══ INSTALL VS ══ -->
+    <h2 data-section="install-vs" id="install-vs">Step 1 — Install Visual Studio</h2>
+    <p>Visual Studio is the program you write C# code in. Think of it like Microsoft Word, but for code. We use the free <strong>Community</strong> edition — it has everything we need and costs nothing.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Go to the download page</div></div>
+      <div class="step__body">
+        <p>Open your browser and go to:</p>
+        <p><span class="menu-path">https://visualstudio.microsoft.com/vs/community/</span></p>
+        <p>You will see the <strong>Visual Studio Community</strong> page. Click the white <strong>Download</strong> button.</p>
+
+        <!-- screenshot mock of VS download page -->
+        <div class="ss-mock">
+          <div class="ss-mock__bar">
+            <div class="ss-mock__dots">
+              <span class="ss-dot ss-dot--r"></span>
+              <span class="ss-dot ss-dot--y"></span>
+              <span class="ss-dot ss-dot--g"></span>
+            </div>
+            <div class="ss-mock__url">https://visualstudio.microsoft.com/vs/community/</div>
+          </div>
+          <div class="ss-mock__body ss-mock__body--light">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e5e5e5">
+              <div style="display:flex;gap:3px">
+                <div style="width:10px;height:10px;background:#f25022;border-radius:1px"></div>
+                <div style="width:10px;height:10px;background:#7fba00;border-radius:1px"></div>
+                <div style="width:10px;height:10px;background:#00a4ef;border-radius:1px"></div>
+                <div style="width:10px;height:10px;background:#ffb900;border-radius:1px"></div>
+              </div>
+              <span style="font-size:13px;font-weight:600;color:#333">Visual Studio</span>
+            </div>
+            <div style="background:#1e1e2e;padding:28px 24px;border-radius:6px;color:#fff">
+              <div style="font-size:26px;font-weight:700;margin-bottom:8px;line-height:1.1">Visual Studio<br>Community</div>
+              <div style="font-size:12px;color:#aaa;margin-bottom:18px;max-width:320px">A fully-featured, extensible, free IDE for creating modern applications for Android, iOS, Windows, as well as web applications and cloud services.</div>
+              <div style="display:inline-block;background:#fff;color:#000;font-size:13px;font-weight:600;padding:9px 22px;border-radius:4px;cursor:pointer">Download</div>
+            </div>
+          </div>
+        </div>
+
+        <p>This downloads a small file called <code>VisualStudioSetup.exe</code>. Run it to launch the installer.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Select the correct workload</div></div>
+      <div class="step__body">
+        <p>The installer opens a <strong>Workloads</strong> screen — a list of tool bundles for different project types. You will see sections called <strong>Web &amp; Cloud</strong> and <strong>Desktop &amp; Mobile</strong>.</p>
+        <p>Scroll down to <strong>Desktop &amp; Mobile</strong> and check only this one:</p>
+        <p><span class="menu-path">.NET desktop development</span></p>
+
+        <!-- workload picker mock -->
+        <div class="ss-mock" style="margin-top:16px">
+          <div class="ss-mock__bar">
+            <div class="ss-mock__dots">
+              <span class="ss-dot ss-dot--r"></span>
+              <span class="ss-dot ss-dot--y"></span>
+              <span class="ss-dot ss-dot--g"></span>
+            </div>
+            <div class="ss-mock__url">Installing — Visual Studio Community 2026</div>
+          </div>
+          <div class="ss-mock__body ss-mock__body--dark">
+            <!-- tab bar -->
+            <div style="display:flex;gap:0;border-bottom:1px solid #333;margin-bottom:16px">
+              <div style="padding:8px 16px;font-size:12px;color:#fff;border-bottom:2px solid #0078d4">Workloads</div>
+              <div style="padding:8px 16px;font-size:12px;color:#aaa">Individual components</div>
+              <div style="padding:8px 16px;font-size:12px;color:#aaa">Language packs</div>
+            </div>
+            <!-- section label -->
+            <div style="font-size:12px;color:#aaa;margin-bottom:10px;font-weight:500">Desktop &amp; Mobile (5)</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <!-- NET MAUI - unchecked -->
+              <div style="background:#2d2d2d;border:1px solid #444;border-radius:5px;padding:12px;display:flex;gap:10px;opacity:0.5">
+                <div style="width:32px;height:32px;background:#5c2d91;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <div style="width:16px;height:16px;background:#fff;border-radius:2px;opacity:0.8"></div>
+                </div>
+                <div>
+                  <div style="font-size:11px;color:#ccc;font-weight:500">.NET Multi-platform App UI dev</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px">Android, iOS, Windows from one codebase</div>
+                </div>
+              </div>
+              <!-- .NET desktop - CHECKED and highlighted -->
+              <div style="background:#1a2a3a;border:2px solid #0078d4;border-radius:5px;padding:12px;display:flex;gap:10px;position:relative">
+                <div style="position:absolute;top:8px;right:8px;width:14px;height:14px;background:#0078d4;border-radius:2px;display:flex;align-items:center;justify-content:center">
+                  <svg width="9" height="7" viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div style="width:32px;height:32px;background:#0e5a8a;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <div style="width:18px;height:12px;background:#fff;border-radius:2px;opacity:0.9"></div>
+                </div>
+                <div>
+                  <div style="font-size:11px;color:#fff;font-weight:600">.NET desktop development ✓</div>
+                  <div style="font-size:10px;color:#88b4d8;margin-top:2px">WPF, Windows Forms, console apps with C#</div>
+                </div>
+              </div>
+              <!-- C++ - unchecked -->
+              <div style="background:#2d2d2d;border:1px solid #444;border-radius:5px;padding:12px;display:flex;gap:10px;opacity:0.5">
+                <div style="width:32px;height:32px;background:#2d5b8e;border-radius:4px;flex-shrink:0"></div>
+                <div>
+                  <div style="font-size:11px;color:#ccc;font-weight:500">Desktop development with C++</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px">Build modern C++ apps for Windows</div>
+                </div>
+              </div>
+              <!-- WinUI - unchecked -->
+              <div style="background:#2d2d2d;border:1px solid #444;border-radius:5px;padding:12px;display:flex;gap:10px;opacity:0.5">
+                <div style="width:32px;height:32px;background:#106ebe;border-radius:4px;flex-shrink:0"></div>
+                <div>
+                  <div style="font-size:11px;color:#ccc;font-weight:500">WinUI application development</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px">Build apps for the Windows platform</div>
+                </div>
+              </div>
+            </div>
+            <!-- bottom bar -->
+            <div style="margin-top:16px;padding-top:12px;border-top:1px solid #333;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:11px;color:#aaa">Total space required  <span style="color:#fff;font-weight:600">9.38 GB</span></div>
+              <div style="background:#0078d4;color:#fff;font-size:12px;font-weight:600;padding:7px 20px;border-radius:3px;cursor:pointer">Install</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--warn" style="margin-top:16px">
+          <span class="callout__icon">⚠️</span>
+          <div>Make sure you check <strong>.NET desktop development</strong> — not <em>.NET Multi-platform App UI development</em> (that one is for mobile apps). They look similar but are different workloads.</div>
+        </div>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>Leave all other workloads <strong>unchecked</strong>. This saves about 10 GB of disk space and cuts install time roughly in half.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Finish installing</div></div>
+      <div class="step__body">
+        <p>Click <strong>Install</strong> at the bottom right. This takes 10–20 minutes depending on your internet speed. When it finishes, click <strong>Launch</strong>.</p>
+        <p>Visual Studio will ask you to sign in with a Microsoft account. This is optional — click <strong>"Not now, maybe later"</strong> to skip it. The app is completely free without signing in.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Click Install and wait</div></div>
+      <div class="step__body">
+        <p>Click the blue <strong>Install</strong> button at the bottom right of the installer. The download and setup takes <strong>10–20 minutes</strong> depending on your internet speed. You can see the progress in the installer window.</p>
+        <p>When it finishes, click <strong>Launch</strong> to open Visual Studio for the first time.</p>
+        <p>Visual Studio will ask you to sign in with a Microsoft account. This is optional — click <strong>"Not now, maybe later"</strong> to skip it. The app is completely free without signing in.</p>
+        <div class="callout callout--info">
+          <span class="callout__icon">ℹ️</span>
+          <div>The installer title will say <strong>Visual Studio Community 2026</strong> (or the current year). This is normal — Microsoft updates the version number yearly. The steps are the same regardless of the year shown.</div>
+        </div>
+      </div>
+    </div>
+    <h2 data-section="new-project" id="new-project">Step 2 — Create the Project</h2>
+    <p>A <strong>project</strong> is the folder that holds all your code files. A <strong>solution</strong> is a container that holds one or more projects. Visual Studio creates both at once.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Start a new project</div></div>
+      <div class="step__body">
+        <p>On the Visual Studio start screen, click <strong>Create a new project</strong>. In the search box at the top, type <code>Windows Forms</code>. Select the template that says:</p>
+        <p><span class="menu-path">Windows Forms App  ·  C#</span></p>
+        <p>Make sure the small tag says <strong>C#</strong> (not Visual Basic). Click <strong>Next</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Name the project</div></div>
+      <div class="step__body">
+        <p>Fill in the details exactly like this:</p>
+        <ul>
+          <li><strong>Project name:</strong> <code>Imageboard_illust</code></li>
+          <li><strong>Location:</strong> anywhere you like (e.g. your Desktop or Documents)</li>
+          <li><strong>Framework:</strong> <code>.NET 10.0 (Windows)</code></li>
+        </ul>
+        <p>Click <strong>Create</strong>. Visual Studio generates the project and opens it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">What Visual Studio created</div></div>
+      <div class="step__body">
+        <p>In the <strong>Solution Explorer</strong> panel (right side), you'll see two auto-generated files:</p>
+        <ul>
+          <li><code>Form1.cs</code> — a blank window. We will keep this for now.</li>
+          <li><code>Program.cs</code> — the entry point. This is the first code that runs when you press Play.</li>
+        </ul>
+        <div class="callout callout--info">
+          <span class="callout__icon">ℹ️</span>
+          <div>Don't delete <code>Form1.cs</code> yet — Visual Studio needs it. We will replace it with our own <code>MainForm</code> later.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CREATE FOLDERS ══ -->
+    <h2 data-section="create-folders" id="create-folders">Step 3 — Create Folders &amp; Files</h2>
+    <p>Before writing any code, create the folder and file structure. Right-clicking in Solution Explorer is how you add everything.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Create the Database folder</div></div>
+      <div class="step__body">
+        <p>In Solution Explorer, right-click the project name (<code>Imageboard_illust</code>) → <strong>Add → New Folder</strong> → type <code>Database</code> → press <kbd>Enter</kbd>.</p>
+        <p>Then right-click the <code>Database</code> folder → <strong>Add → Class…</strong> → name it <code>AppDatabase.cs</code> → click <strong>Add</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Create the Models folder</div></div>
+      <div class="step__body">
+        <p>Same steps: right-click the project → <strong>Add → New Folder</strong> → name it <code>Models</code>. Then right-click the <code>Models</code> folder → <strong>Add → Class…</strong> → name it <code>Models.cs</code>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Create the remaining files</div></div>
+      <div class="step__body">
+        <p>Right-click the project (not a folder) → <strong>Add → Class…</strong> for each of these files:</p>
+        <ul>
+          <li><code>StartPage.cs</code></li>
+          <li><code>ImageItemControl.cs</code></li>
+          <li><code>ColorPickerPage.cs</code></li>
+          <li><code>ExportOptionsDialog.cs</code></li>
+          <li><code>MainForm.cs</code></li>
+        </ul>
+        <p>When done, your Solution Explorer should match the project structure shown in the introduction.</p>
+      </div>
+    </div>
+
+    <!-- ══ NUGET ══ -->
+    <h2 data-section="nuget" id="nuget">Step 4 — Install the SQLite Package</h2>
+    <p>Your project needs a library to talk to SQLite. Libraries in C# are installed through <strong>NuGet</strong>, which is like an app store for code packages. Your project uses version <strong>10.0.5</strong> (visible in your Solution Explorer under <strong>Packages</strong>).</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Open the NuGet Package Manager</div></div>
+      <div class="step__body">
+        <p>In the top menu bar, click:</p>
+        <p><span class="menu-path">Tools → NuGet Package Manager → Manage NuGet Packages for Solution…</span></p>
+        <p>A new tab opens showing packages you can install.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Install Microsoft.Data.Sqlite</div></div>
+      <div class="step__body">
+        <p>Click the <strong>Browse</strong> tab. In the search box type <code>Microsoft.Data.Sqlite</code>. Click the first result. On the right side, check the box next to your project name. Click <strong>Install</strong> and accept any prompts.</p>
+        <div class="callout callout--note">
+          <span class="callout__icon">✦</span>
+          <div>Your project uses <strong>Microsoft.Data.Sqlite 10.0.5</strong> and <strong>Microsoft.Data.Sqlite.Core 10.0.5</strong> — both appear under <strong>Packages</strong> in Solution Explorer after installing.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ UNDERSTAND UI ══ -->
+    <h2 data-section="understand-ui" id="understand-ui">Step 5 — Understanding Visual Studio's UI</h2>
+    <p>Before writing code, take 5 minutes to get familiar with the panels. The diagram below maps the key areas — each number matches the description below it.</p>
+
+    <!-- annotated VS IDE diagram -->
+    <div class="vs-diagram">
+      <div class="vs-diagram__label">Visual Studio — annotated layout</div>
+      <svg viewBox="0 0 760 440" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <!-- window bg -->
+        <rect width="760" height="440" fill="#1e1e26"/>
+        <!-- title bar -->
+        <rect width="760" height="28" fill="#2b2b38"/>
+        <text x="12" y="18" fill="#9d9baa" font-size="10" font-family="DM Sans,sans-serif">File  Edit  View  Git  Project  Build  Debug  Test  Tools  Extensions  Window  Help</text>
+        <text x="320" y="18" fill="#d4d2e0" font-size="10" font-family="DM Sans,sans-serif" font-weight="600">Imageboard_illust_EN</text>
+        <rect x="720" y="4" width="12" height="12" rx="2" fill="#ff5f57" opacity="0.8"/>
+        <rect x="736" y="4" width="12" height="12" rx="2" fill="#febc2e" opacity="0.8"/>
+
+        <!-- toolbar -->
+        <rect y="28" width="760" height="26" fill="#2d2d3a"/>
+        <text x="12" y="45" fill="#7a7888" font-size="9" font-family="DM Sans,sans-serif">▶ Debug  ·  Any CPU  ·  Continue  ·  ‖  ■  ↺</text>
+
+        <!-- file tabs -->
+        <rect y="54" width="760" height="22" fill="#252530"/>
+        <rect x="0" y="54" width="180" height="22" fill="#1e1e26" rx="2"/>
+        <text x="10" y="68" fill="#c8c6d4" font-size="9" font-family="DM Sans,sans-serif">Imageboard_illust.ColorPickerPage</text>
+        <rect x="182" y="54" width="130" height="22" fill="#252530"/>
+        <text x="192" y="68" fill="#7a7888" font-size="9" font-family="DM Sans,sans-serif">BarBtn(string text …)</text>
+
+        <!-- code editor area -->
+        <rect x="0" y="76" width="555" height="320" fill="#1e1e26"/>
+        <!-- line numbers -->
+        <rect x="0" y="76" width="36" height="320" fill="#252530"/>
+        <text x="4"  y="100" fill="#555466" font-size="9" font-family="DM Mono,monospace">371</text>
+        <text x="4"  y="116" fill="#555466" font-size="9" font-family="DM Mono,monospace">372</text>
+        <text x="4"  y="132" fill="#555466" font-size="9" font-family="DM Mono,monospace">373</text>
+        <text x="4"  y="148" fill="#555466" font-size="9" font-family="DM Mono,monospace">374</text>
+        <text x="4"  y="164" fill="#555466" font-size="9" font-family="DM Mono,monospace">375</text>
+        <text x="4"  y="180" fill="#555466" font-size="9" font-family="DM Mono,monospace">382</text>
+        <text x="4"  y="196" fill="#555466" font-size="9" font-family="DM Mono,monospace">383</text>
+        <text x="4"  y="212" fill="#555466" font-size="9" font-family="DM Mono,monospace">384</text>
+        <!-- code text -->
+        <text x="44" y="100" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">int</text>
+        <text x="64" y="100" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">x = padding + col * (size + padding);</text>
+        <text x="44" y="116" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">int</text>
+        <text x="64" y="116" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">y = padding + row * (size + padding);</text>
+        <text x="44" y="148" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">using var</text>
+        <text x="104" y="148" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">brush</text>
+        <text x="138" y="148" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">= new SolidBrush(_palette[i]);</text>
+        <text x="44" y="164" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">g.FillRectangle(brush, x, y, size, size);</text>
+        <text x="44" y="196" fill="#585b70" font-size="9" font-family="DM Mono,monospace">4 references</text>
+        <text x="44" y="212" fill="#89b4fa" font-size="9" font-family="DM Mono,monospace">private static</text>
+        <text x="130" y="212" fill="#89dceb" font-size="9" font-family="DM Mono,monospace">Button</text>
+        <text x="168" y="212" fill="#a6e3a1" font-size="9" font-family="DM Mono,monospace">BarBtn</text>
+        <text x="202" y="212" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">(string text, Color bg,</text>
+        <!-- active line highlight -->
+        <rect x="36" y="320" width="519" height="14" fill="#264f78" opacity="0.5"/>
+        <text x="44" y="330" fill="#cba6f7" font-size="9" font-family="DM Mono,monospace">return</text>
+        <text x="80" y="330" fill="#cdd6f4" font-size="9" font-family="DM Mono,monospace">b;</text>
+        <!-- status bar -->
+        <rect x="0" y="396" width="555" height="18" fill="#0e639c"/>
+        <text x="8"  y="408" fill="#fff" font-size="8" font-family="DM Sans,sans-serif">● No issues found</text>
+        <text x="340" y="408" fill="#ffffffb0" font-size="8" font-family="DM Mono,monospace">Ln 394, Ch 22   SPC   CRLF   UTF-8</text>
+
+        <!-- bottom panel -->
+        <rect x="0" y="396" width="555" height="44" fill="#1a1a24"/>
+        <rect x="0" y="396" width="555" height="16" fill="#252530"/>
+        <!-- bottom tabs -->
+        <text x="8"   y="407" fill="#c8c6d4" font-size="8.5" font-family="DM Sans,sans-serif">Watch 1</text>
+        <text x="68"  y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Developer PowerShell</text>
+        <text x="188" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Call Stack</text>
+        <text x="254" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Breakpoints</text>
+        <text x="326" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Command Window</text>
+        <text x="432" y="407" fill="#7a7888" font-size="8.5" font-family="DM Sans,sans-serif">Output</text>
+        <text x="476" y="407" fill="#c8c6d4" font-size="8.5" font-family="DM Sans,sans-serif" font-weight="600">Error List</text>
+        <text x="8"   y="430" fill="#585b70" font-size="9"   font-family="DM Mono,monospace">Name</text>
+        <text x="60"  y="430" fill="#585b70" font-size="9"   font-family="DM Mono,monospace">Value</text>
+        <text x="110" y="430" fill="#585b70" font-size="9"   font-family="DM Mono,monospace">Type</text>
+
+        <!-- solution explorer panel -->
+        <rect x="557" y="76" width="203" height="364" fill="#252530"/>
+        <rect x="557" y="76" width="203" height="22" fill="#2b2b38"/>
+        <text x="568" y="91" fill="#c8c6d4" font-size="9.5" font-family="DM Sans,sans-serif" font-weight="600">Solution Explorer</text>
+        <!-- tree items -->
+        <text x="568" y="114" fill="#c8c6d4" font-size="9" font-family="DM Sans,sans-serif">▾ Imageboard_illust</text>
+        <text x="578" y="130" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">▾ Packages</text>
+        <text x="592" y="146" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Microsoft.Data.Sqlite (10.0.5)</text>
+        <text x="592" y="162" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Microsoft.Data.Sqlite.Core</text>
+        <text x="578" y="178" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">▾ Database</text>
+        <text x="592" y="194" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  AppDatabase.cs</text>
+        <text x="578" y="210" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">▾ Models</text>
+        <text x="592" y="226" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Models.cs</text>
+        <!-- active file highlight -->
+        <rect x="557" y="236" width="203" height="16" fill="#094771"/>
+        <text x="578" y="248" fill="#ffffff" font-size="9" font-family="DM Sans,sans-serif" font-weight="600">  ColorPickerPage.cs  ◀</text>
+        <text x="578" y="266" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  ExportOptionsDialog.cs</text>
+        <text x="578" y="282" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Form1.cs</text>
+        <text x="578" y="298" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  ImageItemControl.cs</text>
+        <text x="578" y="314" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  MainForm.cs</text>
+        <text x="578" y="330" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  Program.cs</text>
+        <text x="578" y="346" fill="#9d9baa" font-size="9" font-family="DM Sans,sans-serif">  StartPage.cs</text>
+
+        <!-- divider between code and solution explorer -->
+        <rect x="555" y="76" width="2" height="364" fill="#333344"/>
+
+        <!-- ── NUMBERED BADGES ── -->
+        <!-- 1: Menu bar -->
+        <circle cx="68" cy="20" r="10" fill="#7c3aed"/>
+        <text x="68" y="24" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">1</text>
+        <!-- 2: Toolbar -->
+        <circle cx="68" cy="41" r="10" fill="#2563eb"/>
+        <text x="68" y="45" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">2</text>
+        <!-- 3: File tabs -->
+        <circle cx="90" cy="65" r="10" fill="#059669"/>
+        <text x="90" y="69" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">3</text>
+        <!-- 4: Code editor -->
+        <circle cx="280" cy="240" r="12" fill="#d97706"/>
+        <text x="280" y="244" text-anchor="middle" fill="#fff" font-size="11" font-family="DM Sans,sans-serif" font-weight="700">4</text>
+        <!-- 5: Bottom panels -->
+        <circle cx="280" cy="418" r="10" fill="#db2777"/>
+        <text x="280" y="422" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">5</text>
+        <!-- 6: Solution Explorer -->
+        <circle cx="736" cy="91" r="10" fill="#0891b2"/>
+        <text x="736" y="95" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Sans,sans-serif" font-weight="700">6</text>
+
+        <!-- connector lines -->
+        <line x1="68" y1="30" x2="68" y2="28" stroke="#7c3aed" stroke-width="1" opacity="0.6"/>
+        <line x1="68" y1="51" x2="68" y2="54" stroke="#2563eb" stroke-width="1" opacity="0.6"/>
+        <line x1="90" y1="75" x2="90" y2="76" stroke="#059669" stroke-width="1" opacity="0.6"/>
+        <line x1="736" y1="101" x2="736" y2="98" stroke="#0891b2" stroke-width="1" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <!-- numbered descriptions -->
+    <div class="ui-legend">
+      <div class="ui-legend__item">
+        <div class="ui-legend__num" style="background:#7c3aed">1</div>
+        <div class="ui-legend__content">
+          <strong>Menu bar</strong> — <em>File, Edit, View, Git, Project, Build, Debug…</em><br>
+          Everything in Visual Studio lives here. The most important for this project: <strong>View</strong> (to restore panels), <strong>Build</strong> (to compile), and <strong>Debug</strong> (to run).
+        </div>
+      </div>
+      <div class="ui-legend__item">
+        <div class="ui-legend__num" style="background:#2563eb">2</div>
+        <div class="ui-legend__content">
+          <strong>Toolbar</strong> — quick buttons for running and stopping the app.<br>
+          The green <strong>▶ Continue</strong> button runs your app (same as <kbd>F5</kbd>). The red square stops it (<kbd>Shift</kbd><kbd>F5</kbd>).
+        </div>
+      </div>
+      <div class="ui-legend__item">
+        <div class="ui-legend__num" style="background:#059669">3</div>
+        <div class="ui-legend__content">
+          <strong>File tabs</strong> — open files appear as tabs across the top of the editor.<br>
+          Click any tab to switch to that file. Middle-click (or click the ✕) to close it.
+        </div>
+      </div>
+      <div class="ui-legend__item">
+        <div class="ui-legend__num" style="background:#d97706">4</div>
+        <div class="ui-legend__content">
+          <strong>Code editor</strong> — the main area where you write C# code.<br>
+          Line numbers are on the left. Keywords are coloured (purple/blue). Errors show as red underlines. Press <kbd>Ctrl</kbd><kbd>Space</kbd> to force an autocomplete suggestion.
+        </div>
+      </div>
+      <div class="ui-legend__item">
+        <div class="ui-legend__num" style="background:#db2777">5</div>
+        <div class="ui-legend__content">
+          <strong>Bottom panels</strong> — tabs along the bottom for diagnostics and output.<br>
+          <strong>Error List</strong> — all compile errors. Double-click any error to jump to it.<br>
+          <strong>Output</strong> — build messages and logs.<br>
+          <strong>Developer PowerShell / Terminal</strong> — built-in command prompt.
+        </div>
+      </div>
+      <div class="ui-legend__item">
+        <div class="ui-legend__num" style="background:#0891b2">6</div>
+        <div class="ui-legend__content">
+          <strong>Solution Explorer</strong> — the file tree of your entire project on the right side.<br>
+          Click any <code>.cs</code> file to open it. Click the arrow to expand and see classes and methods. Right-click to add, rename, or delete files.
+        </div>
+      </div>
+    </div>
+
+    <!-- restoring panels with View menu -->
+    <div class="step" style="margin-top:32px">
+      <div class="step__header"><div class="step__num" style="background:#d97706">!</div><div class="step__title">If a panel disappears — use the View menu</div></div>
+      <div class="step__body">
+        <p>Panels can be accidentally closed or moved. If anything is missing, go to <span class="menu-path">View</span> in the menu bar and click the panel you want back. Every panel in Visual Studio is listed there with its keyboard shortcut.</p>
+
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:16px 0">
+          <!-- view menu mock -->
+          <div class="view-menu-mock">
+            <div class="vm-title">View</div>
+            <div class="vm-items">
+              <div class="vm-item vm-item--top"><span>Code</span><kbd>F7</kbd></div>
+              <div class="vm-sep"></div>
+              <div class="vm-item vm-item--hl"><span>Solution Explorer</span><kbd>Ctrl+Alt+L</kbd></div>
+              <div class="vm-item"><span>Git Changes</span><kbd>Ctrl+0, Ctrl+G</kbd></div>
+              <div class="vm-item"><span>Git Repository</span><kbd>Ctrl+0, Ctrl+R</kbd></div>
+              <div class="vm-item"><span>Team Explorer</span></div>
+              <div class="vm-item"><span>Server Explorer</span><kbd>Ctrl+Alt+S</kbd></div>
+              <div class="vm-sep"></div>
+              <div class="vm-item"><span>GitHub Copilot Chat</span></div>
+              <div class="vm-sep"></div>
+              <div class="vm-item vm-item--hl"><span>Error List</span><kbd>Ctrl+\, E</kbd></div>
+              <div class="vm-item vm-item--hl"><span>Output</span><kbd>Ctrl+Alt+O</kbd></div>
+              <div class="vm-item"><span>Task List</span><kbd>Ctrl+\, T</kbd></div>
+              <div class="vm-item"><span>Toolbox</span><kbd>Ctrl+Alt+X</kbd></div>
+              <div class="vm-item vm-item--hl"><span>Terminal</span><kbd>Ctrl+`</kbd></div>
+              <div class="vm-item"><span>Other Windows ›</span></div>
+            </div>
+          </div>
+
+          <!-- quick reference -->
+          <div style="flex:1;min-width:200px">
+            <table class="ui-restore-table">
+              <thead><tr><th>Panel</th><th>Shortcut</th></tr></thead>
+              <tbody>
+                <tr><td>Solution Explorer</td><td><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>L</kbd></td></tr>
+                <tr><td>Error List</td><td><kbd>Ctrl</kbd><kbd>\</kbd> <kbd>E</kbd></td></tr>
+                <tr><td>Output</td><td><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>O</kbd></td></tr>
+                <tr><td>Terminal</td><td><kbd>Ctrl</kbd><kbd>`</kbd></td></tr>
+                <tr><td>Git Changes</td><td><kbd>Ctrl</kbd><kbd>0</kbd> <kbd>G</kbd></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="callout callout--info">
+          <span class="callout__icon">ℹ️</span>
+          <div>The panels highlighted in the menu — <strong>Solution Explorer</strong>, <strong>Error List</strong>, <strong>Output</strong>, and <strong>Terminal</strong> — are the four you will use most while building this project.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">7</div><div class="step__title">Run and stop the app</div></div>
+      <div class="step__body">
+        <ul>
+          <li><kbd>F5</kbd> — build and run (opens the app window)</li>
+          <li><kbd>Shift</kbd><kbd>F5</kbd> — stop the app</li>
+          <li><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> — build without running (checks for errors only)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ MODELS ══ -->
+    <h2 data-section="models" id="models">Part 1 — Data Models</h2>
+    <p>A <strong>model</strong> is a C# class that describes the shape of your data. Think of it like a form — it defines what fields exist. Open <code>Models/Models.cs</code> and replace all the content with the code below.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Define Board and BoardItem</div></div>
+      <div class="step__body">
+        <p>A <strong>Board</strong> is one named workspace (like a Photoshop document). A <strong>BoardItem</strong> is a single image card placed on that board, with its position and size.</p>
+        <pre><code><span class="token-kw">namespace</span> Imageboard_illust.Models
+{
+    <span class="token-kw">public class</span> <span class="token-type">Board</span>
+    {
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>        { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>      { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">CreatedAt</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+
+        <span class="token-cm">// Returns the folder path where this board's images are stored</span>
+        <span class="token-kw">public</span> <span class="token-type">string</span> ImagesDir(<span class="token-type">string</span> dataDir)
+            => Path.Combine(dataDir, <span class="token-str">"boards"</span>, Id.ToString(), <span class="token-str">"images"</span>);
+    }
+
+    <span class="token-kw">public class</span> <span class="token-type">BoardItem</span>
+    {
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>       { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">BoardId</span>  { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>     { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">FileName</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">X</span>, <span class="token-prop">Y</span>, <span class="token-prop">Width</span>, <span class="token-prop">Height</span>, <span class="token-prop">ZOrder</span>;
+    }
+}</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div><code>{ get; set; }</code> means the property can be read and written from outside the class. This is standard C# for model classes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DATABASE ══ -->
+    <h2 data-section="database" id="database">Part 2 — Database</h2>
+    <p>Open <code>Database/AppDatabase.cs</code>. This class is responsible for all reading and writing to the SQLite file. It opens a connection when the app starts and keeps it open until the app closes.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Create the database file and tables</div></div>
+      <div class="step__body">
+        <p>The constructor finds the user's AppData folder, creates a <code>.db</code> file there, and runs <code>CREATE TABLE IF NOT EXISTS</code> — which creates the tables only if they don't already exist, so it's safe to call every time the app starts.</p>
+        <pre><code><span class="token-kw">using</span> Microsoft.Data.Sqlite;
+<span class="token-kw">using</span> Imageboard_illust.Models;
+
+<span class="token-kw">public class</span> <span class="token-type">AppDatabase</span> : <span class="token-type">IDisposable</span>
+{
+    <span class="token-kw">private readonly</span> <span class="token-type">SqliteConnection</span> _conn;
+    <span class="token-kw">public</span> <span class="token-type">string</span> DataDir { <span class="token-kw">get</span>; }
+
+    <span class="token-kw">public</span> AppDatabase()
+    {
+        DataDir = Path.Combine(
+            Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData),
+            <span class="token-str">"ImageBoardStudio"</span>);
+        Directory.CreateDirectory(DataDir);
+
+        _conn = <span class="token-kw">new</span> <span class="token-type">SqliteConnection</span>(
+            <span class="token-str">$"Data Source={Path.Combine(DataDir, "app.db")}"</span>);
+        _conn.Open();
+        InitSchema();
+    }
+
+    <span class="token-kw">private void</span> InitSchema()
+    {
+        Exec(<span class="token-str">@"CREATE TABLE IF NOT EXISTS boards (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            name       TEXT NOT NULL,
+            created_at TEXT DEFAULT (datetime('now'))
+        );"</span>);
+        Exec(<span class="token-str">@"CREATE TABLE IF NOT EXISTS board_items (
+            id       INTEGER PRIMARY KEY AUTOINCREMENT,
+            board_id INTEGER NOT NULL,
+            name     TEXT, filename TEXT,
+            x INT, y INT, w INT, h INT,
+            z_order  INT DEFAULT 0
+        );"</span>);
+    }
+
+    <span class="token-cm">// Helper: run a SQL command with no return value</span>
+    <span class="token-kw">private void</span> Exec(<span class="token-type">string</span> sql)
+    {
+        <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
+        cmd.CommandText = sql;
+        cmd.ExecuteNonQuery();
+    }
+
+    <span class="token-kw">public void</span> Dispose() => _conn.Dispose();
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Add read / write methods</div></div>
+      <div class="step__body">
+        <p>Add these methods to the same class. They let you insert boards and read them back:</p>
+        <pre><code><span class="token-kw">public</span> <span class="token-type">int</span> InsertBoard(<span class="token-type">string</span> name)
+{
+    <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
+    cmd.CommandText =
+        <span class="token-str">"INSERT INTO boards (name) VALUES ($n); SELECT last_insert_rowid();"</span>;
+    cmd.Parameters.AddWithValue(<span class="token-str">"$n"</span>, name);
+    <span class="token-kw">return</span> (<span class="token-type">int</span>)(<span class="token-type">long</span>)cmd.ExecuteScalar()!;
+}
+
+<span class="token-kw">public</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt; GetBoards()
+{
+    <span class="token-kw">var</span> list = <span class="token-kw">new</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt;();
+    <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
+    cmd.CommandText =
+        <span class="token-str">"SELECT id, name, created_at FROM boards ORDER BY id;"</span>;
+    <span class="token-kw">using var</span> r = cmd.ExecuteReader();
+    <span class="token-kw">while</span> (r.Read())
+        list.Add(<span class="token-kw">new</span> <span class="token-type">Board</span> {
+            Id        = r.GetInt32(<span class="token-num">0</span>),
+            Name      = r.GetString(<span class="token-num">1</span>),
+            CreatedAt = r.GetString(<span class="token-num">2</span>)
+        });
+    <span class="token-kw">return</span> list;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ START PAGE ══ -->
+    <h2 data-section="start-page" id="start-page">Part 3 — Start Page</h2>
+    <p>Open <code>StartPage.cs</code>. This is the landing screen — a <code>Panel</code> that fills the window. It fires events when the user clicks a card, which <code>MainForm</code> listens to.</p>
+
+    <!-- Start Page app screenshot mock -->
+    <div class="app-mock">
+      <div class="app-mock__bar">
+        <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
+        <span class="app-mock__title">Image Board Studio</span>
+      </div>
+      <div class="app-mock__body" style="background:#13131a;display:flex;align-items:center;justify-content:center;padding:40px 24px;min-height:220px">
+        <div style="text-align:center;max-width:500px">
+          <div style="font-size:22px;font-weight:700;color:#e2ddf5;margin-bottom:6px">Image Board Studio</div>
+          <div style="font-size:12px;color:#6b6882;margin-bottom:24px">Choose a mode to get started</div>
+          <div style="display:flex;gap:16px;justify-content:center">
+            <div style="background:#1a1a24;border:1px solid rgba(96,165,250,.4);border-radius:10px;padding:20px 18px;width:160px;text-align:center;cursor:pointer">
+              <div style="font-size:28px;margin-bottom:10px">🖼</div>
+              <div style="font-size:13px;color:#60a5fa;font-weight:600;margin-bottom:6px">Image Board</div>
+              <div style="font-size:11px;color:#6b6882;line-height:1.5;margin-bottom:12px">Collect images and build a visual board. Perfect for mood boards, references, and collections.</div>
+              <div style="font-size:11px;color:#60a5fa;font-weight:600">Open →</div>
+            </div>
+            <div style="background:#1a1a24;border:1px solid rgba(167,139,250,.4);border-radius:10px;padding:20px 18px;width:160px;text-align:center;cursor:pointer">
+              <div style="font-size:28px;margin-bottom:10px">🎨</div>
+              <div style="font-size:13px;color:#a78bfa;font-weight:600;margin-bottom:6px">Color Picker</div>
+              <div style="font-size:11px;color:#6b6882;line-height:1.5;margin-bottom:12px">Pick colors from images with an eyedropper and save them to a reusable palette.</div>
+              <div style="font-size:11px;color:#a78bfa;font-weight:600">Open →</div>
+            </div>
+          </div>
+          <div style="margin-top:20px;font-size:11px;color:#44445a">💡 You can switch modes at any time using the Home button.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Declare the class and its events</div></div>
+      <div class="step__body">
+        <p>Events are how one class tells another "something happened." Here we define two — one per mode card:</p>
+        <pre><code><span class="token-kw">public class</span> <span class="token-type">StartPage</span> : <span class="token-type">Panel</span>
+{
+    <span class="token-kw">public event</span> <span class="token-type">EventHandler</span>? ImageBoardChosen;
+    <span class="token-kw">public event</span> <span class="token-type">EventHandler</span>? ColorPickerChosen;
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Draw the dot-grid background</div></div>
+      <div class="step__body">
+        <p>The <code>Paint</code> event fires every time the panel needs to redraw. We draw a gradient and a subtle dot grid over it:</p>
+        <pre><code>Paint += (_, e) =>
+{
+    <span class="token-kw">using var</span> br = <span class="token-kw">new</span> <span class="token-type">LinearGradientBrush</span>(
+        ClientRectangle,
+        Color.FromArgb(<span class="token-num">22</span>, <span class="token-num">22</span>, <span class="token-num">28</span>),
+        Color.FromArgb(<span class="token-num">30</span>, <span class="token-num">28</span>, <span class="token-num">38</span>),
+        LinearGradientMode.ForwardDiagonal);
+    e.Graphics.FillRectangle(br, ClientRectangle);
+
+    <span class="token-kw">using var</span> dot = <span class="token-kw">new</span> <span class="token-type">SolidBrush</span>(
+        Color.FromArgb(<span class="token-num">35</span>, <span class="token-num">255</span>, <span class="token-num">255</span>, <span class="token-num">255</span>));
+    <span class="token-kw">const int</span> gap = <span class="token-num">32</span>;
+    <span class="token-kw">for</span> (<span class="token-type">int</span> x = gap; x &lt; Width;  x += gap)
+    <span class="token-kw">for</span> (<span class="token-type">int</span> y = gap; y &lt; Height; y += gap)
+        e.Graphics.FillEllipse(dot, x-<span class="token-num">1</span>, y-<span class="token-num">1</span>, <span class="token-num">2</span>, <span class="token-num">2</span>);
+};</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>After changing a visual property in code, always call <code>Invalidate()</code> on the control to schedule a repaint. Without it, the change won't appear on screen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ IMAGE ITEM CONTROL ══ -->
+    <h2 data-section="image-item" id="image-item">Part 4 — Image Item Control</h2>
+    <p>Open <code>ImageItemControl.cs</code>. This is one draggable image card on the canvas. It is a <code>Panel</code> subclass with its own title bar, a close button, and 8-directional resize handles.</p>
+
+    <p>Looking at your Solution Explorer, you can see the key members this class contains:</p>
+    <ul>
+      <li><code>Item : BoardItem</code> — the data for this card (position, size, filename)</li>
+      <li><code>_pictureBox : PictureBox</code> — displays the image</li>
+      <li><code>_titleBar : Panel</code> — the draggable bar at the top</li>
+      <li><code>_closeBtn : Button</code> — the × button to remove the card</li>
+      <li><code>ResizeDir</code> — an enum with directions: None, N, S, E, W, NE, NW, SE, SW</li>
+      <li><code>DeleteRequested</code> / <code>BringToFrontRequested</code> — events fired to the parent canvas</li>
+    </ul>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Define the ResizeDir enum</div></div>
+      <div class="step__body">
+        <p>An <strong>enum</strong> is a named list of options. This one describes which edge or corner the user is dragging to resize:</p>
+        <pre><code><span class="token-kw">public enum</span> <span class="token-type">ResizeDir</span>
+{
+    None,           <span class="token-cm">// not resizing</span>
+    N, S, E, W,     <span class="token-cm">// top, bottom, right, left edges</span>
+    NE, NW, SE, SW  <span class="token-cm">// corners</span>
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Handle drag to move</div></div>
+      <div class="step__body">
+        <p>The title bar handles dragging. On <code>MouseDown</code> we save where the drag started; on <code>MouseMove</code> we update the card's position:</p>
+        <pre><code><span class="token-kw">private void</span> TitleBar_Down(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
+{
+    _isDragging = <span class="token-kw">true</span>;
+    _dragStartScreen   = Cursor.Position;
+    _dragStartLocation = Location;
+}
+
+<span class="token-kw">private void</span> TitleBar_Move(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
+{
+    <span class="token-kw">if</span> (!_isDragging) <span class="token-kw">return</span>;
+    <span class="token-type">var</span> delta = <span class="token-kw">new</span> <span class="token-type">Point</span>(
+        Cursor.Position.X - _dragStartScreen.X,
+        Cursor.Position.Y - _dragStartScreen.Y);
+    Location = <span class="token-kw">new</span> <span class="token-type">Point</span>(
+        _dragStartLocation.X + delta.X,
+        _dragStartLocation.Y + delta.Y);
+    BringToFrontRequested?.Invoke(<span class="token-kw">this</span>, EventArgs.Empty);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ IMAGE BOARD ══ -->
+    <h2 data-section="image-board" id="image-board">Part 5 — Image Board</h2>
+    <p>The <code>ImageBoardPage</code> class lives inside <code>MainForm.cs</code>. It contains the toolbar, sidebar, canvas, and status bar.</p>
+
+    <!-- Image Board app screenshot mock -->
+    <div class="app-mock">
+      <div class="app-mock__bar">
+        <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
+        <span class="app-mock__title">Image Board Studio — Image Board</span>
+      </div>
+      <div class="app-mock__body" style="background:#1e1e26;display:flex;flex-direction:column;padding:0;min-height:220px">
+        <!-- toolbar -->
+        <div style="height:44px;background:#252530;display:flex;align-items:center;padding:0 10px;gap:6px;border-bottom:1px solid #333344;flex-shrink:0">
+          <div style="background:#3a3a4a;color:#ccc;font-size:10px;padding:5px 10px;border-radius:5px">🏠 Home</div>
+          <div style="background:#2d6b2d;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">+ New Board</div>
+          <div style="background:#0d5fa0;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">📂 Open</div>
+          <div style="background:#0d7a6e;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">📋 Paste Ctrl+V</div>
+          <div style="background:#8a5500;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">📤 Export</div>
+          <div style="background:#7a1a14;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">🗑 Delete</div>
+          <div style="flex:1"></div>
+          <div style="background:#3a3830;color:#f5d060;font-size:10px;padding:5px 10px;border-radius:5px;font-family:monospace">100%  —  100  %  +</div>
+        </div>
+        <div style="display:flex;flex:1">
+          <!-- sidebar -->
+          <div style="width:140px;background:#1e1e26;border-right:1px solid #333344;flex-shrink:0">
+            <div style="height:24px;background:#252530;display:flex;align-items:center;padding:0 8px;border-bottom:1px solid #333344">
+              <span style="font-size:9px;color:#888;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Boards</span>
+              <span style="margin-left:auto;background:#2d6b2d;color:#fff;font-size:10px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;border-radius:3px">+</span>
+            </div>
+            <div style="background:#094771;padding:5px 8px;font-size:9px;color:#fff">#010  Background</div>
+            <div style="padding:5px 8px;font-size:9px;color:#9d9baa">#011  New Board</div>
+            <div style="height:24px;background:#252530;display:flex;align-items:center;padding:0 8px;border-top:1px solid #333344;border-bottom:1px solid #333344;margin-top:40px">
+              <span style="font-size:9px;color:#888;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Images</span>
+            </div>
+          </div>
+          <!-- canvas grid -->
+          <div style="flex:1;background:#282830;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;display:flex;align-items:center;justify-content:center">
+            <div style="text-align:center;color:#44445a;font-size:12px">
+              <div style="font-size:32px;margin-bottom:8px;opacity:.3">🖼</div>
+              <div>Drag &amp; drop images here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Build the scrollable grid canvas</div></div>
+      <div class="step__body">
+        <pre><code>_canvas = <span class="token-kw">new</span> <span class="token-type">Panel</span> {
+    Dock = DockStyle.Fill,
+    AutoScroll = <span class="token-kw">true</span>,
+    AutoScrollMinSize = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">4000</span>, <span class="token-num">3000</span>),
+    BackColor = Color.FromArgb(<span class="token-num">40</span>, <span class="token-num">40</span>, <span class="token-num">43</span>)
+};
+_canvas.Paint += (_, e) => {
+    <span class="token-kw">const int</span> G = <span class="token-num">40</span>;
+    <span class="token-kw">using var</span> pen = <span class="token-kw">new</span> <span class="token-type">Pen</span>(Color.FromArgb(<span class="token-num">50</span>, <span class="token-num">50</span>, <span class="token-num">53</span>), <span class="token-num">1</span>);
+    <span class="token-kw">int</span> ox = _canvas.AutoScrollPosition.X % G;
+    <span class="token-kw">int</span> oy = _canvas.AutoScrollPosition.Y % G;
+    <span class="token-kw">for</span> (<span class="token-type">int</span> x = ox; x &lt; _canvas.Width; x += G)
+        e.Graphics.DrawLine(pen, x, <span class="token-num">0</span>, x, _canvas.Height);
+    <span class="token-kw">for</span> (<span class="token-type">int</span> y = oy; y &lt; _canvas.Height; y += G)
+        e.Graphics.DrawLine(pen, <span class="token-num">0</span>, y, _canvas.Width, y);
+};</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Zoom with Ctrl + Scroll</div></div>
+      <div class="step__body">
+        <pre><code>_canvas.MouseWheel += (_, e) => {
+    <span class="token-kw">if</span> (ModifierKeys.HasFlag(Keys.Control))
+        SetZoom(_zoom + (e.Delta > <span class="token-num">0</span> ? +<span class="token-num">0.1f</span> : -<span class="token-num">0.1f</span>));
+};
+
+<span class="token-kw">private void</span> SetZoom(<span class="token-type">float</span> v)
+{
+    _zoom = Math.Clamp(v, <span class="token-num">0.5f</span>, <span class="token-num">2.0f</span>);
+    <span class="token-kw">foreach</span> (<span class="token-kw">var</span> card <span class="token-kw">in</span> _cards.Values)
+    {
+        card.Location = <span class="token-kw">new</span> <span class="token-type">Point</span>(
+            (<span class="token-type">int</span>)(card.Item.X * _zoom),
+            (<span class="token-type">int</span>)(card.Item.Y * _zoom));
+        card.Size = <span class="token-kw">new</span> <span class="token-type">Size</span>(
+            (<span class="token-type">int</span>)(card.Item.Width  * _zoom),
+            (<span class="token-type">int</span>)(card.Item.Height * _zoom));
+    }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ COLOR PICKER ══ -->
+    <h2 data-section="color-picker" id="color-picker">Part 6 — Color Picker</h2>
+    <p>Open <code>ColorPickerPage.cs</code>. It loads an image into a <code>PictureBox</code> and reads the pixel color wherever the mouse is. Your class also has a <code>NativeMethods</code> helper (visible in Solution Explorer) for calling low-level Windows APIs to read screen pixels.</p>
+
+    <!-- Color Picker app screenshot mock -->
+    <div class="app-mock">
+      <div class="app-mock__bar">
+        <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
+        <span class="app-mock__title">Image Board Studio — Color Picker</span>
+      </div>
+      <div class="app-mock__body" style="background:#1a1a20;display:flex;flex-direction:column;min-height:200px">
+        <!-- toolbar -->
+        <div style="height:44px;background:#20202a;display:flex;align-items:center;padding:0 10px;gap:6px;border-bottom:1px solid #333344;flex-shrink:0">
+          <div style="background:#3a3a4a;color:#ccc;font-size:10px;padding:5px 10px;border-radius:5px">← Home</div>
+          <div style="font-size:12px;font-weight:600;color:#ddd;margin-left:4px">🎨 Color Picker</div>
+          <div style="background:#0d5fa0;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px;margin-left:8px">📂 Open Image</div>
+          <div style="background:#6b3090;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">💧 Eyedropper</div>
+          <div style="background:#7a1a14;color:#fff;font-size:10px;padding:5px 10px;border-radius:5px">🗑 Clear Palette</div>
+          <div style="flex:1"></div>
+          <div style="width:20px;height:20px;background:#3c3c48;border:1px solid #555;border-radius:3px"></div>
+          <span style="font-size:10px;color:#9d9baa;font-family:monospace">#------</span>
+        </div>
+        <div style="display:flex;flex:1">
+          <!-- image area -->
+          <div style="flex:1;background:#141420;display:flex;align-items:center;justify-content:center">
+            <div style="text-align:center;color:#44445a;font-size:12px">
+              <div style="font-size:32px;margin-bottom:8px;opacity:.3">🎨</div>
+              <div>Drag &amp; drop an image here</div>
+              <div style="font-size:10px;margin-top:4px">or click Open Image</div>
+            </div>
+          </div>
+          <!-- palette panel -->
+          <div style="width:180px;background:#1e1e26;border-left:1px solid #333344;display:flex;flex-direction:column">
+            <div style="padding:8px 12px;background:#18181f;border-bottom:1px solid #333344">
+              <div style="font-size:10px;font-weight:600;color:#c8c6d4">Color Palette</div>
+              <div style="font-size:9px;color:#555;margin-top:2px">0 colors</div>
+            </div>
+            <div style="flex:1"></div>
+            <div style="padding:8px;border-top:1px solid #333344;display:flex;flex-direction:column;gap:4px">
+              <div style="background:#2a2a36;color:#9d9baa;font-size:9px;padding:6px 8px;border-radius:4px;text-align:center">🖼 Export Palette Image</div>
+              <div style="background:#2a2a36;color:#9d9baa;font-size:9px;padding:6px 8px;border-radius:4px;text-align:center">📋 Copy HEX values</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image card context menu mock (from right-click screenshot) -->
+    <div class="callout callout--tip" style="margin-top:20px">
+      <span class="callout__icon">💡</span>
+      <div>
+        <strong>Right-clicking an image card</strong> on the Image Board opens a context menu with useful actions. Here's what each option does:
+        <div class="app-mock" style="margin-top:12px">
+          <div class="app-mock__bar">
+            <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
+            <span class="app-mock__title">Right-click context menu</span>
+          </div>
+          <div class="app-mock__body" style="background:#282830;padding:16px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+            <!-- image card preview -->
+            <div style="background:#1e1e26;border:1px solid #444;border-radius:6px;overflow:hidden;width:140px;flex-shrink:0">
+              <div style="height:22px;background:#1c1c24;display:flex;align-items:center;padding:0 6px;gap:4px">
+                <div style="background:#0078c8;color:#fff;font-size:8px;padding:1px 5px;border-radius:2px">#049</div>
+                <span style="font-size:9px;color:#ccc;flex:1">blooming-pink-tree-…</span>
+                <div style="background:#b32218;color:#fff;font-size:9px;width:16px;text-align:center;border-radius:2px">✕</div>
+              </div>
+              <div style="background:#2d5a3d;height:80px;display:flex;align-items:center;justify-content:center">
+                <span style="font-size:28px">🌸</span>
+              </div>
+            </div>
+            <!-- context menu -->
+            <div style="background:#f0f0f0;border:1px solid #aaa;border-radius:4px;min-width:150px;box-shadow:2px 2px 8px rgba(0,0,0,.3)">
+              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Rename…</div>
+              <div style="padding:5px 14px;font-size:11px;color:#111">✂ Crop…</div>
+              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Reset crop</div>
+              <div style="padding:5px 14px;font-size:11px;color:#111">Bring to front</div>
+              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Send to back</div>
+              <div style="padding:5px 14px;font-size:11px;color:#111;border-bottom:1px solid #ddd">Save image as…</div>
+              <div style="padding:5px 14px;font-size:11px;color:#c00">Delete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crop dialog mock (from crop screenshot) -->
+    <div class="callout callout--info" style="margin-top:16px">
+      <span class="callout__icon">ℹ️</span>
+      <div>
+        <strong>The Crop dialog</strong> opens when you click <em>Crop…</em> from the context menu. Drag the handles to adjust the crop area. The rule-of-thirds grid helps with composition. Click <strong>Apply Crop</strong> when done.
+        <div class="app-mock" style="margin-top:12px">
+          <div class="app-mock__bar">
+            <div class="app-mock__dots"><span class="am-dot am-dot--r"></span><span class="am-dot am-dot--y"></span><span class="am-dot am-dot--g"></span></div>
+            <span class="app-mock__title">Crop Image</span>
+          </div>
+          <div class="app-mock__body" style="background:#20202a;padding:16px;display:flex;flex-direction:column;gap:12px">
+            <!-- crop preview area -->
+            <div style="background:#18181f;border-radius:6px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:100px;position:relative">
+              <div style="background:#2d5a3d;width:180px;height:100px;border-radius:4px;display:flex;align-items:center;justify-content:center;position:relative">
+                <span style="font-size:36px">🌸</span>
+                <!-- crop overlay lines -->
+                <div style="position:absolute;inset:0;border:1.5px solid #fff;border-radius:2px;pointer-events:none"></div>
+                <div style="position:absolute;top:33%;left:0;right:0;height:1px;background:rgba(255,255,255,.35)"></div>
+                <div style="position:absolute;top:66%;left:0;right:0;height:1px;background:rgba(255,255,255,.35)"></div>
+                <div style="position:absolute;top:0;bottom:0;left:33%;width:1px;background:rgba(255,255,255,.35)"></div>
+                <div style="position:absolute;top:0;bottom:0;left:66%;width:1px;background:rgba(255,255,255,.35)"></div>
+                <!-- corner handles -->
+                <div style="position:absolute;top:-3px;left:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
+                <div style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
+                <div style="position:absolute;bottom:-3px;left:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
+                <div style="position:absolute;bottom:-3px;right:-3px;width:8px;height:8px;background:#fff;border-radius:1px"></div>
+              </div>
+            </div>
+            <!-- bottom bar -->
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:10px;color:#888;font-family:monospace">Crop region: 0, 0 → 512 × 512 px</span>
+              <div style="display:flex;gap:8px">
+                <div style="background:#0d7a4e;color:#fff;font-size:10px;padding:6px 14px;border-radius:4px">✓ Apply Crop</div>
+                <div style="background:#444;color:#ccc;font-size:10px;padding:6px 14px;border-radius:4px">Cancel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Read pixel color on mouse move</div></div>
+      <div class="step__body">
+        <pre><code><span class="token-kw">private void</span> PicBox_MouseMove(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
+{
+    <span class="token-kw">if</span> (_loadedImage == <span class="token-kw">null</span>) <span class="token-kw">return</span>;
+    <span class="token-kw">var</span> bmp = (<span class="token-type">Bitmap</span>)_loadedImage;
+
+    <span class="token-cm">// Convert PictureBox display coordinates → real bitmap pixel</span>
+    <span class="token-type">int</span> bx = (<span class="token-type">int</span>)(e.X * (<span class="token-type">float</span>)bmp.Width  / _picBox.Width);
+    <span class="token-type">int</span> by = (<span class="token-type">int</span>)(e.Y * (<span class="token-type">float</span>)bmp.Height / _picBox.Height);
+    bx = Math.Clamp(bx, <span class="token-num">0</span>, bmp.Width  - <span class="token-num">1</span>);
+    by = Math.Clamp(by, <span class="token-num">0</span>, bmp.Height - <span class="token-num">1</span>);
+
+    <span class="token-type">Color</span> c = bmp.GetPixel(bx, by);
+    _hoveredSwatch.BackColor = c;
+    _hoveredColorLbl.Text    = <span class="token-str">$"#{c.R:X2}{c.G:X2}{c.B:X2}"</span>;
+}</code></pre>
+        <div class="callout callout--warn">
+          <span class="callout__icon">⚠️</span>
+          <div>When <code>SizeMode</code> is <code>Zoom</code>, WinForms adds letterbox padding around the image. For perfectly accurate picks at the edges, subtract the padding offset from <code>e.X</code> and <code>e.Y</code>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MAIN FORM ══ -->
+    <h2 data-section="main-form" id="main-form">Part 7 — Main Form</h2>
+    <p>Open <code>MainForm.cs</code>. This is the root window of the app — it owns one <code>AppDatabase</code> and acts as a page router. When the user picks a mode, it disposes the current page and loads the new one.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Set up the form</div></div>
+      <div class="step__body">
+        <p>Looking at your Solution Explorer, you can see <code>MainForm</code> has exactly these fields: <code>_db</code>, <code>_startPage</code>, <code>_boardPage</code>, <code>_colorPage</code> — and four methods: <code>ShowStartPage()</code>, <code>ShowImageBoard()</code>, <code>ShowColorPicker()</code>, <code>ClearPages()</code>.</p>
+        <pre><code><span class="token-kw">public class</span> <span class="token-type">MainForm</span> : <span class="token-type">Form</span>
+{
+    <span class="token-kw">private readonly</span> <span class="token-type">AppDatabase</span> _db = <span class="token-kw">new</span>();
+    <span class="token-kw">private</span> <span class="token-type">StartPage</span>?       _startPage;
+    <span class="token-kw">private</span> <span class="token-type">ImageBoardPage</span>?  _boardPage;
+    <span class="token-kw">private</span> <span class="token-type">ColorPickerPage</span>? _colorPage;
+
+    <span class="token-kw">public</span> MainForm()
+    {
+        Text        = <span class="token-str">"Image Board Studio"</span>;
+        Size        = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">1440</span>, <span class="token-num">900</span>);
+        MinimumSize = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">960</span>,  <span class="token-num">640</span>);
+        BackColor   = Color.FromArgb(<span class="token-num">22</span>, <span class="token-num">22</span>, <span class="token-num">26</span>);
+        ShowStartPage();
+    }
+
+    <span class="token-cm">// Always release the database when the window closes</span>
+    <span class="token-kw">protected override void</span> OnFormClosed(<span class="token-type">FormClosedEventArgs</span> e)
+        { _db.Dispose(); <span class="token-kw">base</span>.OnFormClosed(e); }
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Implement page switching</div></div>
+      <div class="step__body">
+        <pre><code><span class="token-kw">private void</span> ShowStartPage()
+{
+    ClearPages();
+    _startPage = <span class="token-kw">new</span> <span class="token-type">StartPage</span>();
+    _startPage.ImageBoardChosen  += (_, _) => ShowImageBoard();
+    _startPage.ColorPickerChosen += (_, _) => ShowColorPicker();
+    Controls.Add(_startPage);
+    Text = <span class="token-str">"Image Board Studio"</span>;
+}
+
+<span class="token-kw">private void</span> ShowImageBoard()
+{
+    ClearPages();
+    _boardPage = <span class="token-kw">new</span> <span class="token-type">ImageBoardPage</span>(_db);
+    _boardPage.HomeRequested += (_, _) => ShowStartPage();
+    Controls.Add(_boardPage);
+    Text = <span class="token-str">"Image Board Studio — Image Board"</span>;
+}
+
+<span class="token-kw">private void</span> ClearPages()
+{
+    <span class="token-kw">foreach</span> (<span class="token-type">Control</span> c <span class="token-kw">in</span> Controls) c.Dispose();
+    Controls.Clear();
+    _startPage = <span class="token-kw">null</span>; _boardPage = <span class="token-kw">null</span>; _colorPage = <span class="token-kw">null</span>;
+}</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>Press <kbd>F5</kbd> to build and run. If everything is set up correctly, the Start Page appears with the two mode cards. Use <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> to check for errors without launching.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ BRAINSTORM ══ -->
+    <h2 data-section="brainstorm-problem" id="brainstorm-problem" style="margin-top:80px">Brainstorm — The Problem</h2>
+    <p>Before writing a single line of code, the idea started with a frustration. Artists constantly juggle scattered tools — browser tabs for references, separate apps for color, and no single place that keeps everything together.</p>
+
+    <div class="bs-grid">
+      <div class="bs-card bs-card--purple">
+        <div class="bs-card__num">01</div>
+        <div class="bs-card__title">Too many open tabs</div>
+        <div class="bs-card__body">Reference images spread across dozens of browser tabs, slowing the machine and losing context.</div>
+      </div>
+      <div class="bs-card bs-card--blue">
+        <div class="bs-card__num">02</div>
+        <div class="bs-card__title">Color picking is fragmented</div>
+        <div class="bs-card__body">Getting an exact color from a reference requires switching apps or imprecise eyeballing.</div>
+      </div>
+      <div class="bs-card bs-card--pink">
+        <div class="bs-card__num">03</div>
+        <div class="bs-card__title">Mood boards don't persist</div>
+        <div class="bs-card__body">Browser-based boards disappear when the tab closes. Local tools are too complex or too basic.</div>
+      </div>
+      <div class="bs-card bs-card--amber">
+        <div class="bs-card__num">04</div>
+        <div class="bs-card__title">No offline-first option</div>
+        <div class="bs-card__body">Most reference tools require an internet connection and a subscription. Artists offline are left with nothing.</div>
+      </div>
+    </div>
+
+    <!-- mind map diagram -->
+    <div class="bs-diagram-wrap">
+      <div class="bs-diagram-label">Problem map</div>
+      <svg viewBox="0 0 620 280" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;max-height:280px">
+        <!-- centre node -->
+        <rect x="230" y="110" width="160" height="52" rx="10" fill="#252533" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="310" y="131" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="DM Sans,sans-serif" font-weight="500">Artist's Workflow</text>
+        <text x="310" y="149" text-anchor="middle" fill="#6b6882" font-size="10" font-family="DM Sans,sans-serif">Pain Points</text>
+        <!-- lines -->
+        <line x1="230" y1="136" x2="132" y2="60"  stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="230" y1="136" x2="132" y2="136" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="230" y1="148" x2="132" y2="214" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="390" y1="136" x2="488" y2="60"  stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="390" y1="136" x2="488" y2="136" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="390" y1="148" x2="488" y2="214" stroke="#6b6882" stroke-width="1" stroke-dasharray="4 3"/>
+        <!-- left nodes -->
+        <rect x="30"  y="34"  width="102" height="38" rx="7" fill="#1e1e2a" stroke="#7c3aed" stroke-width="1"/>
+        <text x="81" y="57" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="DM Sans,sans-serif">Scattered tabs</text>
+        <rect x="30"  y="117" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#3b82f6" stroke-width="1"/>
+        <text x="81" y="140" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="DM Sans,sans-serif">Color fragmented</text>
+        <rect x="30"  y="196" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#ec4899" stroke-width="1"/>
+        <text x="81" y="219" text-anchor="middle" fill="#f472b6" font-size="10" font-family="DM Sans,sans-serif">No persistence</text>
+        <!-- right nodes -->
+        <rect x="488" y="34"  width="102" height="38" rx="7" fill="#1e1e2a" stroke="#f59e0b" stroke-width="1"/>
+        <text x="539" y="57" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="DM Sans,sans-serif">No offline tool</text>
+        <rect x="488" y="117" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#10b981" stroke-width="1"/>
+        <text x="539" y="140" text-anchor="middle" fill="#34d399" font-size="10" font-family="DM Sans,sans-serif">Subscription cost</text>
+        <rect x="488" y="196" width="102" height="38" rx="7" fill="#1e1e2a" stroke="#8b5cf6" stroke-width="1"/>
+        <text x="539" y="219" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="DM Sans,sans-serif">Slow workflow</text>
+      </svg>
+    </div>
+
+    <h2 data-section="brainstorm-idea" id="brainstorm-idea">Brainstorm — The Idea</h2>
+    <p>The solution was a focused desktop app with exactly two modes. One for organising images. One for extracting colors. No more, no less.</p>
+
+    <div class="bs-insight">
+      <p>"What if an artist could open one window, drag in references, arrange them visually, and pick colors — all without touching a browser?"</p>
+      <span>— The one-sentence pitch</span>
+    </div>
+
+    <!-- two-mode flow diagram -->
+    <div class="bs-diagram-wrap">
+      <div class="bs-diagram-label">App concept</div>
+      <svg viewBox="0 0 620 200" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;max-height:200px">
+        <!-- start -->
+        <rect x="240" y="76" width="140" height="48" rx="10" fill="#252533" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="310" y="96" text-anchor="middle" fill="#e2ddf5" font-size="12" font-family="DM Sans,sans-serif" font-weight="500">Start Page</text>
+        <text x="310" y="113" text-anchor="middle" fill="#6b6882" font-size="10" font-family="DM Sans,sans-serif">Choose a mode</text>
+        <!-- arrow left -->
+        <path d="M240 100 L140 100" fill="none" stroke="#6b6882" stroke-width="1.2" marker-end="url(#arr2)"/>
+        <text x="190" y="93" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Image Board</text>
+        <!-- arrow right -->
+        <path d="M380 100 L480 100" fill="none" stroke="#6b6882" stroke-width="1.2" marker-end="url(#arr2)"/>
+        <text x="430" y="93" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Color Picker</text>
+        <!-- left box -->
+        <rect x="30" y="62" width="110" height="76" rx="10" fill="#1e1e2a" stroke="#3b82f6" stroke-width="1.2"/>
+        <text x="85" y="90" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="DM Sans,sans-serif" font-weight="500">🖼 Image Board</text>
+        <text x="85" y="107" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Drag &amp; drop</text>
+        <text x="85" y="120" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Resize &amp; zoom</text>
+        <text x="85" y="133" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Saved to SQLite</text>
+        <!-- right box -->
+        <rect x="480" y="62" width="110" height="76" rx="10" fill="#1e1e2a" stroke="#a78bfa" stroke-width="1.2"/>
+        <text x="535" y="90" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="DM Sans,sans-serif" font-weight="500">🎨 Color Picker</text>
+        <text x="535" y="107" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Pick from image</text>
+        <text x="535" y="120" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Eyedropper</text>
+        <text x="535" y="133" text-anchor="middle" fill="#6b6882" font-size="9" font-family="DM Sans,sans-serif">Copy HEX / RGB</text>
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#6b6882" stroke-width="1.5" stroke-linecap="round"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <h2 data-section="brainstorm-why-net" id="brainstorm-why-net">Brainstorm — Why .NET Desktop Development?</h2>
+    <p>Several platforms were considered. .NET WinForms was chosen because it matched every requirement: native speed, local file storage, Win32 API access, and a self-contained executable.</p>
+
+    <!-- comparison table -->
+    <table class="bs-compare">
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Pro</th>
+          <th>Why rejected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bs-compare__chosen">
+          <td>✦ .NET WinForms</td>
+          <td class="bs-good">Native speed · SQLite · Win32 APIs · single .exe</td>
+          <td class="bs-good">Chosen — best fit</td>
+        </tr>
+        <tr>
+          <td>Electron (JS)</td>
+          <td>Cross-platform, familiar web tech</td>
+          <td class="bs-bad">~150 MB overhead · no native Win32 · slow canvas</td>
+        </tr>
+        <tr>
+          <td>WPF (.NET)</td>
+          <td>Modern UI, XAML styling</td>
+          <td class="bs-bad">Steeper learning curve for a first project</td>
+        </tr>
+        <tr>
+          <td>React (web)</td>
+          <td>Easy to share and deploy</td>
+          <td class="bs-bad">No screen eyedropper · no local file system</td>
+        </tr>
+        <tr>
+          <td>Python + tkinter</td>
+          <td>Quick to prototype</td>
+          <td class="bs-bad">Poor image performance · complex packaging</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- why dotnet cards -->
+    <div class="bs-why-grid">
+      <div class="bs-why-card">
+        <span class="bs-why-icon">⚡</span>
+        <strong>Native Windows speed</strong>
+        <p>WinForms renders through GDI+ — the same graphics layer Windows uses. No browser engine in the way.</p>
+      </div>
+      <div class="bs-why-card">
+        <span class="bs-why-icon">💾</span>
+        <strong>SQLite is first-class</strong>
+        <p>Microsoft.Data.Sqlite integrates directly. Boards and palettes persist in a single .db file — no server, no cloud.</p>
+      </div>
+      <div class="bs-why-card">
+        <span class="bs-why-icon">🪟</span>
+        <strong>Screen-wide eyedropper</strong>
+        <p>Win32 <code>GetPixel</code> and <code>GetDC</code> can sample any pixel on screen — even outside the app window.</p>
+      </div>
+      <div class="bs-why-card">
+        <span class="bs-why-icon">📦</span>
+        <strong>Self-contained .exe</strong>
+        <p>.NET 10 apps publish as a single executable. Users double-click and it runs — no installer needed.</p>
+      </div>
+    </div>
+
+    <h2 data-section="brainstorm-journey" id="brainstorm-journey">Brainstorm — Development Journey</h2>
+    <p>The app was built in six stages, each one unlocking the next. The key decision was to design the data layer first so all UI work had a stable foundation.</p>
+
+    <div class="bs-timeline">
+      <div class="bs-tl-item">
+        <div class="bs-tl-dot bs-tl-dot--active"></div>
+        <div class="bs-tl-label">Stage 01</div>
+        <div class="bs-tl-title">Identify the pain point</div>
+        <div class="bs-tl-body">Noticed the reference workflow was too fragmented. Asked: what is the minimum app that solves this?</div>
+      </div>
+      <div class="bs-tl-item">
+        <div class="bs-tl-dot"></div>
+        <div class="bs-tl-label">Stage 02</div>
+        <div class="bs-tl-title">Define two focused modes</div>
+        <div class="bs-tl-body">Decided on Image Board and Color Picker as separate pages. Kept scope tight to avoid feature bloat.</div>
+      </div>
+      <div class="bs-tl-item">
+        <div class="bs-tl-dot"></div>
+        <div class="bs-tl-label">Stage 03</div>
+        <div class="bs-tl-title">Design the data layer</div>
+        <div class="bs-tl-body">Defined Board and BoardItem models first. All UI could be built on top of a stable database layer from the start.</div>
+      </div>
+      <div class="bs-tl-item">
+        <div class="bs-tl-dot"></div>
+        <div class="bs-tl-label">Stage 04</div>
+        <div class="bs-tl-title">Build drag, resize, zoom</div>
+        <div class="bs-tl-body">ImageItemControl took the most iteration — 8-directional resize handles and zoom-aware coordinates required careful event handling.</div>
+      </div>
+      <div class="bs-tl-item">
+        <div class="bs-tl-dot"></div>
+        <div class="bs-tl-label">Stage 05</div>
+        <div class="bs-tl-title">Add the screen eyedropper</div>
+        <div class="bs-tl-body">Win32 APIs turned the color picker from basic into genuinely useful — sampling any pixel on screen in real time.</div>
+      </div>
+      <div class="bs-tl-item">
+        <div class="bs-tl-dot"></div>
+        <div class="bs-tl-label">Stage 06</div>
+        <div class="bs-tl-title">Polish & export</div>
+        <div class="bs-tl-body">Added PNG export, per-card crop, inline rename, duplicate color detection, and right-click copy without #.</div>
+      </div>
+    </div>
+
+    <!-- ══ RESOURCES ══ -->
+    <h2 data-section="resources" id="resources">Further Reading</h2>
+
+    <h4>C# &amp; WinForms</h4>
+    <ul>
+      <li><a href="https://learn.microsoft.com/en-us/dotnet/desktop/winforms/" target="_blank">Windows Forms — Microsoft Learn</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank">C# Language Reference</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-windows-forms-create-match-game" target="_blank">WinForms beginner tutorial — Microsoft Learn</a></li>
+      <li><a href="https://www.nuget.org/packages/Microsoft.Data.Sqlite" target="_blank">Microsoft.Data.Sqlite on NuGet</a></li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Image Board Studio — Developer Tutorial</span>
+      <span>Last updated: April 2026</span>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/client.js"></script>
+</body>
+</html>
