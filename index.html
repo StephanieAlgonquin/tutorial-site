@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Board Studio — Tutorial</title>
+  <link rel="stylesheet" href="public\css\style.css">
+  <link rel="stylesheet" href="public\css\copy-btn.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <nav class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__title">Image Board Studio</div>
+      <div class="sidebar__subtitle">Developer Tutorial</div>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Introduction</div>
+      <a href="#intro"            class="nav__link">Overview</a>
+      <a href="#what-youll-build" class="nav__link">What You'll Build</a>
+      <a href="#project-structure" class="nav__link">Project Structure</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Setup</div>
+      <a href="#install-vs"      class="nav__link">1. Install Visual Studio</a>
+      <a href="#new-project"     class="nav__link">2. Create the Project</a>
+      <a href="#create-folders"  class="nav__link">3. Create Folders &amp; Files</a>
+      <a href="#nuget"           class="nav__link">4. Install SQLite Package</a>
+      <a href="#understand-ui"   class="nav__link">5. Understanding the UI</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Building the App</div>
+      <a href="#models"          class="nav__link">Part 1 — Data Models</a>
+      <a href="#database"        class="nav__link">Part 2 — Database</a>
+      <a href="#start-page"      class="nav__link">Part 3 — Start Page</a>
+      <a href="#image-item"      class="nav__link">Part 4 — Image Item Control</a>
+      <a href="#image-board"     class="nav__link">Part 5 — Image Board</a>
+      <a href="#color-picker"    class="nav__link">Part 6 — Color Picker</a>
+      <a href="#main-form"       class="nav__link">Part 7 — Main Form</a>
+    </div>
+    <div class="nav__section">
+      <div class="nav__label">Resources</div>
+      <a href="#resources" class="nav__link">Further Reading</a>
+    </div>
+  </nav>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- INTRO -->
+    <section data-section="intro" id="intro">
+      <div class="eyebrow">Image Board Studio</div>
+      <h1>Building an Artist Tool</h1>
+      <div class="hero-meta">
+        <span class="tag">C# .NET 10</span>
+        <span class="tag">Windows Forms</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Beginner Friendly</span>
+      </div>
+      <p class="lead">In this tutorial you will build Image Board Studio from scratch — a desktop app for artists to collect visual references and pick colors from images. No coding experience needed. Every step is explained.</p>
+
+      <p><strong>What is C#?</strong> C# (pronounced "C sharp") is a programming language made by Microsoft. It is one of the most popular languages for building Windows desktop apps.</p>
+      <p><strong>What is Windows Forms?</strong> Windows Forms (WinForms) is a toolkit that comes with C#. It lets you build windows with buttons, panels, and images by writing code instead of dragging things in a designer.</p>
+      <p><strong>What is SQLite?</strong> SQLite is a tiny database that saves data into a single file on your computer — like a spreadsheet, but for your app. No setup or server needed.</p>
+
+      <div class="callout callout--info">
+        <span class="callout__icon">ℹ️</span>
+        <div>This app runs on <strong>Windows 10 or 11</strong> only. It uses Windows-specific drawing APIs that are not available on Mac or Linux.</div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU'LL BUILD -->
+    <section data-section="what-youll-build" id="what-youll-build">
+      <h3>What You'll Build</h3>
+      <p>The finished app has three screens the user can switch between:</p>
+      <ul>
+        <li><strong>Start Page</strong> — a landing screen with two clickable mode cards</li>
+        <li><strong>Image Board</strong> — a large scrollable canvas where you drag, drop, and resize images. Boards are saved to a database so they persist when you close the app.</li>
+        <li><strong>Color Picker</strong> — load any image and click on it to sample colors. Build a reusable palette and copy the hex codes.</li>
+      </ul>
+      <div class="screen-mock">
+        <div class="screen-mock__bar">
+          <div class="screen-mock__dot screen-mock__dot--red"></div>
+          <div class="screen-mock__dot screen-mock__dot--yellow"></div>
+          <div class="screen-mock__dot screen-mock__dot--green"></div>
+          <span class="screen-mock__title">Image Board Studio</span>
+        </div>
+        <div class="screen-mock__body">
+          <div style="text-align:center;max-width:380px">
+            <div style="font-family:'Instrument Serif',serif;font-size:22px;color:#e2ddf5;margin-bottom:6px">Image Board Studio</div>
+            <div style="font-size:12px;color:#6b6882;margin-bottom:22px">Choose a mode to get started</div>
+            <div style="display:flex;gap:12px;justify-content:center">
+              <div style="background:#1a1a24;border:1px solid rgba(96,165,250,.35);border-radius:10px;padding:16px;width:140px;text-align:left">
+                <div style="font-size:24px;margin-bottom:8px">🖼</div>
+                <div style="font-size:13px;color:#60a5fa;font-weight:500;margin-bottom:4px">Image Board</div>
+                <div style="font-size:11px;color:#6b6882;line-height:1.5">Collect references on a freeform canvas</div>
+              </div>
+              <div style="background:#1a1a24;border:1px solid rgba(167,139,250,.35);border-radius:10px;padding:16px;width:140px;text-align:left">
+                <div style="font-size:24px;margin-bottom:8px">🎨</div>
+                <div style="font-size:13px;color:#a78bfa;font-weight:500;margin-bottom:4px">Color Picker</div>
+                <div style="font-size:11px;color:#6b6882;line-height:1.5">Sample colors from any image</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT STRUCTURE -->
+    <section data-section="project-structure" id="project-structure">
+      <h3>Project Structure</h3>
+      <p>Here is every file in the finished project. Don't worry about understanding all of it now — you will create each file step by step. This is just a map so you know where you are headed.</p>
+
+      <div class="file-tree">
+        <div><span class="file-tree__dir">Imageboard_illust/</span>  ← the project folder</div>
+        <div class="file-tree__i1"><span class="file-tree__dir">Database/</span></div>
+        <div class="file-tree__i2"><span class="file-tree__hl">AppDatabase.cs</span>  ← reads &amp; writes to SQLite</div>
+        <div class="file-tree__i1"><span class="file-tree__dir">Models/</span></div>
+        <div class="file-tree__i2"><span class="file-tree__hl">Models.cs</span>  ← data shapes (Board, BoardItem)</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">StartPage.cs</span>  ← the home/landing screen</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">ImageItemControl.cs</span>  ← a single draggable image card</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">ColorPickerPage.cs</span>  ← the color picker screen</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">ExportOptionsDialog.cs</span>  ← export dialog window</div>
+        <div class="file-tree__i1"><span class="file-tree__hl">MainForm.cs</span>  ← root window, switches between pages</div>
+        <div class="file-tree__i1"><span class="file-tree__file">Form1.cs</span>  ← auto-generated, leave as-is</div>
+        <div class="file-tree__i1"><span class="file-tree__file">Program.cs</span>  ← app entry point</div>
+      </div>
+
+      <div class="callout callout--tip">
+        <span class="callout__icon">💡</span>
+        <div>In Solution Explorer (the panel on the right in Visual Studio) you can see this exact tree. Expanding a <code>.cs</code> file shows all the classes and methods inside it — very useful for navigating large projects.</div>
+      </div>
+    </section>
+
+    <!-- ══ INSTALL VS ══ -->
+    <h2 data-section="install-vs" id="install-vs">Step 1 — Install Visual Studio</h2>
+    <p>Visual Studio is the program you write C# code in. Think of it like Microsoft Word, but for code. We use the free <strong>Community</strong> edition.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Download Visual Studio</div></div>
+      <div class="step__body">
+        <p>Go to <a href="https://visualstudio.microsoft.com/vs/community/" target="_blank">visualstudio.microsoft.com</a> and click <strong>Download Visual Studio → Community 2022</strong>. This downloads a small installer file called <code>VisualStudioSetup.exe</code>. Run it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Choose what to install</div></div>
+      <div class="step__body">
+        <p>The installer shows a list of <strong>Workloads</strong> — these are bundles of tools for different types of apps. Check only this one:</p>
+        <p><span class="menu-path">.NET desktop development</span></p>
+        <p>This installs everything needed: C#, Windows Forms, and the .NET runtime.</p>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>Leave all other workloads <strong>unchecked</strong>. This saves about 10 GB of disk space and makes the install much faster.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Finish installing</div></div>
+      <div class="step__body">
+        <p>Click <strong>Install</strong> at the bottom right. This takes 10–20 minutes depending on your internet speed. When it finishes, click <strong>Launch</strong>.</p>
+        <p>Visual Studio will ask you to sign in with a Microsoft account. This is optional — click <strong>"Not now, maybe later"</strong> to skip it. The app is completely free without signing in.</p>
+      </div>
+    </div>
+
+    <!-- ══ NEW PROJECT ══ -->
+    <h2 data-section="new-project" id="new-project">Step 2 — Create the Project</h2>
+    <p>A <strong>project</strong> is the folder that holds all your code files. A <strong>solution</strong> is a container that holds one or more projects. Visual Studio creates both at once.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Start a new project</div></div>
+      <div class="step__body">
+        <p>On the Visual Studio start screen, click <strong>Create a new project</strong>. In the search box at the top, type <code>Windows Forms</code>. Select the template that says:</p>
+        <p><span class="menu-path">Windows Forms App  ·  C#</span></p>
+        <p>Make sure the small tag says <strong>C#</strong> (not Visual Basic). Click <strong>Next</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Name the project</div></div>
+      <div class="step__body">
+        <p>Fill in the details exactly like this:</p>
+        <ul>
+          <li><strong>Project name:</strong> <code>Imageboard_illust</code></li>
+          <li><strong>Location:</strong> anywhere you like (e.g. your Desktop or Documents)</li>
+          <li><strong>Framework:</strong> <code>.NET 10.0 (Windows)</code></li>
+        </ul>
+        <p>Click <strong>Create</strong>. Visual Studio generates the project and opens it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">What Visual Studio created</div></div>
+      <div class="step__body">
+        <p>In the <strong>Solution Explorer</strong> panel (right side), you'll see two auto-generated files:</p>
+        <ul>
+          <li><code>Form1.cs</code> — a blank window. We will keep this for now.</li>
+          <li><code>Program.cs</code> — the entry point. This is the first code that runs when you press Play.</li>
+        </ul>
+        <div class="callout callout--info">
+          <span class="callout__icon">ℹ️</span>
+          <div>Don't delete <code>Form1.cs</code> yet — Visual Studio needs it. We will replace it with our own <code>MainForm</code> later.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CREATE FOLDERS ══ -->
+    <h2 data-section="create-folders" id="create-folders">Step 3 — Create Folders &amp; Files</h2>
+    <p>Before writing any code, create the folder and file structure. Right-clicking in Solution Explorer is how you add everything.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Create the Database folder</div></div>
+      <div class="step__body">
+        <p>In Solution Explorer, right-click the project name (<code>Imageboard_illust</code>) → <strong>Add → New Folder</strong> → type <code>Database</code> → press <kbd>Enter</kbd>.</p>
+        <p>Then right-click the <code>Database</code> folder → <strong>Add → Class…</strong> → name it <code>AppDatabase.cs</code> → click <strong>Add</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Create the Models folder</div></div>
+      <div class="step__body">
+        <p>Same steps: right-click the project → <strong>Add → New Folder</strong> → name it <code>Models</code>. Then right-click the <code>Models</code> folder → <strong>Add → Class…</strong> → name it <code>Models.cs</code>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Create the remaining files</div></div>
+      <div class="step__body">
+        <p>Right-click the project (not a folder) → <strong>Add → Class…</strong> for each of these files:</p>
+        <ul>
+          <li><code>StartPage.cs</code></li>
+          <li><code>ImageItemControl.cs</code></li>
+          <li><code>ColorPickerPage.cs</code></li>
+          <li><code>ExportOptionsDialog.cs</code></li>
+          <li><code>MainForm.cs</code></li>
+        </ul>
+        <p>When done, your Solution Explorer should match the project structure shown in the introduction.</p>
+      </div>
+    </div>
+
+    <!-- ══ NUGET ══ -->
+    <h2 data-section="nuget" id="nuget">Step 4 — Install the SQLite Package</h2>
+    <p>Your project needs a library to talk to SQLite. Libraries in C# are installed through <strong>NuGet</strong>, which is like an app store for code packages. Your project uses version <strong>10.0.5</strong> (visible in your Solution Explorer under <strong>Packages</strong>).</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Open the NuGet Package Manager</div></div>
+      <div class="step__body">
+        <p>In the top menu bar, click:</p>
+        <p><span class="menu-path">Tools → NuGet Package Manager → Manage NuGet Packages for Solution…</span></p>
+        <p>A new tab opens showing packages you can install.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Install Microsoft.Data.Sqlite</div></div>
+      <div class="step__body">
+        <p>Click the <strong>Browse</strong> tab. In the search box type <code>Microsoft.Data.Sqlite</code>. Click the first result. On the right side, check the box next to your project name. Click <strong>Install</strong> and accept any prompts.</p>
+        <div class="callout callout--note">
+          <span class="callout__icon">✦</span>
+          <div>Your project uses <strong>Microsoft.Data.Sqlite 10.0.5</strong> and <strong>Microsoft.Data.Sqlite.Core 10.0.5</strong> — both appear under <strong>Packages</strong> in Solution Explorer after installing.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ UNDERSTAND UI ══ -->
+    <h2 data-section="understand-ui" id="understand-ui">Step 5 — Understanding Visual Studio's UI</h2>
+    <p>Before writing code, take 5 minutes to understand the panels. You'll use all of these constantly.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Solution Explorer (right panel)</div></div>
+      <div class="step__body">
+        <p>This shows your entire project as a tree. Click a <code>.cs</code> file to open it. Click the arrow to expand it and see the classes and methods inside. You can right-click anything here to add, rename, or delete files.</p>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>If Solution Explorer disappears, bring it back with <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>L</kbd>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">The code editor (center)</div></div>
+      <div class="step__body">
+        <p>This is where you write code. Visual Studio color-codes keywords, shows errors with red underlines, and suggests completions as you type. Press <kbd>Ctrl</kbd><kbd>Space</kbd> at any time to force a suggestion to appear.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">3</div><div class="step__title">Error List (bottom panel)</div></div>
+      <div class="step__body">
+        <p>Shows all compile errors and warnings. Double-click any error to jump directly to the line causing it. You can open it from:</p>
+        <p><span class="menu-path">View → Error List</span></p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">4</div><div class="step__title">Run and stop the app</div></div>
+      <div class="step__body">
+        <ul>
+          <li><kbd>F5</kbd> — build and run (opens the app window)</li>
+          <li><kbd>Shift</kbd><kbd>F5</kbd> — stop the app</li>
+          <li><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> — build without running (just checks for errors)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ MODELS ══ -->
+    <h2 data-section="models" id="models">Part 1 — Data Models</h2>
+    <p>A <strong>model</strong> is a C# class that describes the shape of your data. Think of it like a form — it defines what fields exist. Open <code>Models/Models.cs</code> and replace all the content with the code below.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Define Board and BoardItem</div></div>
+      <div class="step__body">
+        <p>A <strong>Board</strong> is one named workspace (like a Photoshop document). A <strong>BoardItem</strong> is a single image card placed on that board, with its position and size.</p>
+        <pre><code><span class="token-kw">namespace</span> Imageboard_illust.Models
+{
+    <span class="token-kw">public class</span> <span class="token-type">Board</span>
+    {
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>        { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>      { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">CreatedAt</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+
+        <span class="token-cm">// Returns the folder path where this board's images are stored</span>
+        <span class="token-kw">public</span> <span class="token-type">string</span> ImagesDir(<span class="token-type">string</span> dataDir)
+            => Path.Combine(dataDir, <span class="token-str">"boards"</span>, Id.ToString(), <span class="token-str">"images"</span>);
+    }
+
+    <span class="token-kw">public class</span> <span class="token-type">BoardItem</span>
+    {
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">Id</span>       { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">BoardId</span>  { <span class="token-kw">get</span>; <span class="token-kw">set</span>; }
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">Name</span>     { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">string</span> <span class="token-prop">FileName</span> { <span class="token-kw">get</span>; <span class="token-kw">set</span>; } = <span class="token-str">""</span>;
+        <span class="token-kw">public</span> <span class="token-type">int</span>    <span class="token-prop">X</span>, <span class="token-prop">Y</span>, <span class="token-prop">Width</span>, <span class="token-prop">Height</span>, <span class="token-prop">ZOrder</span>;
+    }
+}</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div><code>{ get; set; }</code> means the property can be read and written from outside the class. This is standard C# for model classes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DATABASE ══ -->
+    <h2 data-section="database" id="database">Part 2 — Database</h2>
+    <p>Open <code>Database/AppDatabase.cs</code>. This class is responsible for all reading and writing to the SQLite file. It opens a connection when the app starts and keeps it open until the app closes.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Create the database file and tables</div></div>
+      <div class="step__body">
+        <p>The constructor finds the user's AppData folder, creates a <code>.db</code> file there, and runs <code>CREATE TABLE IF NOT EXISTS</code> — which creates the tables only if they don't already exist, so it's safe to call every time the app starts.</p>
+        <pre><code><span class="token-kw">using</span> Microsoft.Data.Sqlite;
+<span class="token-kw">using</span> Imageboard_illust.Models;
+
+<span class="token-kw">public class</span> <span class="token-type">AppDatabase</span> : <span class="token-type">IDisposable</span>
+{
+    <span class="token-kw">private readonly</span> <span class="token-type">SqliteConnection</span> _conn;
+    <span class="token-kw">public</span> <span class="token-type">string</span> DataDir { <span class="token-kw">get</span>; }
+
+    <span class="token-kw">public</span> AppDatabase()
+    {
+        DataDir = Path.Combine(
+            Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData),
+            <span class="token-str">"ImageBoardStudio"</span>);
+        Directory.CreateDirectory(DataDir);
+
+        _conn = <span class="token-kw">new</span> <span class="token-type">SqliteConnection</span>(
+            <span class="token-str">$"Data Source={Path.Combine(DataDir, "app.db")}"</span>);
+        _conn.Open();
+        InitSchema();
+    }
+
+    <span class="token-kw">private void</span> InitSchema()
+    {
+        Exec(<span class="token-str">@"CREATE TABLE IF NOT EXISTS boards (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            name       TEXT NOT NULL,
+            created_at TEXT DEFAULT (datetime('now'))
+        );"</span>);
+        Exec(<span class="token-str">@"CREATE TABLE IF NOT EXISTS board_items (
+            id       INTEGER PRIMARY KEY AUTOINCREMENT,
+            board_id INTEGER NOT NULL,
+            name     TEXT, filename TEXT,
+            x INT, y INT, w INT, h INT,
+            z_order  INT DEFAULT 0
+        );"</span>);
+    }
+
+    <span class="token-cm">// Helper: run a SQL command with no return value</span>
+    <span class="token-kw">private void</span> Exec(<span class="token-type">string</span> sql)
+    {
+        <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
+        cmd.CommandText = sql;
+        cmd.ExecuteNonQuery();
+    }
+
+    <span class="token-kw">public void</span> Dispose() => _conn.Dispose();
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Add read / write methods</div></div>
+      <div class="step__body">
+        <p>Add these methods to the same class. They let you insert boards and read them back:</p>
+        <pre><code><span class="token-kw">public</span> <span class="token-type">int</span> InsertBoard(<span class="token-type">string</span> name)
+{
+    <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
+    cmd.CommandText =
+        <span class="token-str">"INSERT INTO boards (name) VALUES ($n); SELECT last_insert_rowid();"</span>;
+    cmd.Parameters.AddWithValue(<span class="token-str">"$n"</span>, name);
+    <span class="token-kw">return</span> (<span class="token-type">int</span>)(<span class="token-type">long</span>)cmd.ExecuteScalar()!;
+}
+
+<span class="token-kw">public</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt; GetBoards()
+{
+    <span class="token-kw">var</span> list = <span class="token-kw">new</span> <span class="token-type">List</span>&lt;<span class="token-type">Board</span>&gt;();
+    <span class="token-kw">using var</span> cmd = _conn.CreateCommand();
+    cmd.CommandText =
+        <span class="token-str">"SELECT id, name, created_at FROM boards ORDER BY id;"</span>;
+    <span class="token-kw">using var</span> r = cmd.ExecuteReader();
+    <span class="token-kw">while</span> (r.Read())
+        list.Add(<span class="token-kw">new</span> <span class="token-type">Board</span> {
+            Id        = r.GetInt32(<span class="token-num">0</span>),
+            Name      = r.GetString(<span class="token-num">1</span>),
+            CreatedAt = r.GetString(<span class="token-num">2</span>)
+        });
+    <span class="token-kw">return</span> list;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ START PAGE ══ -->
+    <h2 data-section="start-page" id="start-page">Part 3 — Start Page</h2>
+    <p>Open <code>StartPage.cs</code>. This is the landing screen — a <code>Panel</code> that fills the window. It fires events when the user clicks a card, which <code>MainForm</code> listens to.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Declare the class and its events</div></div>
+      <div class="step__body">
+        <p>Events are how one class tells another "something happened." Here we define two — one per mode card:</p>
+        <pre><code><span class="token-kw">public class</span> <span class="token-type">StartPage</span> : <span class="token-type">Panel</span>
+{
+    <span class="token-kw">public event</span> <span class="token-type">EventHandler</span>? ImageBoardChosen;
+    <span class="token-kw">public event</span> <span class="token-type">EventHandler</span>? ColorPickerChosen;
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Draw the dot-grid background</div></div>
+      <div class="step__body">
+        <p>The <code>Paint</code> event fires every time the panel needs to redraw. We draw a gradient and a subtle dot grid over it:</p>
+        <pre><code>Paint += (_, e) =>
+{
+    <span class="token-kw">using var</span> br = <span class="token-kw">new</span> <span class="token-type">LinearGradientBrush</span>(
+        ClientRectangle,
+        Color.FromArgb(<span class="token-num">22</span>, <span class="token-num">22</span>, <span class="token-num">28</span>),
+        Color.FromArgb(<span class="token-num">30</span>, <span class="token-num">28</span>, <span class="token-num">38</span>),
+        LinearGradientMode.ForwardDiagonal);
+    e.Graphics.FillRectangle(br, ClientRectangle);
+
+    <span class="token-kw">using var</span> dot = <span class="token-kw">new</span> <span class="token-type">SolidBrush</span>(
+        Color.FromArgb(<span class="token-num">35</span>, <span class="token-num">255</span>, <span class="token-num">255</span>, <span class="token-num">255</span>));
+    <span class="token-kw">const int</span> gap = <span class="token-num">32</span>;
+    <span class="token-kw">for</span> (<span class="token-type">int</span> x = gap; x &lt; Width;  x += gap)
+    <span class="token-kw">for</span> (<span class="token-type">int</span> y = gap; y &lt; Height; y += gap)
+        e.Graphics.FillEllipse(dot, x-<span class="token-num">1</span>, y-<span class="token-num">1</span>, <span class="token-num">2</span>, <span class="token-num">2</span>);
+};</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>After changing a visual property in code, always call <code>Invalidate()</code> on the control to schedule a repaint. Without it, the change won't appear on screen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ IMAGE ITEM CONTROL ══ -->
+    <h2 data-section="image-item" id="image-item">Part 4 — Image Item Control</h2>
+    <p>Open <code>ImageItemControl.cs</code>. This is one draggable image card on the canvas. It is a <code>Panel</code> subclass with its own title bar, a close button, and 8-directional resize handles.</p>
+
+    <p>Looking at your Solution Explorer, you can see the key members this class contains:</p>
+    <ul>
+      <li><code>Item : BoardItem</code> — the data for this card (position, size, filename)</li>
+      <li><code>_pictureBox : PictureBox</code> — displays the image</li>
+      <li><code>_titleBar : Panel</code> — the draggable bar at the top</li>
+      <li><code>_closeBtn : Button</code> — the × button to remove the card</li>
+      <li><code>ResizeDir</code> — an enum with directions: None, N, S, E, W, NE, NW, SE, SW</li>
+      <li><code>DeleteRequested</code> / <code>BringToFrontRequested</code> — events fired to the parent canvas</li>
+    </ul>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Define the ResizeDir enum</div></div>
+      <div class="step__body">
+        <p>An <strong>enum</strong> is a named list of options. This one describes which edge or corner the user is dragging to resize:</p>
+        <pre><code><span class="token-kw">public enum</span> <span class="token-type">ResizeDir</span>
+{
+    None,           <span class="token-cm">// not resizing</span>
+    N, S, E, W,     <span class="token-cm">// top, bottom, right, left edges</span>
+    NE, NW, SE, SW  <span class="token-cm">// corners</span>
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Handle drag to move</div></div>
+      <div class="step__body">
+        <p>The title bar handles dragging. On <code>MouseDown</code> we save where the drag started; on <code>MouseMove</code> we update the card's position:</p>
+        <pre><code><span class="token-kw">private void</span> TitleBar_Down(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
+{
+    _isDragging = <span class="token-kw">true</span>;
+    _dragStartScreen   = Cursor.Position;
+    _dragStartLocation = Location;
+}
+
+<span class="token-kw">private void</span> TitleBar_Move(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
+{
+    <span class="token-kw">if</span> (!_isDragging) <span class="token-kw">return</span>;
+    <span class="token-type">var</span> delta = <span class="token-kw">new</span> <span class="token-type">Point</span>(
+        Cursor.Position.X - _dragStartScreen.X,
+        Cursor.Position.Y - _dragStartScreen.Y);
+    Location = <span class="token-kw">new</span> <span class="token-type">Point</span>(
+        _dragStartLocation.X + delta.X,
+        _dragStartLocation.Y + delta.Y);
+    BringToFrontRequested?.Invoke(<span class="token-kw">this</span>, EventArgs.Empty);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ IMAGE BOARD ══ -->
+    <h2 data-section="image-board" id="image-board">Part 5 — Image Board</h2>
+    <p>The <code>ImageBoardPage</code> class lives inside <code>MainForm.cs</code>. It contains the toolbar, sidebar, canvas, and status bar.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Build the scrollable grid canvas</div></div>
+      <div class="step__body">
+        <pre><code>_canvas = <span class="token-kw">new</span> <span class="token-type">Panel</span> {
+    Dock = DockStyle.Fill,
+    AutoScroll = <span class="token-kw">true</span>,
+    AutoScrollMinSize = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">4000</span>, <span class="token-num">3000</span>),
+    BackColor = Color.FromArgb(<span class="token-num">40</span>, <span class="token-num">40</span>, <span class="token-num">43</span>)
+};
+_canvas.Paint += (_, e) => {
+    <span class="token-kw">const int</span> G = <span class="token-num">40</span>;
+    <span class="token-kw">using var</span> pen = <span class="token-kw">new</span> <span class="token-type">Pen</span>(Color.FromArgb(<span class="token-num">50</span>, <span class="token-num">50</span>, <span class="token-num">53</span>), <span class="token-num">1</span>);
+    <span class="token-kw">int</span> ox = _canvas.AutoScrollPosition.X % G;
+    <span class="token-kw">int</span> oy = _canvas.AutoScrollPosition.Y % G;
+    <span class="token-kw">for</span> (<span class="token-type">int</span> x = ox; x &lt; _canvas.Width; x += G)
+        e.Graphics.DrawLine(pen, x, <span class="token-num">0</span>, x, _canvas.Height);
+    <span class="token-kw">for</span> (<span class="token-type">int</span> y = oy; y &lt; _canvas.Height; y += G)
+        e.Graphics.DrawLine(pen, <span class="token-num">0</span>, y, _canvas.Width, y);
+};</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Zoom with Ctrl + Scroll</div></div>
+      <div class="step__body">
+        <pre><code>_canvas.MouseWheel += (_, e) => {
+    <span class="token-kw">if</span> (ModifierKeys.HasFlag(Keys.Control))
+        SetZoom(_zoom + (e.Delta > <span class="token-num">0</span> ? +<span class="token-num">0.1f</span> : -<span class="token-num">0.1f</span>));
+};
+
+<span class="token-kw">private void</span> SetZoom(<span class="token-type">float</span> v)
+{
+    _zoom = Math.Clamp(v, <span class="token-num">0.5f</span>, <span class="token-num">2.0f</span>);
+    <span class="token-kw">foreach</span> (<span class="token-kw">var</span> card <span class="token-kw">in</span> _cards.Values)
+    {
+        card.Location = <span class="token-kw">new</span> <span class="token-type">Point</span>(
+            (<span class="token-type">int</span>)(card.Item.X * _zoom),
+            (<span class="token-type">int</span>)(card.Item.Y * _zoom));
+        card.Size = <span class="token-kw">new</span> <span class="token-type">Size</span>(
+            (<span class="token-type">int</span>)(card.Item.Width  * _zoom),
+            (<span class="token-type">int</span>)(card.Item.Height * _zoom));
+    }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- ══ COLOR PICKER ══ -->
+    <h2 data-section="color-picker" id="color-picker">Part 6 — Color Picker</h2>
+    <p>Open <code>ColorPickerPage.cs</code>. It loads an image into a <code>PictureBox</code> and reads the pixel color wherever the mouse is. Your class also has a <code>NativeMethods</code> helper (visible in Solution Explorer) for calling low-level Windows APIs to read screen pixels.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Read pixel color on mouse move</div></div>
+      <div class="step__body">
+        <pre><code><span class="token-kw">private void</span> PicBox_MouseMove(<span class="token-type">object</span>? s, <span class="token-type">MouseEventArgs</span> e)
+{
+    <span class="token-kw">if</span> (_loadedImage == <span class="token-kw">null</span>) <span class="token-kw">return</span>;
+    <span class="token-kw">var</span> bmp = (<span class="token-type">Bitmap</span>)_loadedImage;
+
+    <span class="token-cm">// Convert PictureBox display coordinates → real bitmap pixel</span>
+    <span class="token-type">int</span> bx = (<span class="token-type">int</span>)(e.X * (<span class="token-type">float</span>)bmp.Width  / _picBox.Width);
+    <span class="token-type">int</span> by = (<span class="token-type">int</span>)(e.Y * (<span class="token-type">float</span>)bmp.Height / _picBox.Height);
+    bx = Math.Clamp(bx, <span class="token-num">0</span>, bmp.Width  - <span class="token-num">1</span>);
+    by = Math.Clamp(by, <span class="token-num">0</span>, bmp.Height - <span class="token-num">1</span>);
+
+    <span class="token-type">Color</span> c = bmp.GetPixel(bx, by);
+    _hoveredSwatch.BackColor = c;
+    _hoveredColorLbl.Text    = <span class="token-str">$"#{c.R:X2}{c.G:X2}{c.B:X2}"</span>;
+}</code></pre>
+        <div class="callout callout--warn">
+          <span class="callout__icon">⚠️</span>
+          <div>When <code>SizeMode</code> is <code>Zoom</code>, WinForms adds letterbox padding around the image. For perfectly accurate picks at the edges, subtract the padding offset from <code>e.X</code> and <code>e.Y</code>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MAIN FORM ══ -->
+    <h2 data-section="main-form" id="main-form">Part 7 — Main Form</h2>
+    <p>Open <code>MainForm.cs</code>. This is the root window of the app — it owns one <code>AppDatabase</code> and acts as a page router. When the user picks a mode, it disposes the current page and loads the new one.</p>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">1</div><div class="step__title">Set up the form</div></div>
+      <div class="step__body">
+        <p>Looking at your Solution Explorer, you can see <code>MainForm</code> has exactly these fields: <code>_db</code>, <code>_startPage</code>, <code>_boardPage</code>, <code>_colorPage</code> — and four methods: <code>ShowStartPage()</code>, <code>ShowImageBoard()</code>, <code>ShowColorPicker()</code>, <code>ClearPages()</code>.</p>
+        <pre><code><span class="token-kw">public class</span> <span class="token-type">MainForm</span> : <span class="token-type">Form</span>
+{
+    <span class="token-kw">private readonly</span> <span class="token-type">AppDatabase</span> _db = <span class="token-kw">new</span>();
+    <span class="token-kw">private</span> <span class="token-type">StartPage</span>?       _startPage;
+    <span class="token-kw">private</span> <span class="token-type">ImageBoardPage</span>?  _boardPage;
+    <span class="token-kw">private</span> <span class="token-type">ColorPickerPage</span>? _colorPage;
+
+    <span class="token-kw">public</span> MainForm()
+    {
+        Text        = <span class="token-str">"Image Board Studio"</span>;
+        Size        = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">1440</span>, <span class="token-num">900</span>);
+        MinimumSize = <span class="token-kw">new</span> <span class="token-type">Size</span>(<span class="token-num">960</span>,  <span class="token-num">640</span>);
+        BackColor   = Color.FromArgb(<span class="token-num">22</span>, <span class="token-num">22</span>, <span class="token-num">26</span>);
+        ShowStartPage();
+    }
+
+    <span class="token-cm">// Always release the database when the window closes</span>
+    <span class="token-kw">protected override void</span> OnFormClosed(<span class="token-type">FormClosedEventArgs</span> e)
+        { _db.Dispose(); <span class="token-kw">base</span>.OnFormClosed(e); }
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__header"><div class="step__num">2</div><div class="step__title">Implement page switching</div></div>
+      <div class="step__body">
+        <pre><code><span class="token-kw">private void</span> ShowStartPage()
+{
+    ClearPages();
+    _startPage = <span class="token-kw">new</span> <span class="token-type">StartPage</span>();
+    _startPage.ImageBoardChosen  += (_, _) => ShowImageBoard();
+    _startPage.ColorPickerChosen += (_, _) => ShowColorPicker();
+    Controls.Add(_startPage);
+    Text = <span class="token-str">"Image Board Studio"</span>;
+}
+
+<span class="token-kw">private void</span> ShowImageBoard()
+{
+    ClearPages();
+    _boardPage = <span class="token-kw">new</span> <span class="token-type">ImageBoardPage</span>(_db);
+    _boardPage.HomeRequested += (_, _) => ShowStartPage();
+    Controls.Add(_boardPage);
+    Text = <span class="token-str">"Image Board Studio — Image Board"</span>;
+}
+
+<span class="token-kw">private void</span> ClearPages()
+{
+    <span class="token-kw">foreach</span> (<span class="token-type">Control</span> c <span class="token-kw">in</span> Controls) c.Dispose();
+    Controls.Clear();
+    _startPage = <span class="token-kw">null</span>; _boardPage = <span class="token-kw">null</span>; _colorPage = <span class="token-kw">null</span>;
+}</code></pre>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div>Press <kbd>F5</kbd> to build and run. If everything is set up correctly, the Start Page appears with the two mode cards. Use <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> to check for errors without launching.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ RESOURCES ══ -->
+    <h2 data-section="resources" id="resources">Further Reading</h2>
+
+    <h4>C# &amp; WinForms</h4>
+    <ul>
+      <li><a href="https://learn.microsoft.com/en-us/dotnet/desktop/winforms/" target="_blank">Windows Forms — Microsoft Learn</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank">C# Language Reference</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-windows-forms-create-match-game" target="_blank">WinForms beginner tutorial — Microsoft Learn</a></li>
+      <li><a href="https://www.nuget.org/packages/Microsoft.Data.Sqlite" target="_blank">Microsoft.Data.Sqlite on NuGet</a></li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Image Board Studio — Developer Tutorial</span>
+      <span>Last updated: April 2026</span>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/client.js"></script>
+</body>
+</html>
