@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════
+   Copy button (injected by client.js)
+   public/css/copy-btn.css
+═══════════════════════════════════════════════ */
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: rgba(255,255,255,0.08);
+  color: #a6adc8;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.5;
+}
+
+.copy-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: #cdd6f4;
+}
+
+.copy-btn--success {
+  background: rgba(166,227,161,0.15);
+  color: #a6e3a1;
+  border-color: rgba(166,227,161,0.25);
+}
